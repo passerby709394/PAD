@@ -278,8 +278,8 @@ class Batter {
                 // 动画音效单独加载，加载完成才允许拖动元素
                 if (aniAudios.length > 0) {
                     AssetManager.loadAudios(aniAudios, Callback.New(() => {
-                        //初始化中
-                        PADBattle.PADgame._isBusy=true;
+                        //初始化
+                        PADBattle.PADgame._isBusy=false;
                         console.log("初始化中:",PADBattle.PADgame._isBusy);
                     }, null));
                 } else {

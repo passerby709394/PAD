@@ -85,6 +85,11 @@ class PADPuzzle {
     static lastResult: PADPuzzleResult = null;
 
     /**
+     * 交换音效是否已预热（首次按下珠子时静音播放一次，提前解锁 AudioContext）
+     */
+    static _swapSEWarmed: boolean = false;
+
+    /**
      * 棋盘
      */
     board: PADBoard;
@@ -276,6 +281,25 @@ class PADPuzzle {
         return this._isFinished;
     }
 
+    /**
+     * 设置忙碌状态（true 禁止玩家输入，false 允许玩家操作）
+     * 供战斗行动（攻击/治疗动画）全部完成后解除输入锁
+     */
+    setBusy(v: boolean): void {
+        this._isBusy = v;
+    }
+
+    /**
+     * 获取引擎 Web Audio 的 AudioContext（用于在用户手势内显式 resume，解锁浏览器自动播放）
+     */
+    private static _getWebAudioContext(): any {
+        const w: any = window;
+        const LayaNS: any = w && w.Laya;
+        const WebAudioSound: any = LayaNS && (LayaNS.WebAudioSound ||
+            (LayaNS.media && LayaNS.media.webaudio && LayaNS.media.webaudio.WebAudioSound));
+        return WebAudioSound && WebAudioSound.ctx;
+    }
+
     // ===== 拖拽交互 =====
 
     /**
@@ -294,6 +318,16 @@ class PADPuzzle {
      */
     private _onElementDown(e: EventObject, el: PADElement): void {
         if (this._isBusy || this._timeUp || this._isFinished || PADBattle.battleStep!=1) return;
+        // 预热音频：首次按下珠子时，在用户手势内显式恢复 AudioContext（浏览器自动播放策略），
+        // 并静音播放一次 swapSE，避免之后拖拽交换首播无声/音量过小
+        if (!PADPuzzle._swapSEWarmed) {
+            PADPuzzle._swapSEWarmed = true;
+            const ctx = PADPuzzle._getWebAudioContext();
+            if (ctx && ctx.state === "suspended" && typeof ctx.resume === "function") {
+                ctx.resume();
+            }
+            GameAudio.playSE(PADElement.swapSE, 0);
+        }
         this._dragging = el;
         // 按下：倒计时重新开始（刷新时间）
         this._startTimer();
@@ -445,7 +479,12 @@ class PADPuzzle {
         this.board.runChainedCombo(
             function (combo: PADCombo) { self._onComboFired(combo); },
             function () {
-                self._isBusy = false;
+                // 无消除：直接解除输入锁与时间到标记，跳过战斗行动
+                if (self.board.lastComboResults.length === 0) {
+                    self._isBusy = false;
+                    self._timeUp = false;
+                    return;
+                }
                 // 本次消除的各属性数量（当次值）
                 let combos = self.board.lastComboResults;
                 self._lastByType = {};

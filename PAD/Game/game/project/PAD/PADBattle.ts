@@ -1,0 +1,143 @@
+/**
+ * Created by 六一 on 2026-07-24 16:31:24.
+ * 战斗流程
+ */
+class PADBattle{
+    /**
+     * 记录的事件触发器
+     */
+    static triggerLine:CommandTrigger=null;
+    /**
+     * 战斗界面
+     */  
+    static battleUI:GUI_4001;
+    /**
+     * 转珠界面实例
+     */  
+    static PADgame:PADPuzzle;  
+    /**
+     * 战斗阶段：1：等待玩家操作（战斗前），2：执行战斗，3：战斗结算
+     */  
+    static battleStep:number=0;          
+    /**
+     * 继续停止的记录的事件触发器
+     */    
+    static start(){
+        if(!PADBattle.triggerLine)return;
+        PADBattle.triggerLine.offset(1);
+        if(PADBattle.triggerLine){
+            CommandPage.executeEvent(PADBattle.triggerLine);
+            PADBattle.triggerLine=null;            
+        }
+    }
+    /**
+     * 初始化
+     * @param party 敌人队伍数据
+     */ 
+    static init(party:Module_Party){
+        PADBattle.battleUI=null;
+        Batter.enemys=[];
+        Batter.players=[];
+        PADBattle.battleUI=new GUI_4001();   
+        PADBattle.battleUI.BG.image=party.background;
+        this.battleStep=0;
+        
+        //敌人初始化
+        Batter.init(party);
+        //战斗界面渐入
+        PADBattle.battleUI.opacity=0;
+        Game.layer.uiLayer.addChild(PADBattle.battleUI);
+        Tween.to(PADBattle.battleUI,{ opacity: 1 },1000,Ease.linearIn)
+               
+    } 
+    /**
+     * 下一战斗阶段
+     */ 
+    static next(){
+        PADBattle.battleStep++;
+        switch(PADBattle.battleStep){
+            case 1:
+                //等待玩家操作的逻辑（战斗前）
+                break;
+            case 2:
+                //执行战斗的逻辑
+                PADAction.playerAction(PADBattle.PADgame.board.lastComboResults);
+                break;
+            case 3:
+                //战斗结算的逻辑
+                //结算完毕返回玩家操作
+                PADBattle.battleStep=1;
+                break;
+        }
+        
+    }
+    
+}
+
+//开始战斗的指令
+module CommandExecute {
+    /**
+     * 自定义命令执行 1表示对应1号命令
+     * @param commandPage 事件页
+     * @param cmd 当前的事件命令
+     * @param trigger 触发器
+     * @param triggerPlayer 触发器对应的玩家
+     * @param playerInput 玩家输入值，用于暂停执行该触发器事件并等待玩家输入后获得的值，执行完该函数后会被清空
+     * @param p 自定义命令参数 1表示对应1号命令的参数
+     */
+    export function customCommand_15002(commandPage: CommandPage, cmd: Command, trigger: CommandTrigger, triggerPlayer: ClientPlayer, playerInput: any[], p: CustomCommandParams_15002): void {                
+        let party=GameData.getModuleData(3,p.enemyParty);
+        
+        PADBattle.init(party);
+        
+        // 基础设置：
+        //设置元素池
+        const strElementIDs = p.UseElement;
+        const allElementIDs = strElementIDs.split("-")
+        .map(Number)
+        .filter(num => !isNaN(num)); 
+        PADElement.dataIDs = allElementIDs;
+        //设置棋盘数据
+        let puzzle = new PADPuzzle({
+            cols: p.col,
+            rows: p.row,
+            elementWidth: p.elementWidth,
+            elementHeight: p.elementHeight,
+            gap: 8,
+            roundTime: p.time // 限时(毫秒)
+        });  
+        //初始后进入游戏阶段         
+        puzzle.start((p)=>{
+            //p是当前的PADPuzzle实例，用于获取游戏状态
+            PADBattle.next();
+        });
+        PADBattle.PADgame=puzzle; 
+
+        //记录和暂停事件触发器
+        PADBattle.triggerLine=trigger;
+        trigger.pause = true;
+    }
+
+}
+
+//结束战斗的指令
+module CommandExecute {
+    /**
+     * 自定义命令执行 1表示对应1号命令
+     * @param commandPage 事件页
+     * @param cmd 当前的事件命令
+     * @param trigger 触发器
+     * @param triggerPlayer 触发器对应的玩家
+     * @param playerInput 玩家输入值，用于暂停执行该触发器事件并等待玩家输入后获得的值，执行完该函数后会被清空
+     * @param p 自定义命令参数 1表示对应1号命令的参数
+     */
+    export function customCommand_15003(commandPage: CommandPage, cmd: Command, trigger: CommandTrigger, triggerPlayer: ClientPlayer, playerInput: any[], p: CustomCommandParams_15003): void {
+        Game.layer.uiLayer.removeChild(PADBattle.battleUI);
+        PADBattle.battleUI.dispose(); 
+        PADBattle.PADgame.dispose()       
+        //继续事件触发器
+        PADBattle.start()
+        
+    }
+
+}

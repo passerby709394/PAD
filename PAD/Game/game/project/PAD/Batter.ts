@@ -1,0 +1,338 @@
+/**
+ * Created by 六一 on 2026-07-28 14:24:35.
+ * 战斗者
+ * @param actor 战斗者的角色数据
+ * @param avatar 战斗者对应的行走图或者卡牌对应的图片组件
+ * @param camp 战斗者的阵营：0:敌人，1：玩家
+ */
+class Batter {
+//静态属性    
+    /**
+     * 全部敌人角色的数组
+     */
+    static enemys:Batter[]=[];
+    /**
+     * 全部玩家控制的角色的数组
+     */
+    static players:Batter[]=[];
+//私有属性
+
+
+//实例属性
+    /**
+     * 战斗者在阵营队伍中的位置
+     */
+    index:number;
+    /**
+     * 战斗者的角色数据
+     */
+    actor:Module_Actor;
+    /**
+     * 战斗者的行走图组件或者卡牌图片组件
+     */
+    avatar:UIAvatar; 
+    /**
+     * 战斗者的卡牌图片组件
+     */
+    cardImage:UIBitmap;    
+    /**
+     * 战斗者的HP滑条组件
+     */
+    uihpSlider:UISlider;
+    /**
+     * 战斗者的HP文字组件
+     */
+    uihpIntro:UIString;  
+    /**
+     * 战斗者的名字文字组件
+     */
+    uiname:UIString;   
+    /**
+     * 战斗者的属性图片组件
+     */
+    uitype:UIBitmap;               
+    /**
+     * 战斗者的阵营
+     * 0:敌人，1：玩家
+     */   
+    camp:number; 
+    /**
+     * 战斗者的等级（初始化的时候填入）
+     */   
+    level:number;  
+    /**
+     * 战斗者下次是否全体攻击
+     */
+    isAllAtk:boolean=false;     
+    /**
+     * 攻击动画
+     */
+    atkAniPR: GCAnimation = null;
+    /**
+     * 攻击数值文本组件（显示在卡图上方）
+     */
+    atkAniPRtext: UIString = null;
+    /**
+     * 攻击数值文本动画定时器ID
+     */
+    _atkTextTicker: number = null;            
+    /**
+     * 治疗动画
+     */
+    healAniPR: GCAnimation = null;
+    /**
+     * 治疗数值文本组件（显示在卡图上方）
+     */
+    healAniPRtext: UIString = null;
+    /**
+     * 治疗数值文本动画定时器ID
+     */
+    _healTextTicker: number = null;            
+
+//静态方法
+    /**
+     * 初始化战斗者
+     */
+    static init(party:Module_Party){
+        //初始化完成前禁止拖动元素
+        PADPuzzle._isBusy=true;
+        //隐藏元素
+        PADBattle.battleUI.elementBG.visible=false;
+        PADBattle.battleUI.timeImage.visible=false;
+        PADBattle.battleUI.comboRoot.visible=false;
+        PADBattle.battleUI.comboText.visible=false;        
+        //初始化敌人角色
+        for (let i=0;i<4;i++){
+            let name="Enemy"+String(i);
+            //战斗界面行走图组件
+            let avatar=PADBattle.battleUI[name]as UIAvatar;
+            let nameHP="EnemyHP"+String(i);
+            //战斗界面HP组件
+            let slider=PADBattle.battleUI[nameHP]as UISlider;
+            let nameName="EnemyName"+String(i);
+            //战斗界面敌人名字组件
+            let uiname=PADBattle.battleUI[nameName]as UIString;
+            let nameHPintro="EnemyHPintro"+String(i);
+            //战斗界面敌人名字组件
+            let uiHPintro=PADBattle.battleUI[nameHPintro]as UIString; 
+            let nameType="EnemyType"+String(i); 
+            //战斗界面敌人属性图片组件
+            let uiType=PADBattle.battleUI[nameType]as UIBitmap;                      
+            avatar.visible=false;
+            if(i<party.enemys.length){  
+                avatar.visible=true;        
+                let enemy=new Batter(GameData.getModuleData(4,party.enemys[i].actor),avatar,0);
+                enemy.index=i;
+                enemy.uihpSlider=slider;
+                enemy.uihpIntro=uiHPintro;
+                enemy.uiname=uiname;
+                enemy.uitype=uiType;
+                enemy.avatar.avatarID=enemy.actor.bttlerAvatar;
+                enemy.level=party.enemys[i].lv;
+                //根据等级计算最大HP                
+                enemy.uihpSlider.max=PADhelper.lvToValue(enemy.level,"HP",enemy.actor)
+                //等价于HP
+                enemy.uihpSlider.value=enemy.uihpSlider.max;
+                enemy.uiname.text=enemy.actor.name;
+                enemy.uihpIntro.text=`${enemy.uihpSlider.value}/${enemy.uihpSlider.max}`
+                enemy.uitype.image=GameData.getModuleData(2,enemy.actor.ElementType1).image
+                Batter.enemys.push(enemy);
+            }    
+        }
+        //设置敌人位置
+        switch (party.enemys.length) {
+        case 1:
+            let enemyavatar=Batter.enemys[0].avatar;
+            enemyavatar.x=200;
+            enemyavatar.y=70;
+            enemyavatar.scaleX=1;
+            enemyavatar.scaleY=1;
+            enemyavatar.actionID=1;
+            break; 
+        case 2:
+            for (let i=0;i<party.enemys.length;i++){
+                let enemyavatar=Batter.enemys[i].avatar;
+                enemyavatar.x=66+i*(400+66);
+                enemyavatar.y=150;
+                enemyavatar.scaleX=0.5;
+                enemyavatar.scaleY=0.5;
+                enemyavatar.actionID=1;                             
+            }
+            break;
+        case 3:
+            for (let i=0;i<party.enemys.length;i++){
+                let enemyavatar=Batter.enemys[i].avatar;
+                enemyavatar.x=150+i*(266+50);
+                enemyavatar.y=250-i*100;
+                if(enemyavatar.y==50)enemyavatar.y=250;
+                enemyavatar.scaleX=0.33;
+                enemyavatar.scaleY=0.33;
+                enemyavatar.actionID=1;                             
+            }            
+            break; 
+        case 4:
+            for (let i=0;i<party.enemys.length;i++){
+                let enemyavatar=Batter.enemys[i].avatar;
+                i<2?enemyavatar.x=150+i*(466+50):enemyavatar.x=70+(i-2)*(566+110); 
+                i<2?enemyavatar.y=150:enemyavatar.y=450;                
+                enemyavatar.scaleX=0.33;
+                enemyavatar.scaleY=0.33;
+                enemyavatar.actionID=1;                             
+            }              
+            break;                       
+        default:            
+            break;
+        }       
+        //初始化玩家角色
+        //如果玩家角色不够，兜底放入角色
+        if(Game.player.data.party.length!==5){
+            for (let i=Game.player.data.party.length;i<5;i++){
+                let data:DataStructure_partyActor=new DataStructure_partyActor();
+                data.actor=2;
+                data.lv=1;
+                Game.player.data.party.push(data);
+            }
+        }
+        //初始化玩家血条
+        PADBattle.battleUI.PlayerHP.value=0;
+        PADBattle.battleUI.PlayerHP.max=0;
+        //放入玩家角色
+        for (let i=0;i<5;i++){
+            let name="PlayerActor"+String(i);
+            //战斗界面图片组件
+            let card=PADBattle.battleUI[name]as UIBitmap;
+            //玩家实例    
+            let player=new Batter(GameData.getModuleData(4,Game.player.data.party[i].actor),card,1);
+            //玩家角色card位置 
+            player.index=i;
+            player.uihpSlider=PADBattle.battleUI.PlayerHP;
+            player.uihpIntro=PADBattle.battleUI.PlayerHPintro;
+            //玩家没有名字的UI
+            player.uiname=null;
+            //设置卡图
+            card.image=player.actor.face;
+            player.level=Game.player.data.party[i].lv;
+            //根据等级计算最大HP                
+            player.uihpSlider.max+=PADhelper.lvToValue(player.level,"HP",player.actor)
+
+            //等价于HP
+            player.uihpSlider.value+=player.uihpSlider.max;
+            
+            player.uihpIntro.text=`${player.uihpSlider.value}/${player.uihpSlider.max}`
+            Batter.players.push(player);                   
+        }
+      
+        
+        //加载资源：敌人+玩家的行走图、头像、攻击音效、受击音效、阵亡音效
+        const avatarIDs: number[] = [];
+        const images: string[] = [];
+        const audios: string[] = [];
+        // 收集敌人资源
+        for (const enemy of Batter.enemys) {
+            if (enemy.actor.bttlerAvatar) avatarIDs.push(enemy.actor.bttlerAvatar);
+            if (enemy.actor.face) images.push(enemy.actor.face);
+            if (enemy.actor.attackVoice) audios.push(enemy.actor.attackVoice);
+            if (enemy.actor.hitVoice) audios.push(enemy.actor.hitVoice);
+            if (enemy.actor.dieVoice) audios.push(enemy.actor.dieVoice);
+        }
+        // 收集玩家资源
+        for (const player of Batter.players) {
+            if (player.actor.avatar) avatarIDs.push(player.actor.avatar);
+            if (player.actor.face) images.push(player.actor.face);
+            if (player.actor.attackVoice) audios.push(player.actor.attackVoice);
+            if (player.actor.hitVoice) audios.push(player.actor.hitVoice);
+            if (player.actor.dieVoice) audios.push(player.actor.dieVoice);
+        }
+        audios.push(PADElement.swapSE);
+        audios.push(PADElement.removeSE);
+        audios.push(PADElement.healSE);
+
+        // 收集自定义模块2（元素属性素材）的图片与动画
+        const aniIDs: number[] = [];
+        for (let i = 0; i < PADElement.dataIDs.length; i++) {
+            let d = GameData.getModuleData(PADElement.MODULE_ID, PADElement.dataIDs[i]);
+            if (d && d.image) images.push(d.image);
+            if (d && d.ani) aniIDs.push(d.ani);
+        }
+        // 动画JSON地址（随批次加载，供回调中提取动画音效层的音效）
+        const aniJsonUrls: string[] = [];
+        for (const aniID of aniIDs) {
+            aniJsonUrls.push("asset/json/animation/data/ani" + aniID + ".json");
+        }
+        // 动画音效层音效地址（从动画JSON提取后单独加载）
+        const aniAudios: string[] = [];
+
+        AssetManager.batchPreLoadAsset(
+            Callback.New(() => {
+                // 动画JSON已就绪：提取各动画音效层（type=3）的音效地址
+                for (const aniID of aniIDs) {
+                    const json = AssetManager.getJson("asset/json/animation/data/ani" + aniID + ".json");
+                    if (json && json.layers) {
+                        for (const layer of json.layers) {
+                            if (layer.type === 3 && layer.audioInfo && layer.audioInfo.url) {
+                                aniAudios.push(layer.audioInfo.url);
+                            }
+                        }
+                    }
+                }
+                // 动画音效单独加载，加载完成才允许拖动元素
+                if (aniAudios.length > 0) {
+                    AssetManager.loadAudios(aniAudios, Callback.New(() => {
+                        //初始化中
+                        PADBattle.PADgame._isBusy=true;
+                        console.log("初始化中:",PADBattle.PADgame._isBusy);
+                    }, null));
+                } else {
+                    //初始化完成允许拖动元素
+                    PADBattle.PADgame._isBusy=false;
+                    console.log("初始化完成允许拖动元素:",PADBattle.PADgame._isBusy);
+                }
+            }, null),
+            null,
+            images, [], avatarIDs, [], aniIDs, [], aniJsonUrls, audios
+        );
+        
+    }
+
+    //实例方法
+    /**
+     * 变化HP，1秒内匀速变化（血量步进为整数）
+     * @param source 本次HP变化的来源战斗者（如攻击者、治疗者）
+     * @param change 变化值（+：治疗，-：扣血）
+     * @param duration 动画长度（毫秒）
+     * @param onComplete 动画结束回调
+     */
+    changeHP(source: Batter, change: number, duration: number, onComplete: () => void = () => {}) {
+        //激活实例自身的钩子
+        // let hook:{change:number;onComplete:Function}=this.beforeChangeHP(source, change, onComplete);
+        // 敌人受到伤害
+        let finalChange:number=change;
+        if(this.camp===0&&change<0)finalChange=-PADhelper.damageToEnemy(source,this,-change);
+        if(this.camp===1&&change>0){
+            finalChange=PADhelper.healToPlayer(source,source,change);            
+        }
+        PADanim.startHpAnimation(this,finalChange,duration,onComplete);
+
+        
+    }
+    /**
+     * 获取战斗实时hp
+     */    
+    get hp(): number {
+        return this.uihpSlider.value;
+    }
+
+
+
+//构造函数
+    constructor(actor:Module_Actor,avatar:UIAvatar | UIBitmap,camp:number){
+        this.actor=actor;
+        // 注意：必须检查参数 avatar（此时 this.avatar 还未赋值，为 undefined）
+        if (avatar instanceof UIAvatar) {
+            this.avatar=avatar;
+        } else if (avatar instanceof UIBitmap) {
+            this.cardImage=avatar;
+        }
+        this.camp=camp;
+    }    
+}

@@ -1,0 +1,90 @@
+/**
+ * #1 道具
+ */
+class Module_Item {
+    id: number;
+    name: string;
+    icon: string; // = ""; 图标
+    intro: string; // = "";
+    sell: number; // = 0; 商店售价
+    isUse: boolean; // = false; 可使用
+    sellEnabled: boolean; // = false; 允许出售给商店
+    isConsumables: boolean; // = false; 消耗品
+    se: string; // = ""; 使用时音效
+    callEvent: string; // = ""; 使用后执行的事件
+}
+/**
+ * #2 元素
+ */
+class Module_Element {
+    id: number;
+    name: string;
+    image: string; // = ""; 元素图片
+    ani: number; // = 0; 攻击效果动画
+    textColor: string; // = ""; 字体颜色
+    elementBonus: number; // = 0.25; 每个元素数值加成
+    isHeal: boolean; // = false; 是否治疗元素
+}
+/**
+ * #3 队伍
+ */
+class Module_Party {
+    id: number;
+    name: string;
+    enemys: DataStructure_enemyActor[]; // = [];
+    background: string; // = ""; 战斗背景图
+    battleBGM: string; // = "asset/audio/bgm/Battle_1.ogg"; 战斗音乐
+    randEnemy: boolean; // = false; 随机敌人
+    randEnemyNumber: number; // = 0; 随机敌人数量
+    eventSetting: boolean; // = false; 事件设定
+    dropEnabled: boolean; // = false; 额外的掉落设定
+    battleStage1_newTurn: string; // = ""; 战斗阶段：新的回合
+    battleStage2_beforeAction: string; // = ""; 战斗阶段：行动开始前
+    battleStage0_inBattle: string; // = ""; 战斗阶段：开始战斗
+    battleStage3_outBattle: string; // = ""; 战斗阶段：结束战斗
+    dropGold: number; // = 0; 掉落金币
+    dropExp: number; // = 0; 掉落经验值
+    dropItems: DataStructure_dropItem[]; // = [];
+}
+/**
+ * #4 角色
+ */
+class Module_Actor {
+    id: number;
+    name: string;
+    face: string; // = ""; 头像
+    avatar: number; // = 0; 行走图
+    bttlerAvatar: number; // = 0; 战斗图
+    ATK: number; // = 100; 攻击力
+    HP: number; // = 100; 生命值
+    Heal: number; // = 100; 回复力
+    MaxATK: number; // = 100; 最大攻击力
+    MaxHP: number; // = 100; 最大生命值
+    MaxHeal: number; // = 100; 最大回复力
+    MaxLevel: number; // = 60; 最大等级
+    ElementType1: number; // = 1; 主元素属性
+    ElementType2: number; // = 1; 副元素属性
+    useElementType2: boolean; // = false; 使用副元素
+    skills: Module_Skill[]; // = [];
+    attackVoice: string; // = ""; 攻击语音
+    hitVoice: string; // = ""; 受击语音
+    dieVoice: string; // = ""; 阵亡语音
+    dropGold: number; // = 0; 掉落金币
+    dropExp: number; // = 0; 掉落经验值
+    dropItems: DataStructure_dropItem[]; // = [];
+    selfStatus1: number[]; // = [];
+    currentEXP: number; // = 0; 当前经验值
+    increaseMaxHP: number; // = 0; 增加的最大生命值
+    increaseATK: number; // = 0; 增加的攻击力
+    increaseHeal: number; // = 0; 增加的回复力
+    status: any[]; // = [];
+    selfStatus: number[]; // = [];
+    dead: boolean; // = false;
+}
+/**
+ * #5 技能
+ */
+class Module_Skill {
+    id: number;
+    name: string;
+}

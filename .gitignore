@@ -3,6 +3,13 @@
 *.zip
 备份/
 
+# ---- 工具与示例（本地保留，不入库）----
+mugen_pazdora-master/
+《智龙迷城》UI素材-智龙迷城UI免费_爱给网_aigei_com/
+GameCreatorLib.md
+94efd6aa4c0f43eabc654071ce640cbe.png
+.trae/
+
 # ---- 构建产物 ----
 PAD/out/
 PAD/bin_release/

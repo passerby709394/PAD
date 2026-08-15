@@ -31,25 +31,20 @@
 - `PADAction.ts` —— 动作/技能
 - `PADanim.ts` —— 动画
 - `PADhelper.ts` —— 工具函数
-- `Batter.ts` —— 连击/倍率相关（以代码为准）
+- `Batter.ts` —— 战斗者
 
 > 以上分工是按文件名推断，具体行为以源码和 `GameCreatorLib.md` 为准。修改前先用 read 读相关文件。
 
-## 4. 构建与验证
-
-- 在 `C:\PAD\PAD` 下运行 `npm run build`（即 `tsc -b tsconfig.json`）编译，产物输出到 `out\Game.js`。
-- 改动 TypeScript 后建议先编译，确认无类型错误。
-
-## 5. 版本控制（git）
+## 4. 版本控制（git）
 
 - 仓库：`C:\PAD`（`.git` 在此）；远程 `https://github.com/passerby709394/PAD`（私有）；分支 `main`。
 - **`PAD/asset/` 不入库**（约 175MB 资源仅本地保存，另有 `.rar` 备份）。切勿 `git add` 它。
-- 其它忽略项见 `C:\PAD\.gitignore`（`out/`、`bin_release/`、`gcUserData/`、`*.rar`、`*.zip`、`备份/`、`node_modules/`）。
+- 其它忽略项见 `C:\PAD\.gitignore`（`out/`、`bin_release/`、`gcUserData/`、`*.rar`、`*.zip`、`备份/`、`node_modules/`，以及工具/示例：`mugen_pazdora-master/`、UI素材、`GameCreatorLib.md`、`.trae/`）。
 - 提交信息用中文，写明改了什么，例如 `feat: 调整战斗伤害公式`。
 - git 已配置走本地代理 `http://127.0.0.1:21882`；代理未开启时 push/pull 会失败。
 - 完成一轮重要改动后，主动备份：`git add -A && git commit -m "说明" && git push`。
 
-## 6. 开发约定
+## 5. 开发约定
 
 - 全程 TypeScript，不引入与项目无关的依赖。
 - 改代码前先 read 目标文件及其关联文件，理解现状再改。
@@ -57,7 +52,7 @@
 - 用 edit 做精准替换，不做不必要的整文件重写。
 - 完成后说明改了什么、影响哪些文件，并提示是否需要提交备份。
 
-## 7. 重要提醒
+## 6. 重要提醒
 
 - `asset/` 资源不入 git——别因为「看着像项目一部分」就提交它。
 - 不要把密钥、token、服务器/数据库配置等敏感信息写进代码或提交。

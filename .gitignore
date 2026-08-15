@@ -10,6 +10,10 @@ GameCreatorLib.md
 94efd6aa4c0f43eabc654071ce640cbe.png
 .trae/
 
+# ---- 文档（本地保留，不入库）----
+AGENTS.md
+Git使用指南.md
+
 # ---- 构建产物 ----
 PAD/out/
 PAD/bin_release/

@@ -1,5 +1,29 @@
 # Git 使用指南（PAD 项目）
 
+## 速查：最常用的两条
+
+### ① 备份到 GitHub（每次改完代码后执行）
+
+```bash
+cd C:\PAD
+git add -A
+git commit -m "改动说明"
+git push
+```
+
+### ② 还原最近版本（按需选一条）
+
+```bash
+git restore .              # 丢弃「未提交」的改动
+git reset --hard HEAD~1    # 撤销「最近一次提交」并丢弃其改动
+git reset --soft HEAD~1    # 撤销「最近一次提交」但保留改动（可重改再提交）
+git reset --hard <提交号>  # 回退到某个历史提交（<提交号> 用 git log 查）
+```
+
+> 若回退的是**已推送到 GitHub** 的提交，回退后再执行 `git push --force` 让远程同步。
+
+---
+
 ## 仓库信息
 
 | 项目 | 值 |

@@ -184,8 +184,8 @@ class PADBoard {
         let elB = this.squares[b[0]][b[1]];
         if (!elA || !elB) return;
         // 播放交换音效
-        if (PADElement.swapSE) {
-            GameAudio.playSE(PADElement.swapSE);
+        if (PADElement.swapSE) {            
+            GameAudio.playSE(PADElement.swapSE,1)         
         }
         this.squares[a[0]][a[1]] = elB;
         this.squares[b[0]][b[1]] = elA;

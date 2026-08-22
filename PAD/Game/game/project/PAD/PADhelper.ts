@@ -83,4 +83,16 @@ class PADhelper {
         change=Math.floor(change);
         return {player,change};
     }
+
+    /**
+     * 计算敌人攻击伤害
+     * @param enemy 敌人战斗者实例
+     * @param skill 使用的技能数据
+     * @returns 伤害（正数）
+     */
+    static calcEnemyDamage(enemy: Batter, skill: Module_Skill):number{
+        let damage:number=PADhelper.lvToValue(enemy.level, "ATK", enemy.actor) * skill.atkBonus;
+        
+        return Math.floor(damage)
+    }    
 }

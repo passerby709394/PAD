@@ -163,7 +163,7 @@ class PADPuzzle {
         this._boardX = options && options.boardX !== undefined ? options.boardX : PADPuzzle.DEFAULT_BOARD_X;
         this._boardY = options && options.boardY !== undefined ? options.boardY : PADPuzzle.DEFAULT_BOARD_Y;
         this._roundTime = options && options.roundTime !== undefined ? options.roundTime : PADPuzzle.DEFAULT_ROUND_TIME;
-        this._isBusy = false;
+        this._isBusy = true;
         this._isFinished = false;
         this._timeUp = false;
         this._dragging = null;
@@ -318,16 +318,7 @@ class PADPuzzle {
      */
     private _onElementDown(e: EventObject, el: PADElement): void {
         if (this._isBusy || this._timeUp || this._isFinished || PADBattle.battleStep!=1) return;
-        // 预热音频：首次按下珠子时，在用户手势内显式恢复 AudioContext（浏览器自动播放策略），
-        // 并静音播放一次 swapSE，避免之后拖拽交换首播无声/音量过小
-        if (!PADPuzzle._swapSEWarmed) {
-            PADPuzzle._swapSEWarmed = true;
-            const ctx = PADPuzzle._getWebAudioContext();
-            if (ctx && ctx.state === "suspended" && typeof ctx.resume === "function") {
-                ctx.resume();
-            }
-            GameAudio.playSE(PADElement.swapSE, 0);
-        }
+
         this._dragging = el;
         // 按下：倒计时重新开始（刷新时间）
         this._startTimer();
@@ -479,10 +470,11 @@ class PADPuzzle {
         this.board.runChainedCombo(
             function (combo: PADCombo) { self._onComboFired(combo); },
             function () {
-                // 无消除：直接解除输入锁与时间到标记，跳过战斗行动
+                // 无消除：直接解除输入锁与时间到标记，战斗行动
                 if (self.board.lastComboResults.length === 0) {
                     self._isBusy = false;
                     self._timeUp = false;
+                    PADBattle.next();
                     return;
                 }
                 // 本次消除的各属性数量（当次值）

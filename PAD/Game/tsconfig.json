@@ -36,6 +36,7 @@
         "game/project/PAD/PADhelper.ts",
         "game/project/PAD/PADMatcher.ts",
         "game/project/PAD/PADPuzzle.ts",
+        "game/project/PAD/Test.ts",
         "game/project/scene/SceneUtils.ts",
         "game/project/sceneObject/ProjectSceneObjectBehaviors.ts",
         "game/project/system/GCClound_SupporterData.ts",

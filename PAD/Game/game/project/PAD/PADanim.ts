@@ -278,8 +278,8 @@ class PADanim {
                 break;
             }
         }
-        // 动画/数值文本不存在，直接结束
-        if (!player.atkAniPR || !player.atkAniPRtext) return;
+        // 动画/数值文本不存在：无法攻击，仍要触发回调，避免攻击链卡死
+        if (!player.atkAniPR || !player.atkAniPRtext) { onAfterHit?.(); return; }
 
         // 清理可能残留的数值文本动画定时器（防止引用已销毁对象）
         if (player._atkTextTicker) {
@@ -334,6 +334,9 @@ class PADanim {
                 }
             }
             target.changeHP(player, -damage, Math.max(100, hpDuration), () => { onAfterHit?.(); });
+        } else {
+            // 伤害为 0：无实际扣血，直接触发回调，避免攻击链卡死
+            onAfterHit?.();
         }
         // 播放敌人受击音效
         if (target.actor.hitVoice) {
@@ -357,8 +360,8 @@ class PADanim {
         for (const enemy of Batter.enemys) {
             if (enemy.uihpSlider.value > 0) targets.push(enemy);
         }
-        // 动画/数值文本不存在，直接结束
-        if (!player.atkAniPR || !player.atkAniPRtext) return;
+        // 动画/数值文本不存在：无法攻击，仍要触发回调，避免攻击链卡死
+        if (!player.atkAniPR || !player.atkAniPRtext) { onAfterHit?.(); return; }
 
         // 清理可能残留的数值文本动画定时器（防止引用已销毁对象）
         if (player._atkTextTicker) {
@@ -516,6 +519,128 @@ class PADanim {
         } else {
             onAfterHeal?.();
         }
+    }
+
+    /**
+     * 敌人攻击：播放释放动作（releaseActionID），动作完成后播放对应元素的攻击动画（循环）
+     * 并移动到玩家队伍血条中心，到达后销毁动画并按技能攻击倍率扣除队伍 HP
+     * @param enemy 攻击方敌人
+     * @param skill 当前使用的技能
+     * @param onComplete 攻击与扣血全部完成后的回调
+     */
+    static enemyAttack(enemy: Batter, skill: Module_Skill, onComplete?: Function): void {
+        // 每次释放的伤害（releaseTimes 次，每次都是完整伤害）
+        const damage = PADhelper.calcEnemyDamage(enemy, skill);
+        // 释放次数（连击次数），至少 1 次
+        const releaseTimes = Math.max(1, skill.releaseTimes || 1);
+        const uiAvatar = enemy.avatar;
+        // 元素动画起始位置：敌人行走图中心
+        const startX = uiAvatar ? uiAvatar.x + uiAvatar.width * uiAvatar.scaleX / 2 : 0;
+        const startY = uiAvatar ? uiAvatar.y + uiAvatar.height * uiAvatar.scaleY / 2 : 0;
+        // 命中目标位置：队伍血条图片中心（battleUI 局部坐标）
+        const hpImg = PADBattle.battleUI.PlayerHPimage;
+        const hpCenterGlobal = hpImg.localToGlobal(new Point(hpImg.width / 2, hpImg.height / 2));
+        const hpCenter = PADBattle.battleUI.globalToLocal(hpCenterGlobal);
+
+        // 播放一次性特效动画：先监听 LOADED（异步加载完成）再设 id，
+        // 加载完成后 addChild 到 battleUI 并定位到 (x,y)，播完自动销毁
+        const playEffect = (aniID: number, x: number, y: number, isHit: boolean): void => {
+            if (!aniID) return;
+            const ani = new GCAnimation();
+            ani.loop = false;
+            ani.showHitEffect = isHit;
+            ani.once(GCAnimation.PLAY_COMPLETED, null, () => { ani.dispose(); });
+            ani.once(EventObject.LOADED, null, () => {
+                if (ani.isDisposed) return;
+                PADBattle.battleUI.addChild(ani);
+                ani.pivotX = ani.width / 2;
+                ani.pivotY = ani.height / 2;
+                ani.x = x;
+                ani.y = y;
+                ani.visible = true;
+            });
+            ani.id = aniID;
+            ani.gotoAndPlay();
+        };
+
+        // 执行第 index 次释放（index 从 0 开始）
+        const runRelease = (index: number): void => {
+            // 全部释放完成，触发完成回调
+            if (index >= releaseTimes) {
+                onComplete?.();
+                return;
+            }
+
+            // 扣血并进入下一次释放
+            const finish = (hpDuration: number): void => {
+                if (damage > 0 && Batter.players.length > 0) {
+                    // 队伍共享一条血条，以 players[0] 作为代表扣血
+                    Batter.players[0].changeHP(enemy, -damage, hpDuration, () => { runRelease(index + 1); });
+                } else {
+                    runRelease(index + 1);
+                }
+            };
+
+            // 播放元素攻击动画：循环播放并从敌人位置飞向队伍血条中心，到达后销毁
+            const playElementAni = (): void => {
+                const element = GameData.getModuleData(2, skill.elementType1);
+                const aniID = element ? element.ani : 0;
+                if (!aniID) {
+                    finish(500);
+                    return;
+                }
+                const hitX = hpCenter.x - PADBattle.battleUI.PlayerHPimage.width;
+                const hitY = hpCenter.y - PADBattle.battleUI.PlayerHPimage.height;
+                const ani = new GCAnimation();
+                ani.loop = true;
+                ani.once(EventObject.LOADED, null, () => {
+                    if (ani.isDisposed) return;
+                    PADBattle.battleUI.addChild(ani);
+                    ani.pivotX = ani.width / 2;
+                    ani.pivotY = ani.height / 2;
+                    ani.x = startX;
+                    ani.y = startY;
+                    ani.visible = true;
+                    // 时长需在加载完成后读取（否则 totalFrame/fps 尚未就绪）
+                    const moveDuration = Math.max(200, ani.totalFrame / (ani.fps || Config.ANIMATION_FPS) * 1000);
+                    Tween.to(ani, { x: hitX, y: hitY }, moveDuration, null, Callback.New(() => {
+                        ani.dispose();
+                        // 命中特效：在销毁飞行动画时播放
+                        playEffect(skill.hitAnimation, hitX, hitY, true);
+                        finish(moveDuration);
+                    }, null));
+                });
+                ani.id = aniID;
+                ani.gotoAndPlay(1);
+       
+
+            };
+
+            // 释放特效：落在释放者身上，与释放动作同时播放
+            playEffect(skill.releaseAnimation, startX, startY, true);
+
+            // 播放释放动作，播放完毕后播放元素动画
+            if (uiAvatar) {
+                const avatar = uiAvatar.avatar;
+                if (avatar && avatar.hasActionID(skill.releaseActionID)) {
+                    uiAvatar.offAll(Avatar.ACTION_PLAY_COMPLETED);
+                    uiAvatar.once(Avatar.ACTION_PLAY_COMPLETED, null, () => {
+                        avatar.currentFrame = 1;
+                        uiAvatar.actionID = 1;
+                        avatar.stop(1);
+                        playElementAni();
+                    });
+                    avatar.currentFrame = 1;
+                    uiAvatar.actionID = skill.releaseActionID;
+                    avatar.play();
+                    return;
+                }
+            }
+            // 无行走图或没有释放动作：直接播放元素动画
+            playElementAni();
+        };
+
+        runRelease(0);
     }
 
     /**

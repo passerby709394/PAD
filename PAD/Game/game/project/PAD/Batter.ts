@@ -87,7 +87,19 @@ class Batter {
     /**
      * 治疗数值文本动画定时器ID
      */
-    _healTextTicker: number = null;            
+    _healTextTicker: number = null;
+    /**
+     * 敌人行动倒计时组件
+     */
+    aiUseTimer: UIString=null;
+    /**
+     * 敌人当前技能索引（循环使用技能，初始 0）
+     */
+    skillIndex: number = 0; 
+    /**
+     * 敌人本回合是否可以行动
+     */
+    enemyCanAction:boolean=true;                    
 
 //静态方法
     /**
@@ -117,11 +129,16 @@ class Batter {
             let uiHPintro=PADBattle.battleUI[nameHPintro]as UIString; 
             let nameType="EnemyType"+String(i); 
             //战斗界面敌人属性图片组件
-            let uiType=PADBattle.battleUI[nameType]as UIBitmap;                      
+            let uiType=PADBattle.battleUI[nameType]as UIBitmap;  
+            let nameTimer="EnemyTimer"+String(i);  
+            //战斗界面敌人倒计时组件
+            let uiTimer=PADBattle.battleUI[nameTimer]as UIString;                                 
             avatar.visible=false;
             if(i<party.enemys.length){  
                 avatar.visible=true;        
                 let enemy=new Batter(GameData.getModuleData(4,party.enemys[i].actor),avatar,0);
+                enemy.aiUseTimer=uiTimer;
+                enemy.aiUseTimer.text=String(enemy.actor.skills[0].totalCD)+"回合后攻击";
                 enemy.index=i;
                 enemy.uihpSlider=slider;
                 enemy.uihpIntro=uiHPintro;

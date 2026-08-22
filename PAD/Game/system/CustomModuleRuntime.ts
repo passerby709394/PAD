@@ -87,4 +87,21 @@ class Module_Actor {
 class Module_Skill {
     id: number;
     name: string;
+    icon: string; // = ""; 技能图标
+    intro: string; // = "";  
+    totalCD: number; // = 1; 冷却回合
+    releaseActionID: number; // = 3; 释放动作
+    releaseTimes: number; // = 1; 攻击次数
+    menuSE: string; // = ""; 使用时音效
+    elementType1: number; // = 1; 元素类别
+    isAll: boolean; // = false; 是否全体
+    atkBonus: number; // = 1; 攻击倍率
+    releaseAnimation: number; // = 0; 释放动画
+    hitAnimation: number; // = 1; 击中目标的动画
+    selfStatus: number[]; // = [];
+    selfRemoveStatus: number[]; // = [];
+    addStatus: number[]; // = [];
+    removeStatus: number[]; // = [];
+    beforeUseEvent: string; // = ""; 使用技能前事件
+    afterHitEvent: string; // = ""; 击中目标后事件
 }

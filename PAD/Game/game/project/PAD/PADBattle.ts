@@ -16,6 +16,10 @@ class PADBattle{
      */  
     static PADgame:PADPuzzle;  
     /**
+     * 战斗结果
+     */  
+    static win:boolean=null;    
+    /**
      * 战斗阶段：1：等待玩家操作（战斗前），2：执行战斗，3：战斗结算
      */  
     static battleStep:number=0;          
@@ -61,10 +65,50 @@ class PADBattle{
                 break;
             case 2:
                 //执行战斗的逻辑
-                PADAction.playerAction(PADBattle.PADgame.board.lastComboResults);
+                PADAction.playerAction(PADBattle.PADgame.board.lastComboResults,()=>{
+                    PADAction.enemyAction(PADBattle.PADgame.board.lastComboResults,()=>{
+                        PADBattle.next()
+                       
+                        })
+                    });
                 break;
             case 3:
                 //战斗结算的逻辑
+                //所有敌人生命归零，战斗胜利
+                let allDead = true;
+                for (const enemy of Batter.enemys) {
+                    if (enemy.hp > 0) {
+                        allDead = false;
+                        break;
+                    }
+                }
+                if (allDead) {
+                    PADBattle.win=true;
+//关闭战斗，后续补结算界面                    
+                    Game.layer.uiLayer.removeChild(PADBattle.battleUI);
+                    PADBattle.battleUI.dispose(); 
+                    PADBattle.PADgame.dispose()       
+                    //继续事件触发器
+                    PADBattle.start()
+                    
+                } 
+
+                //所有玩家生命归零，战斗失败
+                if (Batter.players[0].hp==0) {
+                    PADBattle.win=false;
+//关闭战斗，后续补结算界面                      
+                    Game.layer.uiLayer.removeChild(PADBattle.battleUI);
+                    PADBattle.battleUI.dispose(); 
+                    PADBattle.PADgame.dispose()       
+                    //继续事件触发器
+                    PADBattle.start()
+                    
+                } 
+
+                //结算完毕重置所有敌人可以行动
+                for (const enemy of Batter.enemys) {
+                    enemy.enemyCanAction = true; 
+                }                 
                 //结算完毕返回玩家操作
                 PADBattle.battleStep=1;
                 break;
@@ -91,6 +135,7 @@ module CommandExecute {
         PADBattle.init(party);
         
         // 基础设置：
+        PADBattle.win=null;
         //设置元素池
         const strElementIDs = p.UseElement;
         const allElementIDs = strElementIDs.split("-")

@@ -644,6 +644,111 @@ class PADanim {
     }
 
     /**
+     * 敌人治疗：播放释放特效（releaseAnimation），在治疗目标上方飘治疗数字并回复生命值
+     * @param enemy 释放治疗的敌人
+     * @param skill 治疗技能
+     * @param onComplete 治疗动画与回血全部完成后的回调
+     */
+    static enemyHeal(enemy: Batter, skill: Module_Skill, onComplete?: Function): void {
+        // 治疗量（固定值）
+        const healAmount = skill.heal || 0;
+        // 治疗目标：isAll 治疗全体存活敌人，否则只治疗自己
+        const targets: Batter[] = [];
+        if (skill.isAll) {
+            for (const e of Batter.enemys) {
+                if (e.uihpSlider && e.uihpSlider.value > 0) targets.push(e);
+            }
+        } else {
+            targets.push(enemy);
+        }
+
+        // 治疗数字颜色：固定绿色
+        const healColor = "#00ff00";
+
+        // 释放特效：落在释放者自己身上（一次性播放，播完自动销毁）
+        if (skill.releaseAnimation) {
+            const uiAvatar = enemy.avatar;
+            const startX = uiAvatar ? uiAvatar.x + uiAvatar.width * uiAvatar.scaleX / 2 : 0;
+            const startY = uiAvatar ? uiAvatar.y + uiAvatar.height * uiAvatar.scaleY / 2 : 0;
+            const ani = new GCAnimation();
+            ani.loop = false;
+            ani.once(GCAnimation.PLAY_COMPLETED, null, () => { ani.dispose(); });
+            ani.once(EventObject.LOADED, null, () => {
+                if (ani.isDisposed) return;
+                PADBattle.battleUI.addChild(ani);
+                ani.pivotX = ani.width / 2;
+                ani.pivotY = ani.height / 2;
+                ani.x = startX;
+                ani.y = startY;
+                ani.visible = true;
+            });
+            ani.id = skill.releaseAnimation;
+            ani.gotoAndPlay();
+        }
+
+        // 每个治疗目标：飘治疗数字 + 回血；全部完成后触发 onComplete
+        let pending = targets.length;
+        const onTargetHealed = (): void => {
+            if (--pending <= 0) onComplete?.();
+        };
+        for (const target of targets) {
+            PADanim._showHealText(target, healAmount, healColor);
+            target.changeHP(enemy, healAmount, 500, onTargetHealed);
+        }
+        if (targets.length === 0) onComplete?.();
+    }
+
+    /**
+     * 治疗飘字：在目标战斗者上方显示「+治疗量」并上飘淡出后销毁
+     */
+    private static _showHealText(target: Batter, amount: number, color: string): void {
+        if (amount <= 0) return;
+        const text = new UIString();
+        PADanim._applyTextTemplate(text);
+        text.text = "+" + amount;
+        text.color = color;
+        const av = target.avatar;
+        text.x = av ? av.x + av.width * av.scaleX / 2 : 0;
+        text.y = (av ? av.y : 0) - 40;
+        text.visible = true;
+        PADBattle.battleUI.addChild(text);
+        Tween.to(text, { y: text.y - 30, opacity: 0 }, 800, null, Callback.New(() => {
+            text.dispose();
+        }, null));
+    }
+
+    /**
+     * 懒加载界面1004的text组件作为字体模板，并将其字体属性复制到目标文本组件
+     */
+    private static _applyTextTemplate(text: UIString): void {
+        if (!this._textTemplate) {
+            let ui1004: GUI_1004 = GameUI.load(1004) as GUI_1004;
+            if (ui1004) this._textTemplate = ui1004.text;
+        }
+        const t = this._textTemplate;
+        if (!t) return;
+        text.width = t.width;
+        text.height = t.height;
+        text.fontSize = t.fontSize;
+        text.bold = t.bold;
+        text.italic = t.italic;
+        text.smooth = t.smooth;
+        text.leading = t.leading;
+        text.letterSpacing = t.letterSpacing;
+        text.font = t.font;
+        text.wordWrap = t.wordWrap;
+        text.overflow = t.overflow;
+        text.align = t.align;
+        text.valign = t.valign;
+        text.shadowEnabled = t.shadowEnabled;
+        text.shadowColor = t.shadowColor;
+        text.shadowDx = t.shadowDx;
+        text.shadowDy = t.shadowDy;
+        text.stroke = t.stroke;
+        text.strokeColor = t.strokeColor;
+    }
+
+    /**
      * 内部方法：执行队列中的下一个动画任务
      * @param batter 目标战斗者
      */

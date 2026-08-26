@@ -329,13 +329,14 @@ class Batter {
      * 变化HP，1秒内匀速变化（血量步进为整数）
      * @param source 本次HP变化的来源战斗者（如攻击者、治疗者）
      * @param change 变化值（+：治疗，-：扣血）
+     * @param type 伤害的类型ID 
      * @param duration 动画长度（毫秒）
      * @param onComplete 动画结束回调
      */
-    changeHP(source: Batter, change: number, duration: number, onComplete: () => void = () => {}) {
+    changeHP(source: Batter, change: number, duration: number,type:number=0, onComplete: () => void = () => {}) {
         // 敌人受到伤害
         let finalChange:number=change;
-        if(this.camp===0&&change<0)finalChange=-PADhelper.damageToEnemy(source,this,-change);
+        if(this.camp===0&&change<0)finalChange=-PADhelper.damageToEnemy(source,this,-change,type);
         if(this.camp===1&&change>0){
             finalChange=PADhelper.healToPlayer(source,source,change);            
         }

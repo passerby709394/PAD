@@ -49,7 +49,7 @@ class PADhelper {
      * @param damage 原始伤害（必须为正数）
      * @returns 计算后的最终伤害（正数）
      */
-    static damageToEnemy(player: Batter, enemy: Batter, damage: number): number {       
+    static damageToEnemy(player: Batter, enemy: Batter, damage: number,type:number): number {       
         // 暂时为空方法，后期拓展（如护甲减免、属性克制、减伤buff等）
         console.log("敌人受到的伤害扣除前的钩子")
         return damage;

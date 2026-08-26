@@ -181,21 +181,25 @@ class PADAction {
                 process(index + 1);
                 return;
             }
-            // 3. 回合数等于 0：用当前技能攻击
+            // 3. 回合数等于 0：用当前技能
             const usedIndex = enemy.skillIndex % skills.length;
             let skill = skills[usedIndex].skill;
             
-            // 4. 播放攻击动画，动画与扣血全部完成后，选中下一个满足条件的技能并处理下一个敌人
-            //玩家生命大于零才攻击
-            if (Batter.players[0].hp > 0) {
-                // 记录本次技能使用次数（配合 skillTimes 限制）
+            // 技能使用后：记录使用次数并选中下一个满足条件的技能
+            const afterUse = (): void => {
                 enemy.skillUsedCounts[usedIndex] = (enemy.skillUsedCounts[usedIndex] || 0) + 1;
-                PADanim.enemyAttack(enemy, skill, () => {
-                    // 技能使用后：从下一个开始选满足条件的技能
-                    PADCondition.selectSkill(enemy, (enemy.skillIndex + 1) % skills.length, () => {
-                        process(index + 1);
-                    });
+                PADCondition.selectSkill(enemy, (enemy.skillIndex + 1) % skills.length, () => {
+                    process(index + 1);
                 });
+            };
+
+            // 4. 治疗技能 / 攻击技能分叉
+            if (skill.isHeal) {
+                // 治疗技能：回复生命值（不受玩家血量影响）
+                PADanim.enemyHeal(enemy, skill, afterUse);
+            } else if (Batter.players[0].hp > 0) {
+                // 攻击技能：玩家生命大于零才攻击
+                PADanim.enemyAttack(enemy, skill, afterUse);
             } else {
                 process(index + 1);
             }

@@ -99,7 +99,19 @@ class Batter {
     /**
      * 敌人本回合是否可以行动
      */
-    enemyCanAction:boolean=true;                    
+    enemyCanAction:boolean=true;
+    /**
+     * 各技能已使用次数（与 actor.skills 下标对应），配合技能的 skillTimes 限制使用次数
+     */
+    skillUsedCounts:number[]=[];
+    /**
+     * 状态数组
+     */
+    status:Module_Status[]=[];   
+    /**
+     * 状态UI
+     */
+    statusGUI:GUI_1005[]=[];                         
 
 //静态方法
     /**
@@ -138,7 +150,6 @@ class Batter {
                 avatar.visible=true;        
                 let enemy=new Batter(GameData.getModuleData(4,party.enemys[i].actor),avatar,0);
                 enemy.aiUseTimer=uiTimer;
-                enemy.aiUseTimer.text=String(enemy.actor.skills[0].totalCD)+"回合后攻击";
                 enemy.index=i;
                 enemy.uihpSlider=slider;
                 enemy.uihpIntro=uiHPintro;
@@ -154,6 +165,8 @@ class Batter {
                 enemy.uihpIntro.text=`${enemy.uihpSlider.value}/${enemy.uihpSlider.max}`
                 enemy.uitype.image=GameData.getModuleData(2,enemy.actor.ElementType1).image
                 Batter.enemys.push(enemy);
+                // 初始选择技能：从第 0 个开始，满足条件才选中（此时敌人已完全初始化，片段可读取 enemy.hp/level 等）
+                PADCondition.selectSkill(enemy, 0);
             }    
         }
         //设置敌人位置
@@ -169,7 +182,7 @@ class Batter {
         case 2:
             for (let i=0;i<party.enemys.length;i++){
                 let enemyavatar=Batter.enemys[i].avatar;
-                enemyavatar.x=66+i*(400+66);
+                enemyavatar.x=150+i*(400+66);
                 enemyavatar.y=150;
                 enemyavatar.scaleX=0.5;
                 enemyavatar.scaleY=0.5;
@@ -320,8 +333,6 @@ class Batter {
      * @param onComplete 动画结束回调
      */
     changeHP(source: Batter, change: number, duration: number, onComplete: () => void = () => {}) {
-        //激活实例自身的钩子
-        // let hook:{change:number;onComplete:Function}=this.beforeChangeHP(source, change, onComplete);
         // 敌人受到伤害
         let finalChange:number=change;
         if(this.camp===0&&change<0)finalChange=-PADhelper.damageToEnemy(source,this,-change);

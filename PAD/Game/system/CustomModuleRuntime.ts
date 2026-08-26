@@ -65,7 +65,9 @@ class Module_Actor {
     ElementType1: number; // = 1; 主元素属性
     ElementType2: number; // = 1; 副元素属性
     useElementType2: boolean; // = false; 使用副元素
-    skills: Module_Skill[]; // = [];
+    skills: DataStructure_enemySkills[]; // = [];
+    isEnemy: boolean; // = false; 是否敌人
+    skillsPlayer: Module_Skill[]; // = [];
     attackVoice: string; // = ""; 攻击语音
     hitVoice: string; // = ""; 受击语音
     dieVoice: string; // = ""; 阵亡语音
@@ -92,10 +94,11 @@ class Module_Skill {
     totalCD: number; // = 1; 冷却回合
     releaseActionID: number; // = 3; 释放动作
     releaseTimes: number; // = 1; 攻击次数
-    menuSE: string; // = ""; 使用时音效
+    isHeal: boolean; // = false; 是否治疗技能
     elementType1: number; // = 1; 元素类别
     isAll: boolean; // = false; 是否全体
     atkBonus: number; // = 1; 攻击倍率
+    heal: number; // = 1; 治疗量
     releaseAnimation: number; // = 0; 释放动画
     hitAnimation: number; // = 1; 击中目标的动画
     selfStatus: number[]; // = [];
@@ -104,4 +107,41 @@ class Module_Skill {
     removeStatus: number[]; // = [];
     beforeUseEvent: string; // = ""; 使用技能前事件
     afterHitEvent: string; // = ""; 击中目标后事件
+}
+/**
+ * #6 状态
+ */
+class Module_Status {
+    id: number;
+    name: string;
+    image: string; // = ""; 状态图片
+    always: boolean; // = false; 永久状态
+    bonus: number; // = 1; 系数
+    conditionHP: boolean; // = false; 使用生命值触发条件
+    isTypeBonus: boolean; // = false; 使用属性系数
+    isHitsBonus: boolean; // = false; 使用连击系数
+    isCrossBonus: boolean; // = false; 使用十字系数
+    isRowBonus: boolean; // = false; 使用行系数
+    isColBonus: boolean; // = false; 使用列系数
+    isNumBonus: boolean; // = false; 使用消除元素数量系数
+    intro: string; // = "";  
+    battler: number; // = 0; 比较对象
+    compareHP: number; // = 0; 比较逻辑
+    valueHP: number; // = 0; 比较数值
+    hpBonus: number; // = 1; 系数
+    type: number; // = 0; 属性
+    typeBonus: number; // = 1; 系数
+    hitValue: number; // = 1; 比较数值
+    hitBonus: number; // = 1; 系数
+    compareHit: number; // = 0; 比较逻辑
+    crossBonus: number; // = 0; 十字系数
+    isMultipleCossBonus: boolean; // = false; 系数叠加
+    rowBonus: number; // = 0; 行系数
+    isMultipleRowBonus: boolean; // = false; 系数叠加
+    colBonus: number; // = 0; 列系数
+    isMultipleColBonus: boolean; // = false; 系数叠加
+    Nums: number; // = 0; 消除数量达到
+    typeForNum: number; // = 0; 属性
+    NumBonus: number; // = 1; 系数
+    layer: number; // = 0; 状态层数
 }

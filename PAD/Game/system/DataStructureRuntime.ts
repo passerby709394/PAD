@@ -77,6 +77,14 @@ class DataStructure_partyActor {
     lv: number; // = 1; 等级
 }
 /**
+ * #10 enemySkills
+ */
+class DataStructure_enemySkills {
+    skill: Module_Skill; // = 0; 技能
+    condition: string; // = ""; 使用条件
+    skillTimes: number; // = 0; 限制使用次数
+}
+/**
  * #1001 enemyActor
  */
 class DataStructure_enemyActor {

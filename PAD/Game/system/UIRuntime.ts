@@ -513,29 +513,33 @@ class ListItem_1004 extends UIListItemData {
 }
 
 /**
- * 1005- [BASE]
+ * 1005-状态 [BASE]
  */
 class GUI_1005 extends GUI_BASE {
-
+   statusImage:UIBitmap;
+   statusText:UIString;
    constructor(){
       super(1005);
    }
 }
 class ListItem_1005 extends UIListItemData {
-
+   statusImage:string;
+   statusText:string;
 }
 
 /**
- * 1006- [BASE]
+ * 1006-提示 [BASE]
  */
 class GUI_1006 extends GUI_BASE {
-
+   tip:UIBitmap;
+   tipsText:UIString;
    constructor(){
       super(1006);
    }
 }
 class ListItem_1006 extends UIListItemData {
-
+   tip:string;
+   tipsText:string;
 }
 
 /**

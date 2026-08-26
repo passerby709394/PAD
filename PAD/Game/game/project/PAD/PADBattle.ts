@@ -22,7 +22,11 @@ class PADBattle{
     /**
      * 战斗阶段：1：等待玩家操作（战斗前），2：执行战斗，3：战斗结算
      */  
-    static battleStep:number=0;          
+    static battleStep:number=0;
+    /**
+     * 当前回合数（从第 1 回合起），每完成一次「玩家行动+敌人行动+结算」+1
+     */
+    static battleRound:number=1;          
     /**
      * 继续停止的记录的事件触发器
      */    
@@ -45,6 +49,7 @@ class PADBattle{
         PADBattle.battleUI=new GUI_4001();   
         PADBattle.battleUI.BG.image=party.background;
         this.battleStep=0;
+        PADBattle.battleRound=1;
         
         //敌人初始化
         Batter.init(party);
@@ -111,6 +116,8 @@ class PADBattle{
                 }                 
                 //结算完毕返回玩家操作
                 PADBattle.battleStep=1;
+                // 结算完毕，进入下一回合
+                PADBattle.battleRound++;
                 break;
         }
         

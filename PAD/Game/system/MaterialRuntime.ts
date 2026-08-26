@@ -1,5 +1,5 @@
 /**
- * 该文件为GameCreator编辑器自动生成的代码
+ * 该文件为GameCreator编辑器自动生成的代码，请勿修改
  */
 /**
  * 材质数据基类
@@ -204,4 +204,12 @@ class MaterialData17 extends MaterialData {
     lineColorA: number = 0; // 线条颜色a 
     lineWidth: number = 0.1; // 线条宽度 
     rangeX: string = ""; // X过渡 
+}
+/**
+ * 材质18-图像滚动
+ */
+class MaterialData18 extends MaterialData {
+    id: number = 18;
+    xSpeed: number = 1; // 水平滚动速度 单位：像素
+    ySpeed: number = 0; // 垂直滚动速度 单位：像素
 }

@@ -9,11 +9,19 @@ class PADAction {
      * @param combos 本次连锁消除的 combo 结果数组（用于查找治疗元素）
      */
     static playerAction(combos: PADCombo[], onComplete?: Function): void {
+        // 排除放错位置的敌人数据（isEnemy=true），只保留真正的玩家
+        const players = Batter.players.filter((p) => {
+            if (p.actor.isEnemy) {
+                console.log(`[PADAction] 跳过非玩家数据：${p.actor.name}（isEnemy=true）`);
+            }
+            return true;
+        });
+
         // 玩家攻击：每个玩家角色攻击完成后再攻击下一个，串行播放
-        const atkPlayers = Batter.players.filter((p) => !!p.atkAniPRtext);
+        const atkPlayers = players.filter((p) => !!p.atkAniPRtext);
 
         // 无攻击准备的玩家直接重置标记
-        for (const player of Batter.players) {
+        for (const player of players) {
             if (!player.atkAniPRtext) player.isAllAtk = false;
         }
 
@@ -21,7 +29,7 @@ class PADAction {
         let healElementID = PADAction._findHealElementID(combos);
         if (healElementID >= 0) {
             // 对每个有治疗准备的玩家，计算 combo 数影响的治疗量并增加准备量
-            for (const player of Batter.players) {
+            for (const player of players) {
                 if (!player.healAniPRtext) continue;
                 const comboHeal = Math.floor((Number(player.healAniPRtext.text) || 0) * (PADPuzzle.lastResult.lastComboCount - 1) * Game.player.data.comboBonus);
                 if (comboHeal > 0) {
@@ -32,7 +40,7 @@ class PADAction {
 
         // 是否存在需要执行的攻击 / 治疗
         const hasAttack = atkPlayers.length > 0;
-        const hasHeal = Batter.players.some((p) => !!(p.healAniPR && p.healAniPRtext));
+        const hasHeal = players.some((p) => !!(p.healAniPR && p.healAniPRtext));
 
         // 攻击与治疗两条异步链都完成后，才解除输入锁（允许玩家再次操作）；
         // 无攻击 / 无治疗直接视为该阶段已完成
@@ -140,12 +148,19 @@ class PADAction {
      */
     static enemyAction(combos: PADCombo[], onComplete?: Function): void {
         // 只处理生命不为零和可以行动的敌人
-        const aliveEnemies = Batter.enemys.filter((e) => e.uihpSlider && e.enemyCanAction && e.uihpSlider.value > 0);
+        const aliveEnemies = Batter.enemys.filter((e) => {
+            // 非敌人数据（放错位置）：在筛选阶段排除并提示，避免误触发行动
+            if (!e.actor.isEnemy) {
+                console.log(`[PADAction] 跳过非敌人数据：${e.actor.name}（isEnemy=false）`);
+            }
+            return e.uihpSlider && e.enemyCanAction && e.uihpSlider.value > 0;
+        });
         const process = (index: number): void => {
             if (index >= aliveEnemies.length) {
                 //行动后设置所有敌人不能行动
                 for (const enemy of aliveEnemies) {
                     enemy.enemyCanAction = false; 
+                    
                 }                
                 onComplete?.();
                 return;
@@ -166,18 +181,22 @@ class PADAction {
                 process(index + 1);
                 return;
             }
-            // 3. 回合数等于 0：用当前技能攻击，技能索引推进到下一位（越界从零开始）
-            let skill =skills[enemy.skillIndex % skills.length];
-            enemy.skillIndex = (enemy.skillIndex + 1) % skills.length;
-            enemy.aiUseTimer.text = String(skills[enemy.skillIndex].totalCD) + "回合后行动";
-            // 4. 播放攻击动画，动画与扣血全部完成后处理下一个敌人
+            // 3. 回合数等于 0：用当前技能攻击
+            const usedIndex = enemy.skillIndex % skills.length;
+            let skill = skills[usedIndex].skill;
+            
+            // 4. 播放攻击动画，动画与扣血全部完成后，选中下一个满足条件的技能并处理下一个敌人
             //玩家生命大于零才攻击
-            if(Batter.players[0].hp>0){
+            if (Batter.players[0].hp > 0) {
+                // 记录本次技能使用次数（配合 skillTimes 限制）
+                enemy.skillUsedCounts[usedIndex] = (enemy.skillUsedCounts[usedIndex] || 0) + 1;
                 PADanim.enemyAttack(enemy, skill, () => {
-                    process(index + 1);
+                    // 技能使用后：从下一个开始选满足条件的技能
+                    PADCondition.selectSkill(enemy, (enemy.skillIndex + 1) % skills.length, () => {
+                        process(index + 1);
+                    });
                 });
-            }
-            else{
+            } else {
                 process(index + 1);
             }
 

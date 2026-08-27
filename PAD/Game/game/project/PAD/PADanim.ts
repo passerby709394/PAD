@@ -333,7 +333,7 @@ class PADanim {
                     hpDuration = act9.getFrameLength(5) / fps * 1000;
                 }
             }
-            target.changeHP(player, -damage, Math.max(100, hpDuration), () => { onAfterHit?.(); });
+            target.changeHP(player, -damage, Math.max(100, hpDuration), player.actor.ElementType1, () => { onAfterHit?.(); });
         } else {
             // 伤害为 0：无实际扣血，直接触发回调，避免攻击链卡死
             onAfterHit?.();
@@ -439,7 +439,7 @@ class PADanim {
                     }
                 }
                 // 最后一次扣血的HP动画完成时触发回调
-                target.changeHP(player, -damage, Math.max(100, hpDuration), () => {
+                target.changeHP(player, -damage, Math.max(100, hpDuration), player.actor.ElementType1, () => {
                     if (isLast) onAfterHit?.();
                 });
             }
@@ -515,7 +515,7 @@ class PADanim {
 
         // 增加玩家队伍生命值（治疗量合计；治疗无独立来源角色，以队伍代表 players[0] 作为 source）
         if (totalHeal > 0) {
-            Batter.players[0].changeHP(Batter.players[0], totalHeal, Math.max(100, moveDuration), () => { onAfterHeal?.(); });
+            Batter.players[0].changeHP(Batter.players[0], totalHeal, Math.max(100, moveDuration), 0, () => { onAfterHeal?.(); });
         } else {
             onAfterHeal?.();
         }
@@ -575,7 +575,7 @@ class PADanim {
             const finish = (hpDuration: number): void => {
                 if (damage > 0 && Batter.players.length > 0) {
                     // 队伍共享一条血条，以 players[0] 作为代表扣血
-                    Batter.players[0].changeHP(enemy, -damage, hpDuration, () => { runRelease(index + 1); });
+                    Batter.players[0].changeHP(enemy, -damage, hpDuration, skill.elementType1, () => { runRelease(index + 1); });
                 } else {
                     runRelease(index + 1);
                 }
@@ -693,7 +693,7 @@ class PADanim {
         };
         for (const target of targets) {
             PADanim._showHealText(target, healAmount, healColor);
-            target.changeHP(enemy, healAmount, 500, onTargetHealed);
+            target.changeHP(enemy, healAmount, 500, 0, onTargetHealed);
         }
         if (targets.length === 0) onComplete?.();
     }

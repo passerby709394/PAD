@@ -336,10 +336,13 @@ class Batter {
     changeHP(source: Batter, change: number, duration: number,type:number=0, onComplete: () => void = () => {}) {
         // 敌人受到伤害
         let finalChange:number=change;
-        if(this.camp===0&&change<0)finalChange=-PADhelper.damageToEnemy(source,this,-change,type);
-        if(this.camp===1&&change>0){
-            finalChange=PADhelper.healToPlayer(source,source,change);            
+        if(this.camp===0&&finalChange<0)finalChange=-PADhelper.damageToEnemy(source,this,-finalChange,type);
+        if(this.camp===1&&finalChange>0){
+            finalChange=PADhelper.healToPlayer(source,source,finalChange);            
         }
+        if(this.camp===1&&finalChange<0){
+            finalChange=-PADhelper.damageToPlayer(this,source,-finalChange,type);            
+        }        
         PADanim.startHpAnimation(this,finalChange,duration,onComplete);
 
         

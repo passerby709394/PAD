@@ -47,14 +47,31 @@ class PADhelper {
      * @param player 攻击方（玩家）战斗者实例
      * @param enemy 受击方（敌人）战斗者实例
      * @param damage 原始伤害（必须为正数）
+     * @param type 伤害的类型ID
      * @returns 计算后的最终伤害（正数）
      */
     static damageToEnemy(player: Batter, enemy: Batter, damage: number,type:number): number {       
+        let finalDamage=damage;
+        let enemyType=enemy.actor.ElementType1;
+        let atkTpye=GameData.getModuleData(2,type) as Module_Element;
+        if(atkTpye.restrain==enemyType)finalDamage*=2;
+        if(atkTpye.restrained==enemyType)finalDamage*=0.5;
+        console.log("敌人受到的伤害扣除前的钩子：",finalDamage)
+        return finalDamage;
+    }
+    /**
+     * 玩家受到的伤害扣除前的钩子
+     * @param player 受到攻击方（玩家）战斗者实例
+     * @param enemy 攻击方（敌人）战斗者实例
+     * @param damage 原始伤害（必须为正数）
+     * @param type 伤害的类型ID
+     * @returns 计算后的最终伤害（正数）
+     */
+    static damageToPlayer(player: Batter, enemy: Batter, damage: number,type:number): number {       
         // 暂时为空方法，后期拓展（如护甲减免、属性克制、减伤buff等）
-        console.log("敌人受到的伤害扣除前的钩子")
+        console.log("玩家受到的伤害扣除前的钩子：")
         return damage;
     }
-
     /**
      * 玩家治疗前的钩子
      * @param player 玩家战斗者实例

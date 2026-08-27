@@ -24,6 +24,8 @@ class Module_Element {
     textColor: string; // = ""; 字体颜色
     elementBonus: number; // = 0.25; 每个元素数值加成
     isHeal: boolean; // = false; 是否治疗元素
+    restrain: number; // = 0; 克制的属性
+    restrained: number; // = 0; 被克制的属性
 }
 /**
  * #3 队伍

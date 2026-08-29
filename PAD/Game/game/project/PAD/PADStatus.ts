@@ -106,5 +106,88 @@ class PADStatus {
         }
         if(onComplete)onComplete();
     }
+
+    /**
+     * 计算状态对伤害的影响（HP条件等），返回应用状态后的最终伤害
+     * @param source 伤害来源战斗者（攻击方）
+     * @param target 受伤的战斗者（受击方）
+     * @param damage 原始伤害
+     * @param type 伤害的类型ID
+     * @returns 应用状态后的伤害
+     */
+    static calcStatusDamage(source: Batter, target: Batter, damage: number, type: number): number {
+        let finalDamage = damage;
+        //比较HP条件的函数     
+        function conditionHP(battler:Batter){
+            for(let i=0;i<battler.status.length;i++){
+                let status=battler.status[i];
+                if(status.isHP){
+                    switch(status.compareHP){
+                        case 0:
+                            if(battler.camp==source.camp){
+                                if(battler.uihpSlider.value>battler.uihpSlider.max*status.valueHP/100)finalDamage *=status.hpHitBonus;
+                            }                            
+                            if(battler.camp==target.camp){
+                                if(battler.uihpSlider.value>battler.uihpSlider.max*status.valueHP/100)finalDamage *=status.hpHitedBonus;
+                            };
+                            break;
+                       case 1:
+                            if(battler.camp==source.camp){
+                                if(battler.uihpSlider.value>=battler.uihpSlider.max*status.valueHP/100)finalDamage *=status.hpHitBonus;
+                            }  
+                            if(battler.camp==target.camp){
+                                if(battler.uihpSlider.value>=battler.uihpSlider.max*status.valueHP/100)finalDamage *=status.hpHitedBonus;
+                            };
+                            break;
+                       case 2:
+                            if(battler.camp==source.camp){
+                                if(battler.uihpSlider.value==battler.uihpSlider.max*status.valueHP/100)finalDamage *=status.hpHitBonus;
+                            }  
+                            if(battler.camp==target.camp){
+                                if(battler.uihpSlider.value==battler.uihpSlider.max*status.valueHP/100)finalDamage *=status.hpHitedBonus;
+                            };
+                            break; 
+                       case 3:
+                            if(battler.camp==source.camp){
+                                if(battler.uihpSlider.value<=battler.uihpSlider.max*status.valueHP/100)finalDamage *=status.hpHitBonus;
+                            }  
+                            if(battler.camp==target.camp){
+                                if(battler.uihpSlider.value<=battler.uihpSlider.max*status.valueHP/100)finalDamage *=status.hpHitedBonus;
+                            };
+                            break;  
+                       case 4:
+                            if(battler.camp==source.camp){
+                                if(battler.uihpSlider.value<battler.uihpSlider.max*status.valueHP/100)finalDamage *=status.hpHitBonus;
+                            }  
+                            if(battler.camp==target.camp){
+                                if(battler.uihpSlider.value<battler.uihpSlider.max*status.valueHP/100)finalDamage *=status.hpHitedBonus;
+                            };
+                            break;                                                                                                             
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+
+        //计算状态 
+        //HP条件
+        conditionHP(source);
+        conditionHP(target);
+        //使用属性系数
+
+        //使用连击系数
+ 
+        //使用十字系数
+       
+        //使用行系数
+        
+        //使用列系数
+        
+        //使用消除类型数量系数
+        
+        
+        return finalDamage;
+    }
 }
 

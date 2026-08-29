@@ -55,48 +55,8 @@ class PADhelper {
      */
     static damageToEnemy(player: Batter, enemy: Batter, damage: number,type:number): number {       
         console.log(`[伤害计算] ${player.actor.name} → ${enemy.actor.name}，基础伤害=${damage}`);
-        let finalDamage=damage;
-        //计算状态
-        for (let i=0;i<Batter.players[0].status.length;i++){
-            let status=Batter.players[0].status[i];
-            //HP条件
-            if(status.conditionHP){
-                //比较HP的对象
-                let battler:Batter;
-                status.battler==0?battler=enemy:battler=Batter.players[0];
-                switch (status.compareHP){
-                    case 1:
-                    //比较玩家生命值
-                        if(battler.uihpSlider.value>battler.uihpSlider.max/100*status.valueHP){
-                            console.log(`[伤害计算] 状态HP条件满足（${battler.actor.name} HP=${battler.uihpSlider.value}），伤害×${status.hpBonus}`);
-                            finalDamage*=status.hpBonus;
-                        }
-                        break;
-                    case 0:
-                    //比较敌人生命值              
-                        if(enemy.hp>PADhelper.lvToValue(battler.level,"HP",battler.actor)/100*status.valueHP){
-                            console.log(`[伤害计算] 状态HP条件满足（${battler.actor.name} HP=${battler.hp}），伤害×${status.hpBonus}`);
-                            finalDamage*=status.hpBonus;
-                        }
-                        break;                        
-                    default:
-                        // 当所有 case 都不匹配时执行的代码
-                        break;
-                }
-            }
-            //使用属性系数
-            if(status.isTypeBonus){}  
-            //使用连击系数
-            if(status.isHitsBonus){}   
-            //使用十字系数
-            if(status.isCrossBonus){} 
-            //使用行系数
-            if(status.isRowBonus){}  
-            //使用列系数
-            if(status.isColBonus){}  
-            //使用消除类型数量系数
-            if(status.isNumBonus){}                                                                   
-        }
+        // 计算状态对伤害的影响
+        let finalDamage = PADStatus.calcStatusDamage(Batter.players[0], enemy, damage, type);
         //属性克制计算
         let enemyType=enemy.actor.ElementType1;
         let atkTpye=GameData.getModuleData(2,type) as Module_Element;
@@ -120,9 +80,9 @@ class PADhelper {
      * @returns 计算后的最终伤害（正数）
      */
     static damageToPlayer(player: Batter, enemy: Batter, damage: number,type:number): number {       
-        // 暂时为空方法，后期拓展（如护甲减免、属性克制、减伤buff等）
+        let finalDamage = PADStatus.calcStatusDamage(enemy,Batter.players[0],  damage, type);
         console.log(`[伤害计算] ${enemy.actor.name} → ${player.actor.name}，基础伤害=${damage}，最终伤害=${damage}`);
-        return damage;
+        return finalDamage;
     }
     /**
      * 玩家治疗前的钩子

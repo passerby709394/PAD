@@ -119,7 +119,7 @@ class Module_Status {
     image: string; // = ""; 状态图片
     always: boolean; // = false; 永久状态
     bonus: number; // = 1; 系数
-    conditionHP: boolean; // = false; 使用生命值触发条件
+    isHP: boolean; // = false; 使用生命值触发条件
     isTypeBonus: boolean; // = false; 使用属性系数
     isHitsBonus: boolean; // = false; 使用连击系数
     isCrossBonus: boolean; // = false; 使用十字系数
@@ -130,7 +130,8 @@ class Module_Status {
     battler: number; // = 0; 比较对象
     compareHP: number; // = 0; 比较逻辑
     valueHP: number; // = 0; 比较百分比
-    hpBonus: number; // = 1; 系数
+    hpHitBonus: number; // = 1; 伤害系数
+    hpHitedBonus: number; // = 1; 受伤害系数
     type: number; // = 0; 属性
     typeBonus: number; // = 1; 系数
     hitValue: number; // = 1; 比较数值

@@ -340,9 +340,9 @@ class PADanim {
                     hpDuration = act9.getFrameLength(5) / fps * 1000;
                 }
             }
-            // 累计该敌人受到的伤害（多个玩家打同一敌人会累加，最后一次性显示总伤害）
-            PADanim.accumulateDamage(target, damage);
-            target.changeHP(player, -damage, Math.max(100, hpDuration), player.actor.ElementType1, () => { onAfterHit?.(); });
+            // 扣血（changeHP 返回钩子计算后的最终伤害，用于累加显示）
+            const finalDamage = target.changeHP(player, -damage, Math.max(100, hpDuration), player.actor.ElementType1, () => { onAfterHit?.(); });
+            PADanim.accumulateDamage(target, Math.abs(finalDamage));
         } else {
             // 伤害为 0：无实际扣血，直接触发回调，避免攻击链卡死
             onAfterHit?.();
@@ -447,12 +447,11 @@ class PADanim {
                         hpDuration = act9.getFrameLength(5) / fps * 1000;
                     }
                 }
-                // 累计该敌人受到的伤害（多个玩家打同一敌人会累加，最后一次性显示总伤害）
-                PADanim.accumulateDamage(target, damage);
-                // 最后一次扣血的HP动画完成时触发回调
-                target.changeHP(player, -damage, Math.max(100, hpDuration), player.actor.ElementType1, () => {
+                // 扣血（changeHP 返回钩子计算后的最终伤害，用于累加显示）
+                const finalDamage = target.changeHP(player, -damage, Math.max(100, hpDuration), player.actor.ElementType1, () => {
                     if (isLast) onAfterHit?.();
                 });
+                PADanim.accumulateDamage(target, Math.abs(finalDamage));
             }
             // 播放该敌人受击音效
             if (target.actor.hitVoice) {
@@ -502,16 +501,6 @@ class PADanim {
             if (healHPDone && healFadeDone) onAfterHeal?.();
         };
 
-        // 显示总治疗数字（在队伍代表玩家上方），淡出后标记完成
-        if (totalHeal > 0) {
-            PADanim._showHealText(Batter.players[0], totalHeal, "#00ff00", () => {
-                healFadeDone = true;
-                tryFinishHeal();
-            });
-        } else {
-            healFadeDone = true;
-        }
-
         // 治疗动画目标位置：队伍血条图片中心
         // 注意：hpImg 的 x/y 是其父容器的相对坐标，不能直接作为 Tween 目标（healAniPR 挂在 battleUI 下，用的是 battleUI 局部坐标）
         // 先取血条中心点（hpImg 本地坐标）转全局坐标，再转回 battleUI 局部坐标
@@ -541,14 +530,25 @@ class PADanim {
             }, null));
         }
 
-        // 增加玩家队伍生命值（治疗量合计；治疗无独立来源角色，以队伍代表 players[0] 作为 source）
+        // 增加玩家队伍生命值（changeHP 返回钩子计算后的最终治疗值，用于飘字）
         if (totalHeal > 0) {
-            Batter.players[0].changeHP(Batter.players[0], totalHeal, Math.max(100, moveDuration), 0, () => {
+            const finalHeal = Batter.players[0].changeHP(Batter.players[0], totalHeal, Math.max(100, moveDuration), 0, () => {
                 healHPDone = true;
                 tryFinishHeal();
             });
+            // 显示最终治疗数字（在队伍代表玩家上方），淡出后标记完成
+            if (finalHeal > 0) {
+                PADanim._showHealText(Batter.players[0], finalHeal, "#00ff00", () => {
+                    healFadeDone = true;
+                    tryFinishHeal();
+                });
+            } else {
+                healFadeDone = true;
+                tryFinishHeal();
+            }
         } else {
             healHPDone = true;
+            healFadeDone = true;
             tryFinishHeal();
         }
     }
@@ -595,13 +595,15 @@ class PADanim {
             ani.gotoAndPlay();
         };
 
+        // 累计最终总伤害（连击各次的钩子后伤害之和）
+        let totalFinalDamage = 0;
+
         // 执行第 index 次释放（index 从 0 开始）
         const runRelease = (index: number): void => {
-            // 全部释放完成：显示总伤害数字并触发完成回调
+            // 全部释放完成：显示最终总伤害数字并触发完成回调
             if (index >= releaseTimes) {
-                const totalDamage = damage * releaseTimes;
-                if (totalDamage > 0) {
-                    PADanim._showDamageText(Batter.players[0], totalDamage, "#ff0000");
+                if (totalFinalDamage > 0) {
+                    PADanim._showDamageText(Batter.players[0], totalFinalDamage, "#ff0000");
                 }
                 onComplete?.();
                 return;
@@ -610,8 +612,9 @@ class PADanim {
             // 扣血并进入下一次释放
             const finish = (hpDuration: number): void => {
                 if (damage > 0 && Batter.players.length > 0) {
-                    // 队伍共享一条血条，以 players[0] 作为代表扣血
-                    Batter.players[0].changeHP(enemy, -damage, hpDuration, skill.elementType1, () => { runRelease(index + 1); });
+                    // 队伍共享一条血条，以 players[0] 作为代表扣血（changeHP 返回钩子后最终伤害）
+                    const finalChange = Batter.players[0].changeHP(enemy, -damage, hpDuration, skill.elementType1, () => { runRelease(index + 1); });
+                    totalFinalDamage += Math.abs(finalChange);
                 } else {
                     runRelease(index + 1);
                 }
@@ -722,20 +725,22 @@ class PADanim {
             ani.gotoAndPlay();
         }
 
-        // 总治疗量飘字（合并为一次，显示在释放者身上）
-        const totalHeal = healAmount * targets.length;
-        if (totalHeal > 0) {
-            PADanim._showHealText(enemy, totalHeal, healColor);
-        }
-
-        // 每个治疗目标回血；全部完成后触发 onComplete
+        // 每个治疗目标回血（changeHP 返回钩子后最终治疗值，累加用于飘字）；全部完成后触发 onComplete
+        let totalFinalHeal = 0;
         let pending = targets.length;
         const onTargetHealed = (): void => {
             if (--pending <= 0) onComplete?.();
         };
         for (const target of targets) {
-            target.changeHP(enemy, healAmount, 500, 0, onTargetHealed);
+            const finalHeal = target.changeHP(enemy, healAmount, 500, 0, onTargetHealed);
+            totalFinalHeal += Math.abs(finalHeal);
         }
+
+        // 总治疗量飘字（合并为一次，显示在释放者身上）
+        if (totalFinalHeal > 0) {
+            PADanim._showHealText(enemy, totalFinalHeal, healColor);
+        }
+
         if (targets.length === 0) onComplete?.();
     }
 

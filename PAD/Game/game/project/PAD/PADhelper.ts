@@ -115,6 +115,18 @@ class PADhelper {
         console.log("玩家治疗前的钩子")
         return heal;
     }
+    /**
+     * 敌人治疗前的钩子
+     * @param source 治疗者（敌人）战斗者实例
+     * @param target 被治疗的敌人战斗者实例
+     * @param heal 治疗量（必须为正数）
+     * @returns 计算后的最终治疗量（正数）
+     */
+    static healToEnemy(source: Batter, target: Batter, heal: number): number {       
+        // 暂时为空方法，后期拓展（如治疗加成、减疗buff等）
+        console.log("敌人治疗前的钩子")
+        return heal;
+    }
 
     /**
      * 计算治疗准备：计算本次消除的治疗量（暂时为空方法，后期拓展）

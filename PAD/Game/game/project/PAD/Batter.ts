@@ -333,7 +333,7 @@ class Batter {
      * @param duration 动画长度（毫秒）
      * @param onComplete 动画结束回调
      */
-    changeHP(source: Batter, change: number, duration: number,type:number=0, onComplete: () => void = () => {}) {
+    changeHP(source: Batter, change: number, duration: number,type:number=0, onComplete: () => void = () => {}): number {
         // 敌人受到伤害
         let finalChange:number=change;
         if(this.camp===0&&finalChange<0)finalChange=-PADhelper.damageToEnemy(source,this,-finalChange,type);
@@ -343,7 +343,12 @@ class Batter {
         if(this.camp===1&&finalChange<0){
             finalChange=-PADhelper.damageToPlayer(this,source,-finalChange,type);            
         }        
+        // 敌人治疗
+        if(this.camp===0&&finalChange>0){
+            finalChange=PADhelper.healToEnemy(source,this,finalChange);
+        }
         PADanim.startHpAnimation(this,finalChange,duration,onComplete);
+        return finalChange;
 
         
     }

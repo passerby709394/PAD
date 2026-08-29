@@ -91,7 +91,11 @@ class PADAction {
             };
             // 计算连锁 combo 加成
             let damage: number = Number(player.atkAniPRtext.text);
-            damage = Math.floor(damage * (PADPuzzle.lastResult.lastComboCount - 1) * Game.player.data.comboBonus);
+            const comboCount = PADPuzzle.lastResult.lastComboCount;
+            const comboBonus = Game.player.data.comboBonus;
+            const beforeCombo = damage;
+            damage = Math.floor(damage * (comboCount - 1) * comboBonus);
+            console.log(`[伤害计算] ${player.actor.name} combo连锁加成：攻击准备值=${beforeCombo}，combo数=${comboCount}，comboBonus=${comboBonus}，本次加成=${damage}，累加后=${beforeCombo + damage}`);
             // 如果需要逐个显示 combo 结算，true 改 false
             PADanim.playerAtkPR(player, damage, true, onDone);
         };

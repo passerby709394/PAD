@@ -129,7 +129,7 @@ class Module_Status {
     intro: string; // = "";  
     battler: number; // = 0; 比较对象
     compareHP: number; // = 0; 比较逻辑
-    valueHP: number; // = 0; 比较数值
+    valueHP: number; // = 0; 比较百分比
     hpBonus: number; // = 1; 系数
     type: number; // = 0; 属性
     typeBonus: number; // = 1; 系数

@@ -17,6 +17,13 @@ class PADanim {
     // 界面1004（伤害字体）text 组件模板缓存：字体属性全部通过可视化编辑界面1004的text组件调整
     private static _textTemplate: UIString = null;
 
+    // 玩家攻击阶段累计的伤害（按目标敌人分组），用于攻击结束后一次性显示每个敌人的总伤害数字
+    private static _pendingDamage = new Map<Batter, number>();
+
+    // 全局飘字淡出计数：当前仍在淡出的飘字数量；为 0 时触发等待回调
+    private static _activeFloatingCount = 0;
+    private static _floatingWaitCallbacks: Array<() => void> = [];
+
     /**
      * 启动或加入一个战斗者的 HP 变化动画
      * @param batter       目标战斗者
@@ -333,6 +340,8 @@ class PADanim {
                     hpDuration = act9.getFrameLength(5) / fps * 1000;
                 }
             }
+            // 累计该敌人受到的伤害（多个玩家打同一敌人会累加，最后一次性显示总伤害）
+            PADanim.accumulateDamage(target, damage);
             target.changeHP(player, -damage, Math.max(100, hpDuration), player.actor.ElementType1, () => { onAfterHit?.(); });
         } else {
             // 伤害为 0：无实际扣血，直接触发回调，避免攻击链卡死
@@ -438,6 +447,8 @@ class PADanim {
                         hpDuration = act9.getFrameLength(5) / fps * 1000;
                     }
                 }
+                // 累计该敌人受到的伤害（多个玩家打同一敌人会累加，最后一次性显示总伤害）
+                PADanim.accumulateDamage(target, damage);
                 // 最后一次扣血的HP动画完成时触发回调
                 target.changeHP(player, -damage, Math.max(100, hpDuration), player.actor.ElementType1, () => {
                     if (isLast) onAfterHit?.();
@@ -484,6 +495,23 @@ class PADanim {
             totalHeal += Math.abs(parseInt(p.healAniPRtext.text, 10) || 0);
         }
 
+        // 治疗完成判定：治疗数字淡出 + 回血动画 都完成后才触发 onAfterHeal（避免与后续伤害数字重叠）
+        let healHPDone = false;
+        let healFadeDone = false;
+        const tryFinishHeal = (): void => {
+            if (healHPDone && healFadeDone) onAfterHeal?.();
+        };
+
+        // 显示总治疗数字（在队伍代表玩家上方），淡出后标记完成
+        if (totalHeal > 0) {
+            PADanim._showHealText(Batter.players[0], totalHeal, "#00ff00", () => {
+                healFadeDone = true;
+                tryFinishHeal();
+            });
+        } else {
+            healFadeDone = true;
+        }
+
         // 治疗动画目标位置：队伍血条图片中心
         // 注意：hpImg 的 x/y 是其父容器的相对坐标，不能直接作为 Tween 目标（healAniPR 挂在 battleUI 下，用的是 battleUI 局部坐标）
         // 先取血条中心点（hpImg 本地坐标）转全局坐标，再转回 battleUI 局部坐标
@@ -515,9 +543,13 @@ class PADanim {
 
         // 增加玩家队伍生命值（治疗量合计；治疗无独立来源角色，以队伍代表 players[0] 作为 source）
         if (totalHeal > 0) {
-            Batter.players[0].changeHP(Batter.players[0], totalHeal, Math.max(100, moveDuration), 0, () => { onAfterHeal?.(); });
+            Batter.players[0].changeHP(Batter.players[0], totalHeal, Math.max(100, moveDuration), 0, () => {
+                healHPDone = true;
+                tryFinishHeal();
+            });
         } else {
-            onAfterHeal?.();
+            healHPDone = true;
+            tryFinishHeal();
         }
     }
 
@@ -565,8 +597,12 @@ class PADanim {
 
         // 执行第 index 次释放（index 从 0 开始）
         const runRelease = (index: number): void => {
-            // 全部释放完成，触发完成回调
+            // 全部释放完成：显示总伤害数字并触发完成回调
             if (index >= releaseTimes) {
+                const totalDamage = damage * releaseTimes;
+                if (totalDamage > 0) {
+                    PADanim._showDamageText(Batter.players[0], totalDamage, "#ff0000");
+                }
                 onComplete?.();
                 return;
             }
@@ -686,35 +722,122 @@ class PADanim {
             ani.gotoAndPlay();
         }
 
-        // 每个治疗目标：飘治疗数字 + 回血；全部完成后触发 onComplete
+        // 总治疗量飘字（合并为一次，显示在释放者身上）
+        const totalHeal = healAmount * targets.length;
+        if (totalHeal > 0) {
+            PADanim._showHealText(enemy, totalHeal, healColor);
+        }
+
+        // 每个治疗目标回血；全部完成后触发 onComplete
         let pending = targets.length;
         const onTargetHealed = (): void => {
             if (--pending <= 0) onComplete?.();
         };
         for (const target of targets) {
-            PADanim._showHealText(target, healAmount, healColor);
             target.changeHP(enemy, healAmount, 500, 0, onTargetHealed);
         }
         if (targets.length === 0) onComplete?.();
     }
 
     /**
+     * 通用飘字：在指定位置显示文本，上飘淡出后销毁
+     */
+    private static _showFloatingText(text: string, x: number, y: number, color: string, onFadeComplete?: () => void): void {
+        const t = new UIString();
+        PADanim._applyTextTemplate(t);
+        t.text = text;
+        t.color = color;
+        t.x = x;
+        t.y = y;
+        t.visible = true;
+        PADBattle.battleUI.addChild(t);
+        PADanim._activeFloatingCount++;
+        Tween.to(t, { y: y - 30, opacity: 0 }, 800, null, Callback.New(() => {
+            t.dispose();
+            PADanim._activeFloatingCount--;
+            if (PADanim._activeFloatingCount <= 0) {
+                const cbs = PADanim._floatingWaitCallbacks;
+                PADanim._floatingWaitCallbacks = [];
+                for (const cb of cbs) cb();
+            }
+            onFadeComplete?.();
+        }, null));
+    }
+
+    /**
      * 治疗飘字：在目标战斗者上方显示「+治疗量」并上飘淡出后销毁
      */
-    private static _showHealText(target: Batter, amount: number, color: string): void {
-        if (amount <= 0) return;
-        const text = new UIString();
-        PADanim._applyTextTemplate(text);
-        text.text = "+" + amount;
-        text.color = color;
+    private static _showHealText(target: Batter, amount: number, color: string, onFadeComplete?: () => void): void {
+        if (amount <= 0) {
+            onFadeComplete?.();
+            return;
+        }
         const av = target.avatar;
-        text.x = av ? av.x + av.width * av.scaleX / 2 : 0;
-        text.y = (av ? av.y : 0) - 40;
-        text.visible = true;
-        PADBattle.battleUI.addChild(text);
-        Tween.to(text, { y: text.y - 30, opacity: 0 }, 800, null, Callback.New(() => {
-            text.dispose();
-        }, null));
+        const card = target.cardImage;
+        let x = 0, y = 0;
+        if (av) {
+            x = av.x + av.width * av.scaleX / 2;
+            y = av.y - 40;
+        } else if (card) {
+            x = card.x;
+            y = card.y - 40;
+        }
+        PADanim._showFloatingText("+" + amount, x, y, color, onFadeComplete);
+    }
+
+    /**
+     * 伤害飘字：在战斗者上方显示「-伤害值」并上飘淡出后销毁
+     */
+    private static _showDamageText(batter: Batter, amount: number, color: string): void {
+        if (amount <= 0) return;
+        const av = batter.avatar;
+        const card = batter.cardImage;
+        let x = 0, y = 0;
+        if (av) {
+            x = av.x + av.width * av.scaleX / 2;
+            y = av.y - 40;
+        } else if (card) {
+            x = card.x;
+            y = card.y - 40;
+        }
+        PADanim._showFloatingText("-" + amount, x, y, color);
+    }
+
+    /**
+     * 累计玩家攻击对某敌人造成的伤害（按目标敌人分组）
+     */
+    static accumulateDamage(target: Batter, amount: number): void {
+        if (amount <= 0) return;
+        PADanim._pendingDamage.set(target, (PADanim._pendingDamage.get(target) || 0) + amount);
+    }
+
+    /**
+     * 清空伤害累计（玩家攻击开始前调用）
+     */
+    static resetDamageAccumulator(): void {
+        PADanim._pendingDamage.clear();
+    }
+
+    /**
+     * 一次性显示每个敌人累计的总伤害数字（玩家攻击结束后调用）
+     */
+    static flushDamageNumbers(): void {
+        PADanim._pendingDamage.forEach((total, target) => {
+            PADanim._showDamageText(target, total, "#ff0000");
+        });
+        PADanim._pendingDamage.clear();
+    }
+
+    /**
+     * 等待所有仍在淡出的飘字完成后执行回调（若当前无飘字则立即执行）。
+     * 用于敌人行动前等待玩家回合的伤害数字淡出，避免与敌人治疗/攻击数字重叠。
+     */
+    static waitForFloatingDone(callback: () => void): void {
+        if (PADanim._activeFloatingCount <= 0) {
+            callback();
+        } else {
+            PADanim._floatingWaitCallbacks.push(callback);
+        }
     }
 
     /**

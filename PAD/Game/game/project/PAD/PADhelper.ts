@@ -52,6 +52,37 @@ class PADhelper {
      */
     static damageToEnemy(player: Batter, enemy: Batter, damage: number,type:number): number {       
         let finalDamage=damage;
+        //计算状态
+        for (let i=0;i<player.status.length;i++){
+            let status=player.status[i];
+            //HP条件
+            if(status.conditionHP){
+                //比较HP的对象
+                let battler:Batter;
+                status.battler==0?battler=enemy:battler=player;
+                switch (status.compareHP){
+                    case 0:
+                        if(battler.hp>PADhelper.lvToValue(battler.level,"HP",battler.actor)/100*status.valueHP)finalDamage*=status.hpBonus;
+                        break;
+                    default:
+                        // 当所有 case 都不匹配时执行的代码
+                        break;
+                }
+            }
+            //使用属性系数
+            if(status.isTypeBonus){}  
+            //使用连击系数
+            if(status.isHitsBonus){}   
+            //使用十字系数
+            if(status.isCrossBonus){} 
+            //使用行系数
+            if(status.isRowBonus){}  
+            //使用列系数
+            if(status.isColBonus){}  
+            //使用消除类型数量系数
+            if(status.isNumBonus){}                                                                   
+        }
+        //属性克制计算
         let enemyType=enemy.actor.ElementType1;
         let atkTpye=GameData.getModuleData(2,type) as Module_Element;
         if(atkTpye.restrain==enemyType)finalDamage*=2;

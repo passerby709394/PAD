@@ -53,27 +53,34 @@ class PADAction {
             }
         };
 
-        // 开始治疗：攻击全部结束后再播放，无攻击时立即播放（合计治疗量，治疗动画飞向队伍血条并回血）
-        const startHeal = (): void => {
-            if (!hasHeal) {
+        // 开始治疗：合计治疗量，治疗动画飞向队伍血条并回血（完成后可选执行后续回调）
+        const startHeal = (onDone?: () => void): void => {
+            const finish = (): void => {
                 healDone = true;
-                tryFinish();
+                if (onDone) onDone();
+                else tryFinish();
+            };
+            if (!hasHeal) {
+                finish();
                 return;
             }
-            PADanim.playerHeal(() => {
-                healDone = true;
-                tryFinish();
-            });
+            PADanim.playerHeal(finish);
         };
 
         // 串行播放每个有攻击准备玩家的攻击准备动画（数字跳动），全部播放完进入实际攻击阶段
         const prepareAttack = (index: number): void => {
             // 终止条件：所有玩家的攻击准备动画均已播放完
             if (index >= atkPlayers.length) {
-                PADAction._executeAttacks(atkPlayers, 0, () => {
-                    attackDone = true;
-                    // 攻击全部结束后再播放治疗（避免治疗与攻击动画重叠）
-                    startHeal();
+                // 重置伤害累计
+                PADanim.resetDamageAccumulator();
+                // 先治疗（治疗数字先显示），治疗数字淡出+回血完成后再攻击（伤害数字后显示）
+                startHeal(() => {
+                    PADAction._executeAttacks(atkPlayers, 0, () => {
+                        // 显示每个敌人累计的总伤害数字
+                        PADanim.flushDamageNumbers();
+                        attackDone = true;
+                        tryFinish();
+                    });
                 });
                 return;
             }
@@ -205,6 +212,7 @@ class PADAction {
             }
 
         };
-        process(0);
+        // 等待玩家回合的飘字（伤害数字）淡出后再处理敌人，避免敌人治疗/攻击数字与之重叠
+        PADanim.waitForFloatingDone(() => process(0));
     }    
 }

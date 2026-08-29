@@ -85,7 +85,7 @@ class PADStatus {
             player.statusGUI.push(statusGUI);
 
             let col=Math.floor(player.statusGUI.length);
-            statusGUI.x=30+col*60;
+            statusGUI.x=-10+col*60;
             statusGUI.y=-60;
             status.layer=layers;
             //提示栏

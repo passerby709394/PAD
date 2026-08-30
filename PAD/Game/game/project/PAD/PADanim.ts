@@ -24,6 +24,9 @@ class PADanim {
     private static _activeFloatingCount = 0;
     private static _floatingWaitCallbacks: Array<() => void> = [];
 
+    // 玩家攻击阶段：是否为最后一次受击（最后一次才播放被攻击动作，避免连续多次受击重复播放）
+    private static _isLastHit: boolean = true;
+
     /**
      * 启动或加入一个战斗者的 HP 变化动画
      * @param batter       目标战斗者
@@ -960,11 +963,21 @@ class PADanim {
     }
 
     /**
+     * 设置是否为最后一次受击（最后一次才播放被攻击动作，避免连续多次受击重复播放）
+     * @param isLast 是否为最后一次受击
+     */
+    static setIsLastHit(isLast: boolean): void {
+        PADanim._isLastHit = isLast;
+    }
+
+    /**
      * 播放战斗者行走图的被攻击动作（ID 9）一次，播放完毕后恢复到待机动作（ID 1）
      * 玩家（camp==1）没有行走图（只有卡图），不执行
      * @param batter 目标战斗者
      */
     private static _playHitAction(batter: Batter): void {
+        // 非最后一次受击时跳过，避免连续多次受击重复播放被攻击动作
+        if (!PADanim._isLastHit) return;
         // 玩家没有行走图，跳过
         if (!batter.avatar) return;
         const avatar = batter.avatar.avatar;

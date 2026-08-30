@@ -122,6 +122,8 @@ class PADAction {
             return;
         }
         const player = atkPlayers[index];
+        // 是否为最后一名攻击者：最后一次受击才播放被攻击动作（前几次受击不播放）
+        PADanim.setIsLastHit(index === atkPlayers.length - 1);
         // 当前动画完成后的回调：重置标记，并处理下一个玩家
         const onComplete = (): void => {
             player.isAllAtk = false;

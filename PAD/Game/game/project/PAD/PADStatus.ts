@@ -188,6 +188,147 @@ class PADStatus {
             }
         }
 
+        //使用连击系数
+        function isHitsBonus(battler:Batter){
+            for(let i=0;i<battler.status.length;i++){
+                let status=battler.status[i];
+                if(status.isHitsBonus){
+                    //按 compareHit 比较当前连锁数与 hitValue
+                    let hit=false;
+                    switch(status.compareHit){
+                        case 0:
+                            hit=PADPuzzle.lastResult.lastComboCount>status.hitValue;
+                            break;
+                        case 1:
+                            hit=PADPuzzle.lastResult.lastComboCount>=status.hitValue;
+                            break;
+                        case 2:
+                            hit=PADPuzzle.lastResult.lastComboCount==status.hitValue;
+                            break;
+                        case 3:
+                            hit=PADPuzzle.lastResult.lastComboCount<=status.hitValue;
+                            break;
+                        case 4:
+                            hit=PADPuzzle.lastResult.lastComboCount<status.hitValue;
+                            break;
+                        default:
+                            break;
+                    }
+                    if(hit){
+                        if(battler.camp==source.camp){
+                            finalDamage *=status.hitBonus;
+                        }
+                        if(battler.camp==target.camp){
+                            finalDamage *=status.hitedBonus;
+                        }
+                    }
+                }
+            }
+        }
+
+        //使用十字系数
+        function isCrossBonus(battler:Batter){
+            for(let i=0;i<battler.status.length;i++){
+                let status=battler.status[i];
+                if(status.isCrossBonus){
+                    //本次消除的十字数量
+                    let crossCount=PADPuzzle.lastResult.lastCrossCount;
+                    if(crossCount>0){
+                        if(battler.camp==source.camp){
+                            if(status.isMultipleCossBonus){
+                                finalDamage *=Math.pow(status.crossHitBonus,crossCount);
+                            }else{
+                                finalDamage *=status.crossHitBonus;
+                            }
+                        }
+                        if(battler.camp==target.camp){
+                            if(status.isMultipleCossBonus){
+                                finalDamage *=Math.pow(status.crossHitedBonus,crossCount);
+                            }else{
+                                finalDamage *=status.crossHitedBonus;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        //使用行系数
+        function isRowBonus(battler:Batter){
+            for(let i=0;i<battler.status.length;i++){
+                let status=battler.status[i];
+                if(status.isRowBonus){
+                    //本次消除的整行数量
+                    let rowCount=PADPuzzle.lastResult.lastFullRowCount;
+                    if(rowCount>0){
+                        if(battler.camp==source.camp){
+                            if(status.isMultipleRowBonus){
+                                finalDamage *=Math.pow(status.rowHitBonus,rowCount);
+                            }else{
+                                finalDamage *=status.rowHitBonus;
+                            }
+                        }
+                        if(battler.camp==target.camp){
+                            if(status.isMultipleRowBonus){
+                                finalDamage *=Math.pow(status.rowHitedBonus,rowCount);
+                            }else{
+                                finalDamage *=status.rowHitedBonus;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        //使用列系数
+        function isColBonus(battler:Batter){
+            for(let i=0;i<battler.status.length;i++){
+                let status=battler.status[i];
+                if(status.isColBonus){
+                    //本次消除的整列数量
+                    let colCount=PADPuzzle.lastResult.lastFullLineCount;
+                    if(colCount>0){
+                        if(battler.camp==source.camp){
+                            if(status.isMultipleColBonus){
+                                finalDamage *=Math.pow(status.colHitBonus,colCount);
+                            }else{
+                                finalDamage *=status.colHitBonus;
+                            }
+                        }
+                        if(battler.camp==target.camp){
+                            if(status.isMultipleColBonus){
+                                finalDamage *=Math.pow(status.colHitedBonus,colCount);
+                            }else{
+                                finalDamage *=status.colHitedBonus;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        //使用消除类型数量系数
+        function isNumBonus(battler:Batter){
+            for(let i=0;i<battler.status.length;i++){
+                let status=battler.status[i];
+                if(status.isNumBonus){
+                    //typeForNum 元素本次消除的数量
+                    let elementData=GameData.getModuleData(PADElement.MODULE_ID,status.typeForNum);
+                    if(elementData){
+                        let numCount=PADPuzzle.lastResult.lastByType[elementData.name]||0;
+                        if(numCount>=status.Nums){
+                            if(battler.camp==source.camp){
+                                finalDamage *=status.NumHitBonus;
+                            }
+                            if(battler.camp==target.camp){
+                                finalDamage *=status.NumHitedBonus;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         //计算状态 
         //HP条件
         conditionHP(source);
@@ -197,16 +338,25 @@ class PADStatus {
         isTypeBonus(target);
 
         //使用连击系数
- 
+        isHitsBonus(source);
+        isHitsBonus(target);
+
         //使用十字系数
-       
+        isCrossBonus(source);
+        isCrossBonus(target);
+
         //使用行系数
-        
+        isRowBonus(source);
+        isRowBonus(target);
+
         //使用列系数
-        
+        isColBonus(source);
+        isColBonus(target);
+
         //使用消除类型数量系数
-        
-        
+        isNumBonus(source);
+        isNumBonus(target);
+
         return finalDamage;
     }
 }

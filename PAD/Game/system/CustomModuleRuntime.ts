@@ -120,7 +120,7 @@ class Module_Status {
     always: boolean; // = false; 永久状态
     bonus: number; // = 1; 系数
     isHP: boolean; // = false; 使用生命值触发条件
-    isTypeBonus: boolean; // = false; 使用属性系数
+    isTypeBonus: boolean; // = false; 使用属性连击系数
     isHitsBonus: boolean; // = false; 使用连击系数
     isCrossBonus: boolean; // = false; 使用十字系数
     isRowBonus: boolean; // = false; 使用行系数
@@ -137,16 +137,21 @@ class Module_Status {
     typeHitedBonus: number; // = 1; 受伤害系数
     typeHits: number; // = 1; 达到连击数
     hitValue: number; // = 1; 比较数值
-    hitBonus: number; // = 1; 系数
+    hitBonus: number; // = 1; 伤害系数
     compareHit: number; // = 0; 比较逻辑
-    crossBonus: number; // = 0; 十字系数
+    hitedBonus: number; // = 1; 受伤害系数
+    crossHitBonus: number; // = 1; 十字伤害系数
     isMultipleCossBonus: boolean; // = false; 系数叠加
-    rowBonus: number; // = 0; 行系数
+    crossHitedBonus: number; // = 1; 十字受伤害系数
+    rowHitBonus: number; // = 1; 行伤害系数
+    rowHitedBonus: number; // = 1; 行受伤害系数
     isMultipleRowBonus: boolean; // = false; 系数叠加
-    colBonus: number; // = 0; 列系数
+    colHitBonus: number; // = 1; 列伤害系数
+    colHitedBonus: number; // = 1; 列受伤害系数
     isMultipleColBonus: boolean; // = false; 系数叠加
     Nums: number; // = 0; 消除数量达到
     typeForNum: number; // = 0; 属性
-    NumBonus: number; // = 1; 系数
+    NumHitBonus: number; // = 1; 伤害系数
+    NumHitedBonus: number; // = 1; 受伤害系数
     layer: number; // = 0; 状态层数
 }

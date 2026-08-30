@@ -79,7 +79,8 @@ class PADhelper {
      * @param type 伤害的类型ID
      * @returns 计算后的最终伤害（正数）
      */
-    static damageToPlayer(player: Batter, enemy: Batter, damage: number,type:number): number {       
+    static damageToPlayer(player: Batter, enemy: Batter, damage: number,type:number): number {  
+        //玩家受到的伤害扣除前的钩子     
         let finalDamage = PADStatus.calcStatusDamage(enemy,Batter.players[0],  damage, type);
         console.log(`[伤害计算] ${enemy.actor.name} → ${player.actor.name}，基础伤害=${damage}，最终伤害=${damage}`);
         return finalDamage;

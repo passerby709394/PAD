@@ -133,7 +133,9 @@ class Module_Status {
     hpHitBonus: number; // = 1; 伤害系数
     hpHitedBonus: number; // = 1; 受伤害系数
     type: number; // = 0; 属性
-    typeBonus: number; // = 1; 系数
+    typeHitBonus: number; // = 1; 伤害系数
+    typeHitedBonus: number; // = 1; 受伤害系数
+    typeHits: number; // = 1; 达到连击数
     hitValue: number; // = 1; 比较数值
     hitBonus: number; // = 1; 系数
     compareHit: number; // = 0; 比较逻辑

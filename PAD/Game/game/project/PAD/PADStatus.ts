@@ -170,11 +170,31 @@ class PADStatus {
             }
         }
 
+        //使用属性系数
+        function isTypeBonus(battler:Batter){
+            for(let i=0;i<battler.status.length;i++){
+                let status=battler.status[i];
+                if(status.isTypeBonus){
+                    //如果消除的元素类型是 status.type，且达到连击数 status.typeHits
+                    if(type==status.type && PADPuzzle.lastResult.lastComboCount>=status.typeHits){
+                        if(battler.camp==source.camp){
+                            finalDamage *=status.typeHitBonus;
+                        }
+                        if(battler.camp==target.camp){
+                            finalDamage *=status.typeHitedBonus;
+                        }
+                    }
+                }
+            }
+        }
+
         //计算状态 
         //HP条件
         conditionHP(source);
         conditionHP(target);
         //使用属性系数
+        isTypeBonus(source);
+        isTypeBonus(target);
 
         //使用连击系数
  

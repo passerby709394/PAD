@@ -947,6 +947,10 @@ class PADanim {
             // 到达终点
             if (remainDelta === 0) {
                 slider.value = targetHp;
+                // 敌人死亡（血量归零）时播放死亡动作（动作7）一次
+                if (batter.camp === 0 && targetHp === 0 && currentHp > 0) {
+                    this._playDeathAction(batter);
+                }
                 clearInterval(data.ticker!);
                 data.ticker = null;
                 // 调用本次动画结束回调
@@ -995,6 +999,29 @@ class PADanim {
         avatar.currentFrame = 1;
         batter.avatar.actionID = 9;
         // 显式开始播放（PAD 中待机为静止状态，必须调用 play 才会推进帧）
+        avatar.play();
+    }
+
+    /**
+     * 播放战斗者行走图的死亡动作（ID 7）一次，播放完毕后停留在最后一帧（死亡姿势）
+     * 玩家（camp==1）没有行走图（只有卡图），不执行
+     * @param batter 目标战斗者
+     */
+    private static _playDeathAction(batter: Batter): void {
+        // 玩家没有行走图，跳过
+        if (!batter.avatar) return;
+        const avatar = batter.avatar.avatar;
+        // 行走图未就绪或没有动作ID 7（死亡动作）则跳过
+        if (!avatar || !avatar.hasActionID(7)) return;
+        // 先移除旧的完成监听再注册新的，防止残留
+        batter.avatar.offAll(Avatar.ACTION_PLAY_COMPLETED);
+        // 死亡动作播放完毕后停留在最后一帧（死亡姿势），不恢复待机
+        batter.avatar.once(Avatar.ACTION_PLAY_COMPLETED, null, () => {
+            avatar.stop(avatar.totalFrame);
+        });
+        // 重置播放进度，切换到死亡动作并播放
+        avatar.currentFrame = 1;
+        batter.avatar.actionID = 7;
         avatar.play();
     }
 }

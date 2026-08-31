@@ -54,7 +54,7 @@ class Module_Party {
 class Module_Actor {
     id: number;
     name: string;
-    face: string; // = ""; 头像
+    face: string; // = ""; 卡片头像
     avatar: number; // = 0; 行走图
     bttlerAvatar: number; // = 0; 战斗图
     ATK: number; // = 100; 攻击力
@@ -69,7 +69,8 @@ class Module_Actor {
     useElementType2: boolean; // = false; 使用副元素
     skills: DataStructure_enemySkills[]; // = [];
     isEnemy: boolean; // = false; 是否敌人
-    skillsPlayer: Module_Skill[]; // = [];
+    skillsPlayer1: number; // = 0; 玩家的主动技能
+    skillsPlayer2: number; // = 0; 玩家的被动技能
     attackVoice: string; // = ""; 攻击语音
     hitVoice: string; // = ""; 受击语音
     dieVoice: string; // = ""; 阵亡语音

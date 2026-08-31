@@ -890,6 +890,7 @@ class GUI_4001 extends GUI_BASE {
    单体攻击:UIButton;
    全体攻击:UIButton;
    测试面板:UIButton;
+
    constructor(){
       super(4001);
    }

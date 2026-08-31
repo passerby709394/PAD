@@ -1,0 +1,94 @@
+{
+    "compAutoOrderLimitHeight": 0,
+    "id": 2002,
+    "blockList": [
+        {
+            "name": "未命名块",
+            "blockAttrs": [
+                {
+                    "attr": {
+                        "id": "182219014180_0.022928139886215337",
+                        "varName": "actor",
+                        "varType": 4,
+                        "compData": {
+                            "compType": 1002,
+                            "compParam": {}
+                        },
+                        "defaultValue": "1",
+                        "hideMode": false,
+                        "useCommand": false,
+                        "onlyPointTo": true,
+                        "moduleID": 6,
+                        "dataStructureID": 1,
+                        "arrayMode": false,
+                        "arrayLength": 100,
+                        "arrayAllowDelete": false,
+                        "arrayAllowSwap": false,
+                        "arrayAllowUpdate": false,
+                        "accessMode": 1,
+                        "syncMode": 0,
+                        "attrTips": "",
+                        "alias": "角色",
+                        "onlyConfig": false,
+                        "preview": true,
+                        "autoTitleWidth": true,
+                        "titleWidth": 100,
+                        "eyeShow": true,
+                        "lockBlock": false,
+                        "enumEnable_get": true,
+                        "enumEnable_set": true
+                    },
+                    "attrConditions": [],
+                    "y": 0,
+                    "x": 22,
+                    "width": 230,
+                    "height": 32
+                },
+                {
+                    "attr": {
+                        "id": "182219051747_0.7526765898279213",
+                        "varName": "fps",
+                        "varType": 0,
+                        "compData": {
+                            "compType": 0,
+                            "compParam": {}
+                        },
+                        "defaultValue": "12",
+                        "hideMode": false,
+                        "useCommand": false,
+                        "onlyPointTo": false,
+                        "moduleID": 1,
+                        "dataStructureID": 1,
+                        "arrayMode": false,
+                        "arrayLength": 100,
+                        "arrayAllowDelete": false,
+                        "arrayAllowSwap": false,
+                        "arrayAllowUpdate": false,
+                        "accessMode": 1,
+                        "syncMode": 0,
+                        "attrTips": "",
+                        "alias": "帧率",
+                        "onlyConfig": false,
+                        "preview": true,
+                        "autoTitleWidth": true,
+                        "titleWidth": 100,
+                        "eyeShow": true,
+                        "lockBlock": false,
+                        "enumEnable_get": true,
+                        "enumEnable_set": true
+                    },
+                    "attrConditions": [],
+                    "y": 0,
+                    "x": 256,
+                    "width": 111,
+                    "height": 32
+                }
+            ],
+            "blockCondition": [],
+            "blockHeight": 300,
+            "autoOrder": true,
+            "hideBlockTitle": false
+        }
+    ],
+    "varName": "partyFPS"
+}

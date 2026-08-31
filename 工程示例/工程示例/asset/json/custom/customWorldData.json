@@ -1,0 +1,1002 @@
+{
+    "attrs": {
+        "screenMode": {
+            "varType": 0,
+            "value": 0,
+            "copy": false
+        },
+        "selectSE": {
+            "varType": 1,
+            "value": "asset/audio/se/menu/Select_1.ogg,1,1",
+            "copy": false,
+            "volume": "1",
+            "pitch": "1"
+        },
+        "sureSE": {
+            "varType": 1,
+            "value": "asset/audio/se/menu/Confirm_1.ogg,1,1",
+            "copy": false,
+            "volume": "1",
+            "pitch": "1"
+        },
+        "cancelSE": {
+            "varType": 1,
+            "value": "asset/audio/se/menu/Cancel_1.ogg,1,1",
+            "copy": false,
+            "volume": "1",
+            "pitch": "1"
+        },
+        "disalbeSE": {
+            "varType": 1,
+            "value": "asset/audio/se/menu/Disable_1.ogg,1,1",
+            "copy": false,
+            "volume": "1",
+            "pitch": "1"
+        },
+        "dialogSE": {
+            "varType": 1,
+            "value": "asset/audio/se/menu/DialogueSound_3.ogg,1,1",
+            "copy": false,
+            "volume": "1",
+            "pitch": "1"
+        },
+        "sceneBGMGradientTime": {
+            "varType": 0,
+            "value": 0.5,
+            "copy": false
+        },
+        "sceneBGSGradientTime": {
+            "varType": 0,
+            "value": 0.5,
+            "copy": false
+        },
+        "moveToGridCenter": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "moveDir4": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "jumpTimeCost": {
+            "varType": 0,
+            "value": 0.5,
+            "copy": false
+        },
+        "jumpHeight": {
+            "varType": 0,
+            "value": 150,
+            "copy": false
+        },
+        "menuEnabled": {
+            "varType": 2,
+            "value": true,
+            "copy": false
+        },
+        "sceneObjectCollisionSize": {
+            "varType": 0,
+            "value": 32,
+            "copy": false
+        },
+        "sceneObjectMoveStartAct": {
+            "varType": 0,
+            "value": 2,
+            "copy": false
+        },
+        "useSceneObjectMoveStartAct2": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "sceneObjectMoveStartAct2": {
+            "varType": 0,
+            "value": 2,
+            "copy": false
+        },
+        "sceneObjectMoveStartAct2Speed": {
+            "varType": 0,
+            "value": 450,
+            "copy": false
+        },
+        "selectSceneObjectEffect": {
+            "varType": 0,
+            "value": 1001,
+            "copy": false
+        },
+        "saveFileMax": {
+            "varType": 0,
+            "value": 10,
+            "copy": false
+        },
+        "playCtrlEnabled": {
+            "varType": 2,
+            "value": true,
+            "copy": false
+        },
+        "uiCompFocusAnimation": {
+            "varType": 0,
+            "value": 1002,
+            "copy": false
+        },
+        "DEBUG": {
+            "varType": 1,
+            "value": "",
+            "copy": false
+        },
+        "gridObsDebug": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "rectObsDebug": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "游戏音乐过渡": {
+            "varType": 1,
+            "value": "",
+            "copy": false
+        },
+        "游戏角色运动规则": {
+            "varType": 1,
+            "value": "",
+            "copy": false
+        },
+        "游戏交互效果": {
+            "varType": 1,
+            "value": "",
+            "copy": false
+        },
+        "其他": {
+            "varType": 1,
+            "value": "",
+            "copy": false
+        },
+        "对应音效": {
+            "varType": 1,
+            "value": "",
+            "copy": false
+        },
+        "dialogSEEnabled": {
+            "varType": 2,
+            "value": true,
+            "copy": false
+        },
+        "dragSceneObjectDebug": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "zoomCameraDebug": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "focusEnabled": {
+            "varType": 2,
+            "value": true,
+            "copy": false
+        },
+        "hotKeyListEnabled": {
+            "varType": 2,
+            "value": true,
+            "copy": false
+        },
+        "keyboards": {
+            "varType": 9,
+            "value": [
+                {
+                    "gameKey": {
+                        "varType": 0,
+                        "value": 0,
+                        "copy": false
+                    },
+                    "keyCode1": {
+                        "varType": 0,
+                        "value": 87,
+                        "copy": false
+                    },
+                    "keyCode2": {
+                        "varType": 0,
+                        "value": 38,
+                        "copy": false
+                    },
+                    "keyCode3": {
+                        "varType": 0,
+                        "value": 0,
+                        "copy": false
+                    },
+                    "keyCode4": {
+                        "varType": 0,
+                        "value": 0,
+                        "copy": false
+                    }
+                },
+                {
+                    "gameKey": {
+                        "varType": 0,
+                        "value": 1,
+                        "copy": false
+                    },
+                    "keyCode1": {
+                        "varType": 0,
+                        "value": 83,
+                        "copy": false
+                    },
+                    "keyCode2": {
+                        "varType": 0,
+                        "value": 40,
+                        "copy": false
+                    },
+                    "keyCode3": {
+                        "varType": 0,
+                        "value": 0,
+                        "copy": false
+                    },
+                    "keyCode4": {
+                        "varType": 0,
+                        "value": 0,
+                        "copy": false
+                    }
+                },
+                {
+                    "gameKey": {
+                        "varType": 0,
+                        "value": 2,
+                        "copy": false
+                    },
+                    "keyCode1": {
+                        "varType": 0,
+                        "value": 65,
+                        "copy": false
+                    },
+                    "keyCode2": {
+                        "varType": 0,
+                        "value": 37,
+                        "copy": false
+                    },
+                    "keyCode3": {
+                        "varType": 0,
+                        "value": 0,
+                        "copy": false
+                    },
+                    "keyCode4": {
+                        "varType": 0,
+                        "value": 0,
+                        "copy": false
+                    }
+                },
+                {
+                    "gameKey": {
+                        "varType": 0,
+                        "value": 3,
+                        "copy": false
+                    },
+                    "keyCode1": {
+                        "varType": 0,
+                        "value": 68,
+                        "copy": false
+                    },
+                    "keyCode2": {
+                        "varType": 0,
+                        "value": 39,
+                        "copy": false
+                    },
+                    "keyCode3": {
+                        "varType": 0,
+                        "value": 0,
+                        "copy": false
+                    },
+                    "keyCode4": {
+                        "varType": 0,
+                        "value": 0,
+                        "copy": false
+                    }
+                },
+                {
+                    "gameKey": {
+                        "varType": 0,
+                        "value": 4,
+                        "copy": false
+                    },
+                    "keyCode1": {
+                        "varType": 0,
+                        "value": 75,
+                        "copy": false
+                    },
+                    "keyCode2": {
+                        "varType": 0,
+                        "value": 90,
+                        "copy": false
+                    },
+                    "keyCode3": {
+                        "varType": 0,
+                        "value": 13,
+                        "copy": false
+                    },
+                    "keyCode4": {
+                        "varType": 0,
+                        "value": 32,
+                        "copy": false
+                    }
+                },
+                {
+                    "gameKey": {
+                        "varType": 0,
+                        "value": 5,
+                        "copy": false
+                    },
+                    "keyCode1": {
+                        "varType": 0,
+                        "value": 76,
+                        "copy": false
+                    },
+                    "keyCode2": {
+                        "varType": 0,
+                        "value": 88,
+                        "copy": false
+                    },
+                    "keyCode3": {
+                        "varType": 0,
+                        "value": 27,
+                        "copy": false
+                    },
+                    "keyCode4": {
+                        "varType": 0,
+                        "value": 96,
+                        "copy": false
+                    }
+                },
+                {
+                    "gameKey": {
+                        "varType": 0,
+                        "value": 6,
+                        "copy": false
+                    },
+                    "keyCode1": {
+                        "varType": 0,
+                        "value": 72,
+                        "copy": false
+                    },
+                    "keyCode2": {
+                        "varType": 0,
+                        "value": 67,
+                        "copy": false
+                    },
+                    "keyCode3": {
+                        "varType": 0,
+                        "value": 0,
+                        "copy": false
+                    },
+                    "keyCode4": {
+                        "varType": 0,
+                        "value": 0,
+                        "copy": false
+                    }
+                },
+                {
+                    "gameKey": {
+                        "varType": 0,
+                        "value": 7,
+                        "copy": false
+                    },
+                    "keyCode1": {
+                        "varType": 0,
+                        "value": 74,
+                        "copy": false
+                    },
+                    "keyCode2": {
+                        "varType": 0,
+                        "value": 86,
+                        "copy": false
+                    },
+                    "keyCode3": {
+                        "varType": 0,
+                        "value": 0,
+                        "copy": false
+                    },
+                    "keyCode4": {
+                        "varType": 0,
+                        "value": 0,
+                        "copy": false
+                    }
+                },
+                {
+                    "gameKey": {
+                        "varType": 0,
+                        "value": 9,
+                        "copy": false
+                    },
+                    "keyCode1": {
+                        "varType": 0,
+                        "value": 27,
+                        "copy": false
+                    },
+                    "keyCode2": {
+                        "varType": 0,
+                        "value": 96,
+                        "copy": false
+                    },
+                    "keyCode3": {
+                        "varType": 0,
+                        "value": 0,
+                        "copy": false
+                    },
+                    "keyCode4": {
+                        "varType": 0,
+                        "value": 0,
+                        "copy": false
+                    }
+                },
+                {
+                    "gameKey": {
+                        "varType": 0,
+                        "value": 8,
+                        "copy": false
+                    },
+                    "keyCode1": {
+                        "varType": 0,
+                        "value": 13,
+                        "copy": false
+                    },
+                    "keyCode2": {
+                        "varType": 0,
+                        "value": 32,
+                        "copy": false
+                    },
+                    "keyCode3": {
+                        "varType": 0,
+                        "value": 0,
+                        "copy": false
+                    },
+                    "keyCode4": {
+                        "varType": 0,
+                        "value": 0,
+                        "copy": false
+                    }
+                },
+                {
+                    "gameKey": {
+                        "varType": 0,
+                        "value": 10,
+                        "copy": false
+                    },
+                    "keyCode1": {
+                        "varType": 0,
+                        "value": 81,
+                        "copy": false
+                    },
+                    "keyCode2": {
+                        "varType": 0,
+                        "value": 79,
+                        "copy": false
+                    },
+                    "keyCode3": {
+                        "varType": 0,
+                        "value": 0,
+                        "copy": false
+                    },
+                    "keyCode4": {
+                        "varType": 0,
+                        "value": 0,
+                        "copy": false
+                    }
+                },
+                {
+                    "gameKey": {
+                        "varType": 0,
+                        "value": 11,
+                        "copy": false
+                    },
+                    "keyCode1": {
+                        "varType": 0,
+                        "value": 82,
+                        "copy": false
+                    },
+                    "keyCode2": {
+                        "varType": 0,
+                        "value": 85,
+                        "copy": false
+                    },
+                    "keyCode3": {
+                        "varType": 0,
+                        "value": 0,
+                        "copy": false
+                    },
+                    "keyCode4": {
+                        "varType": 0,
+                        "value": 0,
+                        "copy": false
+                    }
+                },
+                {
+                    "gameKey": {
+                        "varType": 0,
+                        "value": 12,
+                        "copy": false
+                    },
+                    "keyCode1": {
+                        "varType": 0,
+                        "value": 69,
+                        "copy": false
+                    },
+                    "keyCode2": {
+                        "varType": 0,
+                        "value": 80,
+                        "copy": false
+                    },
+                    "keyCode3": {
+                        "varType": 0,
+                        "value": 0,
+                        "copy": false
+                    },
+                    "keyCode4": {
+                        "varType": 0,
+                        "value": 0,
+                        "copy": false
+                    }
+                },
+                {
+                    "gameKey": {
+                        "varType": 0,
+                        "value": 13,
+                        "copy": false
+                    },
+                    "keyCode1": {
+                        "varType": 0,
+                        "value": 84,
+                        "copy": false
+                    },
+                    "keyCode2": {
+                        "varType": 0,
+                        "value": 73,
+                        "copy": false
+                    },
+                    "keyCode3": {
+                        "varType": 0,
+                        "value": 0,
+                        "copy": false
+                    },
+                    "keyCode4": {
+                        "varType": 0,
+                        "value": 0,
+                        "copy": false
+                    }
+                }
+            ],
+            "copy": false
+        },
+        "sceneObjectMoveStartAct2FPS": {
+            "varType": 0,
+            "value": 20,
+            "copy": false
+        },
+        "menuDisabledAni": {
+            "varType": 0,
+            "value": 1006,
+            "copy": false
+        },
+        "iconDisabledAni": {
+            "varType": 0,
+            "value": 1007,
+            "copy": false
+        },
+        "useItemActID": {
+            "varType": 0,
+            "value": 6,
+            "copy": false
+        },
+        "defendActID": {
+            "varType": 0,
+            "value": 10,
+            "copy": false
+        },
+        "defendAni": {
+            "varType": 0,
+            "value": 1013,
+            "copy": false
+        },
+        "allowAtkOwnUnit": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "forceSendActionCommand": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "battleAniLegend": {
+            "varType": 1,
+            "value": "",
+            "copy": false
+        },
+        "battleBaseLegend": {
+            "varType": 1,
+            "value": "",
+            "copy": false
+        },
+        "word_maxHP": {
+            "varType": 1,
+            "value": "最大生命值",
+            "copy": false
+        },
+        "word_maxSP": {
+            "varType": 1,
+            "value": "最大魔法值",
+            "copy": false
+        },
+        "word_atk": {
+            "varType": 1,
+            "value": "攻击力",
+            "copy": false
+        },
+        "word_def": {
+            "varType": 1,
+            "value": "防御",
+            "copy": false
+        },
+        "word_mag": {
+            "varType": 1,
+            "value": "魔力",
+            "copy": false
+        },
+        "word_magDef": {
+            "varType": 1,
+            "value": "魔法防御力",
+            "copy": false
+        },
+        "word_hit": {
+            "varType": 1,
+            "value": "命中",
+            "copy": false
+        },
+        "word_crit": {
+            "varType": 1,
+            "value": "暴击",
+            "copy": false
+        },
+        "word_magCrit": {
+            "varType": 1,
+            "value": "魔法暴击率",
+            "copy": false
+        },
+        "word_actionSpeed": {
+            "varType": 1,
+            "value": "速度",
+            "copy": false
+        },
+        "word_cost": {
+            "varType": 1,
+            "value": "消耗",
+            "copy": false
+        },
+        "word_hp": {
+            "varType": 1,
+            "value": "生命值",
+            "copy": false
+        },
+        "word_sp": {
+            "varType": 1,
+            "value": "魔法值",
+            "copy": false
+        },
+        "equipSE": {
+            "varType": 1,
+            "value": "asset/audio/se/menu/Put_on_1.ogg,1,1",
+            "copy": false,
+            "volume": "1",
+            "pitch": "1"
+        },
+        "unequipSE": {
+            "varType": 1,
+            "value": "asset/audio/se/menu/Unwield_1.ogg,1,1",
+            "copy": false,
+            "volume": "1",
+            "pitch": "1"
+        },
+        "word_gamepadInput": {
+            "varType": 1,
+            "value": "请按下游戏手柄键位",
+            "copy": false
+        },
+        "word_keyboardInput": {
+            "varType": 1,
+            "value": "第$1个键位：请按下键位",
+            "copy": false
+        },
+        "word_useAtk": {
+            "varType": 1,
+            "value": "$1使用了「攻击」",
+            "copy": false
+        },
+        "word_useSkill": {
+            "varType": 1,
+            "value": "$1使用了「$2」",
+            "copy": false
+        },
+        "word_useItem": {
+            "varType": 1,
+            "value": "$1使用了「$2」",
+            "copy": false
+        },
+        "battleMoveToTime": {
+            "varType": 0,
+            "value": 0.2,
+            "copy": false
+        },
+        "battleMoveBackTime": {
+            "varType": 0,
+            "value": 0.2,
+            "copy": false
+        },
+        "keepHurtAni": {
+            "varType": 0,
+            "value": 1018,
+            "copy": false
+        },
+        "bulletSendOffset": {
+            "varType": 0,
+            "value": 100,
+            "copy": false
+        },
+        "bulletTargetOffset": {
+            "varType": 0,
+            "value": -100,
+            "copy": false
+        },
+        "word_learnSkill": {
+            "varType": 1,
+            "value": "习得新技能",
+            "copy": false
+        },
+        "属性名称": {
+            "varType": 1,
+            "value": "",
+            "copy": false
+        },
+        "提示语句": {
+            "varType": 1,
+            "value": "",
+            "copy": false
+        },
+        "战斗演出效果": {
+            "varType": 1,
+            "value": "",
+            "copy": false
+        },
+        "equipQualitySetting": {
+            "varType": 9,
+            "value": [
+                {
+                    "equipQualityType": {
+                        "varType": 0,
+                        "value": 1,
+                        "copy": false
+                    },
+                    "color": {
+                        "varType": 1,
+                        "value": "#6f6f6f",
+                        "copy": false
+                    }
+                },
+                {
+                    "equipQualityType": {
+                        "varType": 0,
+                        "value": 2,
+                        "copy": false
+                    },
+                    "color": {
+                        "varType": 1,
+                        "value": "#e9e9e9",
+                        "copy": false
+                    }
+                },
+                {
+                    "equipQualityType": {
+                        "varType": 0,
+                        "value": 3,
+                        "copy": false
+                    },
+                    "color": {
+                        "varType": 1,
+                        "value": "#1ed207",
+                        "copy": false
+                    }
+                },
+                {
+                    "equipQualityType": {
+                        "varType": 0,
+                        "value": 4,
+                        "copy": false
+                    },
+                    "color": {
+                        "varType": 1,
+                        "value": "#0263c2",
+                        "copy": false
+                    }
+                },
+                {
+                    "equipQualityType": {
+                        "varType": 0,
+                        "value": 5,
+                        "copy": false
+                    },
+                    "color": {
+                        "varType": 1,
+                        "value": "#9933e0",
+                        "copy": false
+                    }
+                },
+                {
+                    "equipQualityType": {
+                        "varType": 0,
+                        "value": 6,
+                        "copy": false
+                    },
+                    "color": {
+                        "varType": 1,
+                        "value": "#d58926",
+                        "copy": false
+                    }
+                }
+            ],
+            "copy": false
+        },
+        "battleWin": {
+            "varType": 1,
+            "value": "asset/audio/se/battle/Win_2.ogg,1,1",
+            "copy": false,
+            "volume": "1",
+            "pitch": "1"
+        },
+        "battleRhythmSetting": {
+            "varType": 1,
+            "value": "",
+            "copy": false
+        },
+        "battlerActionOverTime": {
+            "varType": 0,
+            "value": 0.1,
+            "copy": false
+        },
+        "battlerMultipleTimesAttackTime": {
+            "varType": 0,
+            "value": 0.1,
+            "copy": false
+        },
+        "battleRewardStayTime": {
+            "varType": 0,
+            "value": 2,
+            "copy": false
+        },
+        "battleOverStayTime": {
+            "varType": 0,
+            "value": 1,
+            "copy": false
+        },
+        "banCollisionSetting": {
+            "varType": 9,
+            "value": [],
+            "copy": false
+        },
+        "extendsAttributeSetting": {
+            "varType": 9,
+            "value": [
+                {
+                    "attribute": {
+                        "varType": 0,
+                        "value": 1,
+                        "copy": false
+                    },
+                    "lowerLimit": {
+                        "varType": 0,
+                        "value": 0,
+                        "copy": false
+                    },
+                    "upperLimit": {
+                        "varType": 0,
+                        "value": 9999,
+                        "copy": false
+                    },
+                    "isinteger": {
+                        "varType": 2,
+                        "value": true,
+                        "copy": false
+                    }
+                },
+                {
+                    "attribute": {
+                        "varType": 0,
+                        "value": 2,
+                        "copy": false
+                    },
+                    "lowerLimit": {
+                        "varType": 0,
+                        "value": 0,
+                        "copy": false
+                    },
+                    "upperLimit": {
+                        "varType": 0,
+                        "value": 9999,
+                        "copy": false
+                    },
+                    "isinteger": {
+                        "varType": 2,
+                        "value": true,
+                        "copy": false
+                    }
+                }
+            ],
+            "copy": false
+        },
+        "useCustomDamageLogic": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "customDamageLogicEvent": {
+            "varType": 1,
+            "value": "示例\u0005184679970060_0.872789665841261\u0005[[18,\"自定义伤害计算逻辑的示例\",{\"___cmdID\":\"184677480856_0.8804967170243296\"}],[13,3,15016,0,5,0,1,1,[0,100],0,-1,[13,{\"type\":0,\"skill\":{},\"status\":{},\"item\":{},\"extendAttribute\":1,\"attributeType\":0},[{\"183610036652_0.4184414546068562\":0,\"183611883532_0.6968158523528332\":{},\"183611929645_0.5686625581871476\":{},\"184338404211_0.50354400055371\":{},\"183721174534_0.5660381281779978\":1,\"183720930810_0.013584229201655917\":0}]],0,0,0,null,null,null,0,0,0,1,1,1,0,{\"___cmdID\":\"184677480856_0.598605783188177\"}],[18,\"//------------------------------------------------------------------------------------------------------\\n// 普通攻击 \\n//------------------------------------------------------------------------------------------------------\\n伤害=来源者的「精神力」 - 目标的「精神力防御力」\",{\"___cmdID\":\"184677480856_0.7098919970447539\"}],[0,0,4,[0,1,1,0],0,0,[0,1,1,0],0,[1,1,[0,0,1,1]],0,0,[1,1],\"\",\"\",false,null,null,[13,{\"type\":0,\"skill\":{},\"status\":{},\"item\":{},\"extendAttribute\":1,\"attributeType\":0},[{\"183610036652_0.4184414546068562\":0,\"183611883532_0.6968158523528332\":{},\"183611929645_0.5686625581871476\":{},\"184338404211_0.50354400055371\":{},\"183721174534_0.5660381281779978\":1,\"183720930810_0.013584229201655917\":0}]],null,null,null,0,0,[0,{},\"\"],[0,{},\"\"],{\"___cmdID\":\"184677480856_0.4315720800446987\"}],[13,3,15016,0,5,0,1,1,[0,100],0,-1,[12,{\"actorCheckType\":3,\"actorID\":1,\"actorIDVarID\":1,\"actorUseVar\":0,\"actorInPartyIndex\":0,\"actorInPartyIndexVarID\":1,\"actorInPartyIndexVarIDUseVar\":0,\"enemyInPartyIndex\":0,\"enemyInPartyIndexVarID\":1,\"enemyInPartyIndexVarIDUseVar\":0,\"actorAttrName\":24,\"actorCustomAttrName\":{},\"trend\":false,\"extendAttribute\":1},[{\"56798103747_0.597473444893476\":3,\"56798159556_0.46032798251122853\":1,\"56798159556_0.6112804940505512\":1,\"56798159556_0.7450790810855299\":0,\"56798240132_0.20477713210350967\":0,\"56798240132_0.9753015579133191\":1,\"56798240132_0.6896817075603885\":0,\"56798304165_0.44169118636852156\":0,\"56798304165_0.1312006563137771\":1,\"56798304165_0.605200384937578\":0,\"56798358647_0.9678542971326274\":24,\"56798358647_0.31416359416850415\":{},\"184628976443_0.8503748120414947\":false,\"184628976443_0.090263308391894\":1}]],0,0,0,null,null,null,0,0,0,1,1,1,0,{\"___cmdID\":\"184677480856_0.45604126067545314\"}],[13,3,15016,2,5,0,1,1,[0,100],0,-1,[12,{\"actorCheckType\":4,\"actorID\":1,\"actorIDVarID\":1,\"actorUseVar\":0,\"actorInPartyIndex\":0,\"actorInPartyIndexVarID\":1,\"actorInPartyIndexVarIDUseVar\":0,\"enemyInPartyIndex\":0,\"enemyInPartyIndexVarID\":1,\"enemyInPartyIndexVarIDUseVar\":0,\"actorAttrName\":24,\"actorCustomAttrName\":{},\"trend\":false,\"extendAttribute\":2},[{\"56798103747_0.597473444893476\":4,\"56798159556_0.46032798251122853\":1,\"56798159556_0.6112804940505512\":1,\"56798159556_0.7450790810855299\":0,\"56798240132_0.20477713210350967\":0,\"56798240132_0.9753015579133191\":1,\"56798240132_0.6896817075603885\":0,\"56798304165_0.44169118636852156\":0,\"56798304165_0.1312006563137771\":1,\"56798304165_0.605200384937578\":0,\"56798358647_0.9678542971326274\":24,\"56798358647_0.31416359416850415\":{},\"184628976443_0.8503748120414947\":false,\"184628976443_0.090263308391894\":2}]],0,0,0,null,null,null,0,0,0,1,1,1,0,{\"___cmdID\":\"184677480856_0.1018202633774119\"}],[0,0,2,[0,1,15016,0],3,0,[1,1,1,0],0,[1,1,[0,0,1,1]],0,0,[1,1],\"\",\"\",false,null,null,null,null,null,null,0,0,[0,{},\"\"],[0,{},\"\"],{\"___cmdID\":\"184677480856_0.1902282143163183\"}],[13,3,15016,0,0,1,1,1,[0,100],0,-1,[10,{\"targetType\":4,\"actorID\":{},\"soIndex\":{},\"actorAttrName\":20,\"actorCustomAttr\":{},\"trend\":false,\"extendAttribute\":2},[{\"183334520314_0.9562739498472759\":4,\"183334878112_0.37689753032352535\":{},\"183334921812_0.2824277714814807\":{},\"183022250995_0.6750498964789144\":20,\"183022250995_0.7670887660005306\":{},\"183161375679_0.2669718740532412\":false,\"183705138264_0.580019520848607\":2}]],0,0,0,null,null,null,0,0,0,1,1,1,0,{\"___cmdID\":\"184677480856_0.4218955036881\"}],[-1,{\"___cmdID\":\"184677480857_0.9487759520794021\"}],[2,{\"___cmdID\":\"184677480856_0.7151200802152444\"}],[100007,{\"56802471445_0.07155752433830331\":3,\"56802471445_0.7741252395950808\":0,\"56802471445_0.04610691950308787\":1,\"56802471445_0.9093772346026252\":0,\"55567336559_0.4017641734004589\":0,\"55575350484_0.423745158754258\":1,\"55575350484_0.04628384383880735\":15016,\"55575350484_0.5786633433320261\":1,\"55575350484_0.5459288452906612\":false},\"184679171467_0.8820577989391529\"],[13,3,15016,3,0,-1,1,1,[0,100],0,-1,[10,{\"targetType\":4,\"actorID\":{},\"soIndex\":{},\"actorAttrName\":20,\"actorCustomAttr\":{},\"trend\":false,\"extendAttribute\":2},[{\"183334520314_0.9562739498472759\":4,\"183334878112_0.37689753032352535\":{},\"183334921812_0.2824277714814807\":{},\"183022250995_0.6750498964789144\":20,\"183022250995_0.7670887660005306\":{},\"183161375679_0.2669718740532412\":false,\"183705138264_0.580019520848607\":2}]],0,0,0,null,null,null,0,0,0,1,1,1,0,{\"___cmdID\":\"184677480856_0.5851226892706876\"}],[100004,{\"55567288810_0.6582869990848008\":3,\"55567288811_0.821286434669654\":0,\"55567288811_0.8072050456511075\":1,\"55567288811_0.5029917491468847\":0,\"55567336559_0.4017641734004589\":0,\"55567382737_0.11786698931770112\":0,\"55567382737_0.12019293298778466\":15016,\"55567382737_0.45982104044859984\":1},\"184679162485_0.4032230087393254\"],[-1,{\"___cmdID\":\"184677480857_0.916422006238296\"}],[2,{\"___cmdID\":\"184677480856_0.3603879046096907\"}],[18,\"技能\",{\"___cmdID\":\"184677480856_0.14339152075233796\"}],[18,\"//------------------------------------------------------------------------------------------------------\\n// 技能\\n//------------------------------------------------------------------------------------------------------\\n伤害=技能的「精神力」 - 目标的「精神力防御力」\",{\"___cmdID\":\"184677480856_0.6440654069617533\"}],[0,0,4,[0,1,1,0],0,0,[1,1,1,0],0,[1,1,[0,0,1,1]],0,0,[1,1],\"\",\"\",false,null,null,[13,{\"type\":0,\"skill\":{},\"status\":{},\"item\":{},\"extendAttribute\":1,\"attributeType\":0},[{\"183610036652_0.4184414546068562\":0,\"183611883532_0.6968158523528332\":{},\"183611929645_0.5686625581871476\":{},\"184338404211_0.50354400055371\":{},\"183721174534_0.5660381281779978\":1,\"183720930810_0.013584229201655917\":0}]],null,null,null,0,0,[0,{},\"\"],[0,{},\"\"],{\"___cmdID\":\"184677480856_0.7589084799646555\"}],[13,3,15016,0,5,0,1,1,[0,100],0,-1,[13,{\"type\":1,\"skill\":{},\"status\":{},\"item\":{},\"extendAttribute\":1,\"attributeType\":1},[{\"183610036652_0.4184414546068562\":1,\"183611883532_0.6968158523528332\":{},\"183611929645_0.5686625581871476\":{},\"184338404211_0.50354400055371\":{},\"183721174534_0.5660381281779978\":1,\"183720930810_0.013584229201655917\":1}]],0,0,0,null,null,null,0,0,0,1,1,1,0,{\"___cmdID\":\"184677480856_0.37145571757051443\"}],[13,3,15016,2,5,0,1,1,[0,100],0,-1,[12,{\"actorCheckType\":4,\"actorID\":1,\"actorIDVarID\":1,\"actorUseVar\":0,\"actorInPartyIndex\":0,\"actorInPartyIndexVarID\":1,\"actorInPartyIndexVarIDUseVar\":0,\"enemyInPartyIndex\":0,\"enemyInPartyIndexVarID\":1,\"enemyInPartyIndexVarIDUseVar\":0,\"actorAttrName\":24,\"actorCustomAttrName\":{},\"trend\":false,\"extendAttribute\":2},[{\"56798103747_0.597473444893476\":4,\"56798159556_0.46032798251122853\":1,\"56798159556_0.6112804940505512\":1,\"56798159556_0.7450790810855299\":0,\"56798240132_0.20477713210350967\":0,\"56798240132_0.9753015579133191\":1,\"56798240132_0.6896817075603885\":0,\"56798304165_0.44169118636852156\":0,\"56798304165_0.1312006563137771\":1,\"56798304165_0.605200384937578\":0,\"56798358647_0.9678542971326274\":24,\"56798358647_0.31416359416850415\":{},\"184628976443_0.8503748120414947\":false,\"184628976443_0.090263308391894\":2}]],0,0,0,null,null,null,0,0,0,1,1,1,0,{\"___cmdID\":\"184679341703_0.6729976863496816\"}],[0,0,2,[0,1,15016,0],3,0,[1,1,1,0],0,[1,1,[0,0,1,1]],0,0,[1,1],\"\",\"\",false,null,null,null,null,null,null,0,0,[0,{},\"\"],[0,{},\"\"],{\"___cmdID\":\"184677480856_0.10246067435682993\"}],[13,3,15016,0,0,1,1,1,[0,100],0,-1,[10,{\"targetType\":4,\"actorID\":{},\"soIndex\":{},\"actorAttrName\":20,\"actorCustomAttr\":{},\"trend\":false,\"extendAttribute\":2},[{\"183334520314_0.9562739498472759\":4,\"183334878112_0.37689753032352535\":{},\"183334921812_0.2824277714814807\":{},\"183022250995_0.6750498964789144\":20,\"183022250995_0.7670887660005306\":{},\"183161375679_0.2669718740532412\":false,\"183705138264_0.580019520848607\":2}]],0,0,0,null,null,null,0,0,0,1,1,1,0,{\"___cmdID\":\"184677480856_0.04677037824953212\"}],[-1,{\"___cmdID\":\"184677480857_0.0060131670657228575\"}],[2,{\"___cmdID\":\"184677480856_0.49800582505247104\"}],[100007,{\"56802471445_0.07155752433830331\":3,\"56802471445_0.7741252395950808\":0,\"56802471445_0.04610691950308787\":1,\"56802471445_0.9093772346026252\":0,\"55567336559_0.4017641734004589\":1,\"55575350484_0.423745158754258\":1,\"55575350484_0.04628384383880735\":15016,\"55575350484_0.5786633433320261\":1,\"55575350484_0.5459288452906612\":false},\"184679391557_0.6275437564402815\"],[13,3,15016,3,0,-1,1,1,[0,100],0,-1,[10,{\"targetType\":4,\"actorID\":{},\"soIndex\":{},\"actorAttrName\":20,\"actorCustomAttr\":{},\"trend\":false,\"extendAttribute\":2},[{\"183334520314_0.9562739498472759\":4,\"183334878112_0.37689753032352535\":{},\"183334921812_0.2824277714814807\":{},\"183022250995_0.6750498964789144\":20,\"183022250995_0.7670887660005306\":{},\"183161375679_0.2669718740532412\":false,\"183705138264_0.580019520848607\":2}]],0,0,0,null,null,null,0,0,0,1,1,1,0,{\"___cmdID\":\"184679391557_0.6340209098600613\"}],[100004,{\"55567288810_0.6582869990848008\":3,\"55567288811_0.821286434669654\":0,\"55567288811_0.8072050456511075\":1,\"55567288811_0.5029917491468847\":0,\"55567336559_0.4017641734004589\":0,\"55567382737_0.11786698931770112\":0,\"55567382737_0.12019293298778466\":15016,\"55567382737_0.45982104044859984\":1},\"184679391557_0.5691789306813211\"],[-1,{\"___cmdID\":\"184677480857_0.623607332215177\"}],[2,{\"___cmdID\":\"184677480856_0.9699247602078138\"}],[18,\"//------------------------------------------------------------------------------------------------------\\n// 道具\\n//------------------------------------------------------------------------------------------------------\\n实现「道具」的恢复生命值和魔法值\",{\"___cmdID\":\"184679503141_0.47376264797057255\"}],[0,0,4,[0,1,1,0],0,0,[2,1,1,0],0,[1,1,[0,0,1,1]],0,0,[1,1],\"\",\"\",false,null,null,[13,{\"type\":0,\"skill\":{},\"status\":{},\"item\":{},\"extendAttribute\":1,\"attributeType\":0},[{\"183610036652_0.4184414546068562\":0,\"183611883532_0.6968158523528332\":{},\"183611929645_0.5686625581871476\":{},\"184338404211_0.50354400055371\":{},\"183721174534_0.5660381281779978\":1,\"183720930810_0.013584229201655917\":0}]],null,null,null,0,0,[0,{},\"\"],[0,{},\"\"],{\"___cmdID\":\"184679692422_0.35331498048219623\"}],[13,3,15016,0,5,0,1,1,[0,100],0,-1,[13,{\"type\":2,\"skill\":{},\"status\":{},\"item\":{\"type\":0,\"moduleID\":1,\"dataID\":1,\"dataIsUseVar\":false,\"dataVarID\":1,\"varID\":\"107058110455_0.08895792260470592\",\"varName\":\"recoveryHP\",\"valueType\":0,\"value\":{},\"isCustomModule\":false,\"operationType\":0,\"compInfo\":{\"uiID\":1,\"type\":0,\"compName\":\"\",\"compID\":0,\"attrs\":[],\"varName\":\"\"},\"selectMode\":0,\"inputModeInfo\":{\"mode\":0,\"constName\":\"\",\"varNameIndex\":1,\"typeIndex\":0},\"isRounded\":false,\"compAttrEnable\":false},\"extendAttribute\":1,\"attributeType\":1},[{\"183610036652_0.4184414546068562\":2,\"183611883532_0.6968158523528332\":{},\"183611929645_0.5686625581871476\":{},\"184338404211_0.50354400055371\":{\"type\":0,\"moduleID\":1,\"dataID\":1,\"dataIsUseVar\":false,\"dataVarID\":1,\"varID\":\"107058110455_0.08895792260470592\",\"varName\":\"recoveryHP\",\"valueType\":0,\"value\":{},\"isCustomModule\":false,\"operationType\":0,\"compInfo\":{\"uiID\":1,\"type\":0,\"compName\":\"\",\"compID\":0,\"attrs\":[],\"varName\":\"\"},\"selectMode\":0,\"inputModeInfo\":{\"mode\":0,\"constName\":\"\",\"varNameIndex\":1,\"typeIndex\":0},\"isRounded\":false,\"compAttrEnable\":false},\"183721174534_0.5660381281779978\":1,\"183720930810_0.013584229201655917\":1}]],0,0,0,null,null,null,0,0,0,1,1,1,0,{\"___cmdID\":\"184679692422_0.5539510009454498\"}],[0,0,2,[0,1,15016,0],2,0,[0,1,1,0],0,[1,1,[0,0,1,1]],0,0,[1,1],\"\",\"\",false,null,null,null,null,null,null,0,0,[0,{},\"\"],[0,{},\"\"],{\"___cmdID\":\"184679823728_0.7978864299445758\"}],[100007,{\"56802471445_0.07155752433830331\":3,\"56802471445_0.7741252395950808\":0,\"56802471445_0.04610691950308787\":1,\"56802471445_0.9093772346026252\":0,\"55567336559_0.4017641734004589\":3,\"55575350484_0.423745158754258\":1,\"55575350484_0.04628384383880735\":15016,\"55575350484_0.5786633433320261\":1,\"55575350484_0.5459288452906612\":false},\"184679842024_0.21739171939421986\"],[100004,{\"55567288810_0.6582869990848008\":3,\"55567288811_0.821286434669654\":0,\"55567288811_0.8072050456511075\":1,\"55567288811_0.5029917491468847\":0,\"55567336559_0.4017641734004589\":0,\"55567382737_0.11786698931770112\":0,\"55567382737_0.12019293298778466\":15016,\"55567382737_0.45982104044859984\":1},\"184679842024_0.705867125947552\"],[17,30,0,false,0,{\"___cmdID\":\"184679952684_0.5366841391950992\"}],[-1,{\"___cmdID\":\"184679835096_0.26404576018935577\"}],[2,{\"___cmdID\":\"184679835093_0.39240395257012817\"}],[13,3,15016,0,5,0,1,1,[0,100],0,-1,[13,{\"type\":2,\"skill\":{},\"status\":{},\"item\":{\"type\":0,\"moduleID\":1,\"dataID\":1,\"dataIsUseVar\":false,\"dataVarID\":1,\"varID\":\"107058110455_0.03493971877014301\",\"varName\":\"recoverySP\",\"valueType\":0,\"value\":{},\"isCustomModule\":false,\"operationType\":0,\"compInfo\":{\"uiID\":1,\"type\":0,\"compName\":\"\",\"compID\":0,\"attrs\":[],\"varName\":\"\"},\"selectMode\":0,\"inputModeInfo\":{\"mode\":0,\"constName\":\"\",\"varNameIndex\":1,\"typeIndex\":0},\"isRounded\":false,\"compAttrEnable\":false},\"extendAttribute\":1,\"attributeType\":1},[{\"183610036652_0.4184414546068562\":2,\"183611883532_0.6968158523528332\":{},\"183611929645_0.5686625581871476\":{},\"184338404211_0.50354400055371\":{\"type\":0,\"moduleID\":1,\"dataID\":1,\"dataIsUseVar\":false,\"dataVarID\":1,\"varID\":\"107058110455_0.03493971877014301\",\"varName\":\"recoverySP\",\"valueType\":0,\"value\":{},\"isCustomModule\":false,\"operationType\":0,\"compInfo\":{\"uiID\":1,\"type\":0,\"compName\":\"\",\"compID\":0,\"attrs\":[],\"varName\":\"\"},\"selectMode\":0,\"inputModeInfo\":{\"mode\":0,\"constName\":\"\",\"varNameIndex\":1,\"typeIndex\":0},\"isRounded\":false,\"compAttrEnable\":false},\"183721174534_0.5660381281779978\":1,\"183720930810_0.013584229201655917\":1}]],0,0,0,null,null,null,0,0,0,1,1,1,0,{\"___cmdID\":\"184679882835_0.18827506301707353\"}],[0,0,2,[0,1,15016,0],2,0,[0,1,1,0],0,[1,1,[0,0,1,1]],0,0,[1,1],\"\",\"\",false,null,null,null,null,null,null,0,0,[0,{},\"\"],[0,{},\"\"],{\"___cmdID\":\"184679890655_0.351156035314486\"}],[100007,{\"56802471445_0.07155752433830331\":3,\"56802471445_0.7741252395950808\":0,\"56802471445_0.04610691950308787\":1,\"56802471445_0.9093772346026252\":0,\"55567336559_0.4017641734004589\":4,\"55575350484_0.423745158754258\":1,\"55575350484_0.04628384383880735\":15016,\"55575350484_0.5786633433320261\":1,\"55575350484_0.5459288452906612\":false},\"184679890655_0.8041298823049985\"],[100005,{\"55567288810_0.6582869990848008\":3,\"55567288811_0.821286434669654\":0,\"55567288811_0.8072050456511075\":1,\"55567288811_0.5029917491468847\":0,\"55567336559_0.4017641734004589\":0,\"55567382737_0.11786698931770112\":0,\"55567382737_0.12019293298778466\":15016,\"55567382737_0.45982104044859984\":1},\"184679920727_0.037153023374340455\"],[-1,{\"___cmdID\":\"184679890656_0.5255096045906256\"}],[2,{\"___cmdID\":\"184679890655_0.34083278791244287\"}],[-1,{\"___cmdID\":\"184679692423_0.40443815054739796\"}],[2,{\"___cmdID\":\"184679692422_0.35194853085156375\"}],[18,\"//------------------------------------------------------------------------------------------------------\\n// 状态\\n//------------------------------------------------------------------------------------------------------\\n伤害=状态的「精神力」 - 目标的「精神力防御力」\",{\"___cmdID\":\"184677480856_0.950426498828034\"}],[0,0,4,[0,1,1,0],0,0,[3,1,1,0],0,[1,1,[0,0,1,1]],0,0,[1,1],\"\",\"\",false,null,null,[13,{\"type\":0,\"skill\":{},\"status\":{},\"item\":{},\"extendAttribute\":1,\"attributeType\":0},[{\"183610036652_0.4184414546068562\":0,\"183611883532_0.6968158523528332\":{},\"183611929645_0.5686625581871476\":{},\"184338404211_0.50354400055371\":{},\"183721174534_0.5660381281779978\":1,\"183720930810_0.013584229201655917\":0}]],null,null,null,0,0,[0,{},\"\"],[0,{},\"\"],{\"___cmdID\":\"184677480856_0.5677147606748918\"}],[13,3,15016,0,5,0,1,1,[0,100],0,-1,[13,{\"type\":3,\"skill\":{},\"status\":{},\"item\":{},\"extendAttribute\":1,\"attributeType\":1},[{\"183610036652_0.4184414546068562\":3,\"183611883532_0.6968158523528332\":{},\"183611929645_0.5686625581871476\":{},\"184338404211_0.50354400055371\":{},\"183721174534_0.5660381281779978\":1,\"183720930810_0.013584229201655917\":1}]],0,0,0,null,null,null,0,0,0,1,1,1,0,{\"___cmdID\":\"184677480856_0.2138878074676318\"}],[13,3,15016,2,5,0,1,1,[0,100],0,-1,[12,{\"actorCheckType\":4,\"actorID\":1,\"actorIDVarID\":1,\"actorUseVar\":0,\"actorInPartyIndex\":0,\"actorInPartyIndexVarID\":1,\"actorInPartyIndexVarIDUseVar\":0,\"enemyInPartyIndex\":0,\"enemyInPartyIndexVarID\":1,\"enemyInPartyIndexVarIDUseVar\":0,\"actorAttrName\":24,\"actorCustomAttrName\":{},\"trend\":false,\"extendAttribute\":2},[{\"56798103747_0.597473444893476\":4,\"56798159556_0.46032798251122853\":1,\"56798159556_0.6112804940505512\":1,\"56798159556_0.7450790810855299\":0,\"56798240132_0.20477713210350967\":0,\"56798240132_0.9753015579133191\":1,\"56798240132_0.6896817075603885\":0,\"56798304165_0.44169118636852156\":0,\"56798304165_0.1312006563137771\":1,\"56798304165_0.605200384937578\":0,\"56798358647_0.9678542971326274\":24,\"56798358647_0.31416359416850415\":{},\"184628976443_0.8503748120414947\":false,\"184628976443_0.090263308391894\":2}]],0,0,0,null,null,null,0,0,0,1,1,1,0,{\"___cmdID\":\"184679475011_0.17170005267072375\"}],[0,0,2,[0,1,15016,0],3,0,[1,1,1,0],0,[1,1,[0,0,1,1]],0,0,[1,1],\"\",\"\",false,null,null,null,null,null,null,0,0,[0,{},\"\"],[0,{},\"\"],{\"___cmdID\":\"184677480856_0.9886739756209832\"}],[13,3,15016,0,0,1,1,1,[0,100],0,-1,[10,{\"targetType\":4,\"actorID\":{},\"soIndex\":{},\"actorAttrName\":20,\"actorCustomAttr\":{},\"trend\":false,\"extendAttribute\":2},[{\"183334520314_0.9562739498472759\":4,\"183334878112_0.37689753032352535\":{},\"183334921812_0.2824277714814807\":{},\"183022250995_0.6750498964789144\":20,\"183022250995_0.7670887660005306\":{},\"183161375679_0.2669718740532412\":false,\"183705138264_0.580019520848607\":2}]],0,0,0,null,null,null,0,0,0,1,1,1,0,{\"___cmdID\":\"184677480856_0.5928573420796575\"}],[-1,{\"___cmdID\":\"184677480857_0.7431786211347291\"}],[2,{\"___cmdID\":\"184677480856_0.003996715269710016\"}],[100007,{\"56802471445_0.07155752433830331\":3,\"56802471445_0.7741252395950808\":0,\"56802471445_0.04610691950308787\":1,\"56802471445_0.9093772346026252\":0,\"55567336559_0.4017641734004589\":2,\"55575350484_0.423745158754258\":1,\"55575350484_0.04628384383880735\":15016,\"55575350484_0.5786633433320261\":1,\"55575350484_0.5459288452906612\":false},\"184679487094_0.33376967132280444\"],[13,3,15016,3,0,-1,1,1,[0,100],0,-1,[10,{\"targetType\":4,\"actorID\":{},\"soIndex\":{},\"actorAttrName\":20,\"actorCustomAttr\":{},\"trend\":false,\"extendAttribute\":2},[{\"183334520314_0.9562739498472759\":4,\"183334878112_0.37689753032352535\":{},\"183334921812_0.2824277714814807\":{},\"183022250995_0.6750498964789144\":20,\"183022250995_0.7670887660005306\":{},\"183161375679_0.2669718740532412\":false,\"183705138264_0.580019520848607\":2}]],0,0,0,null,null,null,0,0,0,1,1,1,0,{\"___cmdID\":\"184679487094_0.6469432794693883\"}],[100004,{\"55567288810_0.6582869990848008\":3,\"55567288811_0.821286434669654\":0,\"55567288811_0.8072050456511075\":1,\"55567288811_0.5029917491468847\":0,\"55567336559_0.4017641734004589\":0,\"55567382737_0.11786698931770112\":0,\"55567382737_0.12019293298778466\":15016,\"55567382737_0.45982104044859984\":1},\"184679487094_0.12381846374796823\"],[-1,{\"___cmdID\":\"184677480857_0.3579818579617928\"}],[2,{\"___cmdID\":\"184677480855_0.9441057530398225\"}],[-1,{\"___cmdID\":\"184677478184_0.2494124280527421\"}]]",
+            "copy": false
+        },
+        "碰撞组设定": {
+            "varType": 1,
+            "value": "",
+            "copy": false
+        },
+        "customDamageLogicEventTips": {
+            "varType": 1,
+            "value": "",
+            "copy": false
+        },
+        "word_dod": {
+            "varType": 1,
+            "value": "回避",
+            "copy": false
+        },
+        "const_fp_game": {
+            "varType": 0,
+            "value": 15001,
+            "copy": false
+        },
+        "const_fp_user": {
+            "varType": 0,
+            "value": 15002,
+            "copy": false
+        },
+        "const_fp_cost_value": {
+            "varType": 0,
+            "value": 15003,
+            "copy": false
+        },
+        "const_fp_changeValue": {
+            "varType": 0,
+            "value": 15004,
+            "copy": false
+        },
+        "const_fp_changeEvent": {
+            "varType": 1,
+            "value": "当接受到礼物赠予时\u0005207826995677_0.8322417228758145\u0005[[18,\"储存全局数据，以便记录此次变化值\",{\"___cmdID\":\"207826990651_0.11585593627429613\"}],[50006,{\"42675056477_0.8115553012106289\":0,\"42676811075_0.2156797379381299\":1,\"42680258445_0.21446489371550093\":false},\"207826990651_0.8154323779739963\"],[18,\"区分处理\",{\"___cmdID\":\"207826990651_0.7725315634049448\"}],[0,3,0,[0,1,1,0],0,0,[0,1,1,0],0,[1,1,[0,0,1,1]],0,0,[1,1],\"\",\"GameGate.inSceneInited\",true,\"GameGate.inSceneInited;\\n\",null,null,null,null,null,0,0,[0,{},\"\"],[0,{},\"\"],{\"___cmdID\":\"207826990651_0.5184797011476134\"}],[18,\"当已开始游戏时\",{\"___cmdID\":\"207826990651_0.19736033171853662\"}],[-1,{\"___cmdID\":\"207826990651_0.027279114152776618\"}],[1,{\"___cmdID\":\"207826990651_0.30550858320889906\"}],[18,\"当未开始游戏时（比如在标题画面）\",{\"___cmdID\":\"207826990651_0.03739889930314777\"}],[-1,{\"___cmdID\":\"207826990651_0.25380031562688\"}],[2,{\"___cmdID\":\"207826990651_0.9741903164706511\"}],[-1,{\"___cmdID\":\"207826989463_0.26664377815580176\"}]]",
+            "copy": false
+        },
+        "const_fp_vars": {
+            "varType": 1,
+            "value": "",
+            "copy": false
+        },
+        "const_fp_info": {
+            "varType": 1,
+            "value": "",
+            "copy": false
+        },
+        "const_fp_info1": {
+            "varType": 1,
+            "value": "",
+            "copy": false
+        }
+    }
+}

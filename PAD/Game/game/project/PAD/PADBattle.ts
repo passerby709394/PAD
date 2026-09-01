@@ -79,36 +79,8 @@ class PADBattle{
                 break;
             case 3:
                 //战斗结算的逻辑
-                //所有敌人生命归零，战斗胜利
-                let allDead = true;
-                for (const enemy of Batter.enemys) {
-                    if (enemy.hp > 0) {
-                        allDead = false;
-                        break;
-                    }
-                }
-                if (allDead) {
-                    PADBattle.win=true;
-//关闭战斗，后续补结算界面                    
-                    Game.layer.uiLayer.removeChild(PADBattle.battleUI);
-                    PADBattle.battleUI.dispose(); 
-                    PADBattle.PADgame.dispose()       
-                    //继续事件触发器
-                    PADBattle.start()
-                    
-                } 
-
-                //所有玩家生命归零，战斗失败
-                if (Batter.players[0].hp==0) {
-                    PADBattle.win=false;
-//关闭战斗，后续补结算界面                      
-                    Game.layer.uiLayer.removeChild(PADBattle.battleUI);
-                    PADBattle.battleUI.dispose(); 
-                    PADBattle.PADgame.dispose()       
-                    //继续事件触发器
-                    PADBattle.start()
-                    
-                } 
+                //检查是否结束游戏
+                PADhelper.checkGameOver();
 
                 //结算完毕重置所有敌人可以行动
                 for (const enemy of Batter.enemys) {

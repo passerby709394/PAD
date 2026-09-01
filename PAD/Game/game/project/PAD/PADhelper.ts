@@ -136,5 +136,40 @@ class PADhelper {
         let damage:number=PADhelper.lvToValue(enemy.level, "ATK", enemy.actor) * skill.atkBonus;
         
         return Math.floor(damage)
-    }    
+    } 
+    /**
+     * 检测是否结束游戏
+     * return true：结束游戏，false：继续游戏
+     */
+    static checkGameOver(){
+        let allEnemyDead = true;
+        for (const enemy of Batter.enemys) {
+            if (enemy.hp > 0) {
+                allEnemyDead  = false;
+                break;
+            }            
+        }
+        let allPlayerDead=true;
+        if (Batter.players[0].hp>0)allPlayerDead= false;
+        if (allEnemyDead || allPlayerDead) {
+            
+//关闭战斗，后续补结算界面
+            if(allEnemyDead && !allPlayerDead){
+                //战斗胜利
+                PADBattle.win=true;
+            }  
+            if(!allEnemyDead && allPlayerDead){
+                //战斗失败
+                PADBattle.win=false;
+            }                                
+            Game.layer.uiLayer.removeChild(PADBattle.battleUI);
+            PADBattle.battleUI.dispose(); 
+            PADBattle.PADgame.dispose()       
+            //继续事件触发器
+            PADBattle.start()
+            return true;
+        }else{
+            return false;
+        }
+    }       
 }

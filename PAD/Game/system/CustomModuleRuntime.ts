@@ -103,6 +103,8 @@ class Module_Skill {
     atkBonus: number; // = 1; 攻击倍率
     heal: number; // = 1; 治疗量
     isplayerskill: boolean; // = false; 玩家技能
+    healBonus: number; // = 1; 治疗系数
+    onlyState: boolean; // = false; 只变动状态
     releaseAnimation: number; // = 0; 释放动画
     hitAnimation: number; // = 1; 击中目标的动画
     selfStatus: number[]; // = [];

@@ -315,7 +315,7 @@ class PADStatus {
                     //typeForNum 元素本次消除的数量
                     let elementData=GameData.getModuleData(PADElement.MODULE_ID,status.typeForNum);
                     if(elementData){
-                        let numCount=PADPuzzle.lastResult.lastByType[elementData.name]||0;
+                        let numCount=PADPuzzle?.lastResult?.lastByType[elementData.name]||0;
                         if(numCount>=status.Nums){
                             if(battler.camp==source.camp){
                                 finalDamage *=status.NumHitBonus;

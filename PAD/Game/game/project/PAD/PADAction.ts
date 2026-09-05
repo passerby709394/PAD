@@ -197,11 +197,27 @@ class PADAction {
             // 3. 回合数等于 0：用当前技能
             const usedIndex = enemy.skillIndex % skills.length;
             let skill = skills[usedIndex].skill;
+
+            //显示技能提示
+            let skillTips=PADBattle.battleUI.getChildByName("skilltips") as GUI_1007;
+            // 1) 血条中心点的全局坐标（血条本地 → 舞台全局）
+            let globalPoint = enemy.uihpSlider.localToGlobal(
+                new Point(enemy.uihpSlider.width / 2, 0)
+            );
+            // 2) 全局 → skillTips 的父容器 battleUI 的本地坐标
+            let p = PADBattle.battleUI.globalToLocal(globalPoint);
+            skillTips.x = p.x - skillTips.tip.width / 2;  // 居中
+            skillTips.y = p.y - 45;                       // 显示在血条上方
+            skillTips.tipsText.text=skill.name;
+            skillTips.visible=true;
             
+
             // 技能使用后：记录使用次数并选中下一个满足条件的技能
             const afterUse = (): void => {
                 enemy.skillUsedCounts[usedIndex] = (enemy.skillUsedCounts[usedIndex] || 0) + 1;
                 PADCondition.selectSkill(enemy, (enemy.skillIndex + 1) % skills.length, () => {
+                    //关闭技能提示
+                    skillTips.visible=false;
                     process(index + 1);
                 });
             };

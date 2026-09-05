@@ -57,7 +57,13 @@ class PADBattle{
         PADBattle.battleUI.opacity=0;
         Game.layer.uiLayer.addChild(PADBattle.battleUI);
         Tween.to(PADBattle.battleUI,{ opacity: 1 },1000,Ease.linearIn)
-               
+        //显示技能名字（1007界面）
+        let ui=GameUI.load(1007) as GUI_1007;
+        ui.name="skilltips";
+        ui.visible=false;
+        PADBattle.battleUI.addChild(ui);
+        PADPlayerSkill.init();
+
     } 
     /**
      * 下一战斗阶段
@@ -70,6 +76,7 @@ class PADBattle{
                 break;
             case 2:
                 //执行战斗的逻辑
+                PADBattle.PADgame.setBusy(true);
                 PADAction.playerAction(PADBattle.PADgame.board.lastComboResults,()=>{
                     PADAction.enemyAction(PADBattle.PADgame.board.lastComboResults,()=>{
                         PADBattle.next()
@@ -81,11 +88,13 @@ class PADBattle{
                 //战斗结算的逻辑
                 //检查是否结束游戏
                 PADhelper.checkGameOver();
-
+                PADBattle.PADgame.setBusy(false);
                 //结算完毕重置所有敌人可以行动
                 for (const enemy of Batter.enemys) {
                     enemy.enemyCanAction = true; 
-                }                 
+                } 
+                //推进玩家技能计数
+                PADPlayerSkill.cdGO();                
                 //结算完毕返回玩家操作
                 PADBattle.battleStep=1;
                 // 结算完毕，进入下一回合

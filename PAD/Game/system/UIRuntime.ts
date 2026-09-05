@@ -543,16 +543,18 @@ class ListItem_1006 extends UIListItemData {
 }
 
 /**
- * 1007- [BASE]
+ * 1007-技能名字 [BASE]
  */
 class GUI_1007 extends GUI_BASE {
-
+   tip:UIBitmap;
+   tipsText:UIString;
    constructor(){
       super(1007);
    }
 }
 class ListItem_1007 extends UIListItemData {
-
+   tip:string;
+   tipsText:string;
 }
 
 /**
@@ -598,16 +600,22 @@ class ListItem_1010 extends UIListItemData {
 }
 
 /**
- * 1011- [BASE]
+ * 1011-技能介绍 [BASE]
  */
 class GUI_1011 extends GUI_BASE {
-
+   bg:UIBitmap;
+   text:UIString;
+   image:UIBitmap;
+   intro:UIString;
    constructor(){
       super(1011);
    }
 }
 class ListItem_1011 extends UIListItemData {
-
+   bg:string;
+   text:string;
+   image:string;
+   intro:string;
 }
 
 /**

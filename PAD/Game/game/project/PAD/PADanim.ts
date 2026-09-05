@@ -707,14 +707,59 @@ class PADanim {
         // 治疗数字颜色：固定绿色
         const healColor = "#00ff00";
 
-        // 释放特效：落在释放者自己身上（一次性播放，播完自动销毁）
+        // 命中特效 + 回血（释放特效播放完毕后再执行）
+        const playHitAndHeal = (): void => {
+            // 每个治疗目标回血（changeHP 返回钩子后最终治疗值，累加用于飘字）；全部完成后触发 onComplete
+            let totalFinalHeal = 0;
+            let pending = targets.length;
+            const onTargetHealed = (): void => {
+                if (--pending <= 0) onComplete?.();
+            };
+            for (const target of targets) {
+                // 命中特效：落在治疗目标身上（一次性播放，播完自动销毁）
+                if (skill.hitAnimation) {
+                    const uiAvatar = target.avatar;
+                    const hitX = uiAvatar ? uiAvatar.x + uiAvatar.width * uiAvatar.scaleX / 2 : 0;
+                    const hitY = uiAvatar ? uiAvatar.y + uiAvatar.height * uiAvatar.scaleY / 2 : 0;
+                    const ani = new GCAnimation();
+                    ani.loop = false;
+                    ani.showHitEffect = true;
+                    ani.once(GCAnimation.PLAY_COMPLETED, null, () => { ani.dispose(); });
+                    ani.once(EventObject.LOADED, null, () => {
+                        if (ani.isDisposed) return;
+                        PADBattle.battleUI.addChild(ani);
+                        ani.pivotX = ani.width / 2;
+                        ani.pivotY = ani.height / 2;
+                        ani.x = hitX;
+                        ani.y = hitY;
+                        ani.visible = true;
+                    });
+                    ani.id = skill.hitAnimation;
+                    ani.gotoAndPlay();
+                }
+                const finalHeal = target.changeHP(enemy, healAmount, 500, 0, onTargetHealed);
+                totalFinalHeal += Math.abs(finalHeal);
+            }
+
+            // 总治疗量飘字（合并为一次，显示在释放者身上）
+            if (totalFinalHeal > 0) {
+                PADanim._showHealText(enemy, totalFinalHeal, healColor);
+            }
+
+            if (targets.length === 0) onComplete?.();
+        };
+
+        // 释放特效：落在释放者自己身上，播放完毕后再播放命中特效与回血
         if (skill.releaseAnimation) {
             const uiAvatar = enemy.avatar;
             const startX = uiAvatar ? uiAvatar.x + uiAvatar.width * uiAvatar.scaleX / 2 : 0;
             const startY = uiAvatar ? uiAvatar.y + uiAvatar.height * uiAvatar.scaleY / 2 : 0;
             const ani = new GCAnimation();
             ani.loop = false;
-            ani.once(GCAnimation.PLAY_COMPLETED, null, () => { ani.dispose(); });
+            ani.once(GCAnimation.PLAY_COMPLETED, null, () => {
+                ani.dispose();
+                playHitAndHeal();
+            });
             ani.once(EventObject.LOADED, null, () => {
                 if (ani.isDisposed) return;
                 PADBattle.battleUI.addChild(ani);
@@ -726,25 +771,10 @@ class PADanim {
             });
             ani.id = skill.releaseAnimation;
             ani.gotoAndPlay();
+        } else {
+            // 无释放特效：直接播放命中特效与回血
+            playHitAndHeal();
         }
-
-        // 每个治疗目标回血（changeHP 返回钩子后最终治疗值，累加用于飘字）；全部完成后触发 onComplete
-        let totalFinalHeal = 0;
-        let pending = targets.length;
-        const onTargetHealed = (): void => {
-            if (--pending <= 0) onComplete?.();
-        };
-        for (const target of targets) {
-            const finalHeal = target.changeHP(enemy, healAmount, 500, 0, onTargetHealed);
-            totalFinalHeal += Math.abs(finalHeal);
-        }
-
-        // 总治疗量飘字（合并为一次，显示在释放者身上）
-        if (totalFinalHeal > 0) {
-            PADanim._showHealText(enemy, totalFinalHeal, healColor);
-        }
-
-        if (targets.length === 0) onComplete?.();
     }
 
     /**
@@ -924,8 +954,10 @@ class PADanim {
             data.ticker = null;
         }
 
-        // 生命值变化时，同时播放战斗者行走图的被攻击动作（ID 9）一次
-        this._playHitAction(batter);
+        // 只有扣血（change < 0）才播放被攻击动作（ID 9），治疗不播放
+        if (change < 0) {
+            this._playHitAction(batter);
+        }
 
         // 启动新定时器
         data.ticker = setInterval(() => {

@@ -111,15 +111,20 @@ class Batter {
     /**
      * 状态UI
      */
-    statusGUI:GUI_1005[]=[];                         
+    statusGUI:GUI_1005[]=[];  
+    /**
+     * CD完成的ui
+     */
+    uiCDok:GCAnimation=null;
+    uiCDhigh:GameSprite=null;
+    uiCDlow:GameSprite=null; 
+    uiCDtarget:UIBitmap=null;                      
 
 //静态方法
     /**
      * 初始化战斗者
      */
     static init(party:Module_Party){
-        //初始化完成前禁止拖动元素
-        PADPuzzle._isBusy=true;
         //隐藏元素
         PADBattle.battleUI.elementBG.visible=false;
         PADBattle.battleUI.timeImage.visible=false;
@@ -247,6 +252,35 @@ class Batter {
 
             //等价于HP
             player.uihpSlider.value+=player.uihpSlider.max;
+
+            //添加技能监听
+            let ui=GameUI.load(1011) as GUI_1011;
+            player.cardImage.on(EventObject.MOUSE_OVER,this,()=>{                
+                ui.x=player.cardImage.x-50;
+               
+                let skill=GameData.getModuleData(5,player.actor.skillsPlayer1) as Module_Skill;
+                if(!skill)skill=GameData.getModuleData(5,1);
+                ui.image.image=skill.icon;
+                ui.text.text=skill.name;
+                ui.intro.text=skill.intro;
+                let height=35+ui.intro.textHeight;
+                ui.bg.height=height+15;
+                ui.intro.height=ui.intro.textHeight;
+                ui.y=player.cardImage.y-height-15;
+                GameUI.show(1011);
+                
+            });
+            player.cardImage.on(EventObject.MOUSE_OUT,this,()=>{
+                GameUI.hide(1011);
+            })
+            player.cardImage.on(EventObject.CLICK,this,()=>{
+                PADPlayerSkill.use(player.index);
+            });
+
+            // 创建动画并附加到目标上
+            player.uiCDok = new GCAnimation();
+            player.uiCDok.loop = true;
+           
             
             player.uihpIntro.text=`${player.uihpSlider.value}/${player.uihpSlider.max}`
             Batter.players.push(player);                   
@@ -309,13 +343,13 @@ class Batter {
                 if (aniAudios.length > 0) {
                     AssetManager.loadAudios(aniAudios, Callback.New(() => {
                         //初始化
-                        PADBattle.PADgame._isBusy=false;
-                        console.log("初始化中:",PADBattle.PADgame._isBusy);
+                        PADBattle.PADgame.setBusy(false);
+                        console.log("初始化中:",PADBattle.PADgame.isBusy);
                     }, null));
                 } else {
                     //初始化完成允许拖动元素
-                    PADBattle.PADgame._isBusy=false;
-                    console.log("初始化完成允许拖动元素:",PADBattle.PADgame._isBusy);
+                    PADBattle.PADgame.setBusy(false);
+                    console.log("初始化完成允许拖动元素:",PADBattle.PADgame.isBusy);
                 }
             }, null),
             null,

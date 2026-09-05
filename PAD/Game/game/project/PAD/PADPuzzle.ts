@@ -282,6 +282,13 @@ class PADPuzzle {
     }
 
     /**
+     * 获取忙碌状态（true 禁止玩家输入，false 允许玩家操作）
+     */
+    get isBusy(): boolean {
+        return this._isBusy;
+    }
+
+    /**
      * 设置忙碌状态（true 禁止玩家输入，false 允许玩家操作）
      * 供战斗行动（攻击/治疗动画）全部完成后解除输入锁
      */

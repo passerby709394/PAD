@@ -13,9 +13,10 @@ class PADStatus {
         let index = enemy.status.findIndex(item => item.id === status.id);
         if (index !== -1) {
             let status=enemy.status[index];
+            if(status.always && layers>0)return;
             status.layer+=layers;
             if(status.layer>0){
-                enemy.statusGUI[index].statusText.text=String(status.layer);
+                enemy.statusGUI[index].statusText.text=String(status.layer);                
             }else{
                 enemy.status.splice(index, 1);
                 let statusGUI=enemy.statusGUI.splice(index, 1);
@@ -49,7 +50,8 @@ class PADStatus {
                 tipsUI.tip.width=tipsUI.tipsText.textWidth+10;
                 GameUI.show(1006);
                 statusGUI.once(EventObject.MOUSE_OUT,PADStatus,()=>{GameUI.hide(1006)})
-            })  
+            });
+            if(status.always) statusGUI.statusText.visible=false;
         }
         if(onComplete)onComplete();
     }
@@ -65,6 +67,7 @@ class PADStatus {
         let index = player.status.findIndex(item => item.id === status.id);
         if (index !== -1) {
             let status=player.status[index];
+            if(status.always && layers>0)return;
             status.layer+=layers;
             if(status.layer>0){
                 player.statusGUI[index].statusText.text=String(status.layer);
@@ -102,7 +105,8 @@ class PADStatus {
                 tipsUI.y=statusGUI.localToGlobal(new Point(60,-tipsUI.tip.height)).y;
                 GameUI.show(1006);
                 statusGUI.once(EventObject.MOUSE_OUT,PADStatus,()=>{GameUI.hide(1006)})
-            })  
+            });
+            if(status.always) statusGUI.statusText.visible=false;  
         }
         if(onComplete)onComplete();
     }

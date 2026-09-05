@@ -132,13 +132,13 @@ class PADanim {
 
         // 初始值：组件不存在（首次创建、文本为空）时为0；组件已存在则复用其当前显示值
         let initValue = parseInt(player.atkAniPRtext.text, 10) || 0;
-        const targetValue = initValue + change; // 终值 = 初始值 + change
+        
         player.atkAniPRtext.text = String(initValue);
 
         // 在攻击动画长度的时间内，数字从初始值匀速变化到终值（每帧变化量为整数）
         const fps = player.atkAniPR.fps || Config.ANIMATION_FPS;
         const animDuration = player.atkAniPR.totalFrame / fps * 1000; // 攻击动画时长（毫秒）
-        const frameInterval = 50; // 帧间隔
+        const frameInterval = Math.floor(1000/Config.ANIMATION_FPS) +10; // 帧间隔
         let totalFrames = Math.max(1, Math.round(animDuration / frameInterval));
         let currentValue = initValue;
         let remain = change; // 剩余需要变化的值
@@ -238,13 +238,13 @@ class PADanim {
 
         // 初始值：组件不存在（首次创建、文本为空）时为0；组件已存在则复用其当前显示值
         let initValue = parseInt(player.healAniPRtext.text, 10) || 0;
-        const targetValue = initValue + change; // 终值 = 初始值 + change
+        
         player.healAniPRtext.text = String(initValue);
 
         // 在治疗动画长度的时间内，数字从初始值匀速变化到终值（每帧变化量为整数）
         const fps = player.healAniPR.fps || Config.ANIMATION_FPS;
         const animDuration = player.healAniPR.totalFrame / fps * 1000; // 治疗动画时长（毫秒）
-        const frameInterval = 50; // 帧间隔
+        const frameInterval = Math.floor(1000/Config.ANIMATION_FPS) +10; // 帧间隔
         let totalFrames = Math.max(1, Math.round(animDuration / frameInterval));
         let currentValue = initValue;
         let remain = change; // 剩余需要变化的值
@@ -469,8 +469,6 @@ class PADanim {
      * @param onAfterHeal 治疗处理完毕后的回调（可选）
      */
     static playerHeal(onAfterHeal?: Function): void {
-
-
         // 收集所有有治疗准备的玩家（healAniPR / healAniPRtext 均已创建）
         const healers: Batter[] = [];
         for (const p of Batter.players) {
@@ -792,7 +790,8 @@ class PADanim {
         PADanim._activeFloatingCount++;
         Tween.to(t, { y: y - 30, opacity: 0 }, 800, null, Callback.New(() => {
             t.dispose();
-            PADanim._activeFloatingCount--;
+            //跨战斗时 resetBattle 可能已将计数清零，此处防止减成负数污染新战斗
+            if (PADanim._activeFloatingCount > 0) PADanim._activeFloatingCount--;
             if (PADanim._activeFloatingCount <= 0) {
                 const cbs = PADanim._floatingWaitCallbacks;
                 PADanim._floatingWaitCallbacks = [];
@@ -879,6 +878,27 @@ class PADanim {
     }
 
     /**
+     * 重置战斗期静态缓存（每场战斗开始前由 PADBattle.resetBattle 调用）：
+     * 停掉并清空上一场残留的 HP 动画定时器/队列、伤害累计、
+     * 飘字计数与等待回调、最后一次受击标记。
+     */
+    static resetBattle(): void {
+        //停掉上一场可能仍在运行的 HP 动画定时器，避免其在新战斗中继续写入已销毁的 UI
+        PADanim._animDataMap.forEach((data) => {
+            if (data.ticker) {
+                clearInterval(data.ticker);
+                data.ticker = null;
+            }
+        });
+        PADanim._animDataMap.clear();
+        PADanim._pendingDamage.clear();
+        //丢弃上一场未完成的飘字等待回调，防止其在新战斗中误触发旧动作链
+        PADanim._activeFloatingCount = 0;
+        PADanim._floatingWaitCallbacks = [];
+        PADanim._isLastHit = true;
+    }
+
+    /**
      * 懒加载界面1004的text组件作为字体模板，并将其字体属性复制到目标文本组件
      */
     private static _applyTextTemplate(text: UIString): void {
@@ -943,7 +963,7 @@ class PADanim {
         }
 
         // 动画参数
-        const frameInterval = 50; // 固定 50ms 一帧
+        const frameInterval = Math.floor(1000/Config.ANIMATION_FPS) +10; 
         const totalFrames = Math.max(1, Math.floor(duration / frameInterval));
         let currentFrameHp = currentHp;
         let remainDelta = deltaTotal;

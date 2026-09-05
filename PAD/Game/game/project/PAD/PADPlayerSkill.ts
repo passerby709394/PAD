@@ -14,7 +14,21 @@ class PADPlayerSkill {
     /**
      * 玩家主动技能数据
      */    
-    static skillData:Module_Skill[]=[];    
+    static skillData:Module_Skill[]=[];
+    /**
+     * 玩家队长技能的UI
+     */    
+    static leaderSkillUI:GUI_1012=null;        
+    /**
+     * 重置战斗期静态状态（每场战斗开始前由 PADBattle.resetBattle 调用）。
+     * init() 采用 push 方式填充这些数组，若不清空，下一场战斗会读到上一场的旧对象/错位数据。
+     */    
+    static reset(){
+        PADPlayerSkill.playerskillAni=[];
+        PADPlayerSkill.playerskillText=[];
+        PADPlayerSkill.skillData=[];
+        PADPlayerSkill.leaderSkillUI=null;
+    }
     /**
      * 初始化技能CD
      */    
@@ -54,6 +68,23 @@ class PADPlayerSkill {
             card.addChild(textCD);
             PADPlayerSkill.playerskillText.push(textCD);
         }
+        //队长技能
+        let skillData=GameData.newModuleData(6,Batter.players[0].actor.skillsPlayer2) as Module_Status;
+        skillData.always=true;
+        PADPlayerSkill.leaderSkillUI=new GUI_1012();
+        PADPlayerSkill.leaderSkillUI.x=PADBattle.battleUI.elementBG.x+PADBattle.battleUI.elementBG.width*0.2;
+        PADPlayerSkill.leaderSkillUI.y=50;
+        PADPlayerSkill.leaderSkillUI.bg.width=PADBattle.battleUI.elementBG.width*0.6+10;
+        PADPlayerSkill.leaderSkillUI.intro.width=PADBattle.battleUI.elementBG.width*0.6;
+        PADPlayerSkill.leaderSkillUI.image.image=skillData.image;
+        PADPlayerSkill.leaderSkillUI.text.text=skillData.name;
+        PADPlayerSkill.leaderSkillUI.intro.text=skillData.intro;
+        PADPlayerSkill.leaderSkillUI.intro.height=PADPlayerSkill.leaderSkillUI.intro.textHeight;
+        PADPlayerSkill.leaderSkillUI.image.x=PADPlayerSkill.leaderSkillUI.bg.width/2-PADPlayerSkill.leaderSkillUI.text.textWidth/2-PADPlayerSkill.leaderSkillUI.image.width;
+        PADPlayerSkill.leaderSkillUI.text.x=PADPlayerSkill.leaderSkillUI.bg.width/2-PADPlayerSkill.leaderSkillUI.text.textWidth/2;
+        PADPlayerSkill.leaderSkillUI.bg.height=PADPlayerSkill.leaderSkillUI.text.textHeight+PADPlayerSkill.leaderSkillUI.intro.textHeight+30;
+        PADBattle.battleUI.addChild(PADPlayerSkill.leaderSkillUI);
+        Batter.players[0].status.push(skillData);
     }
     /**
      * CD推进一回合
@@ -112,11 +143,12 @@ class PADPlayerSkill {
     static use(index:number){
         let skillData=PADPlayerSkill.skillData[index];
         if(!skillData)return;
-        if(!skillData.isplayerskill)return;
+        if(PADBattle.battleStep!==1)return;
         let player=Batter.players[index];
-        player.uiCDok.removeFromGameSprite();
         
-        if(PADPlayerSkill.playerskillText[index].text=="OK" && !PADBattle.PADgame.isBusy){
+        
+        if(PADPlayerSkill.playerskillText[index].text=="OK" && !PADBattle.PADgame.isBusy ){
+            player.uiCDok.removeFromGameSprite();
             PADBattle.PADgame.setBusy(true);
             //显示技能提示
             let skillTips=PADBattle.battleUI.getChildByName("skilltips") as GUI_1007;
@@ -146,8 +178,8 @@ class PADPlayerSkill {
                 }                
             }            
             //攻击技能
-            // 定义递归攻击函数
-            function attackAll(times: number,change:number, onComplete?: Function) {
+            // 定义递归攻击函数（const 箭头：函数声明不允许出现在 if 块内(ES5严格模式 TS1251)）
+            const attackAll = (times: number,change:number, onComplete?: Function) => {
                 // 如果剩余次数 ≤ 0，直接结束（调用完成回调）
                 if (times <= 0) {
                     if (onComplete) onComplete();

@@ -619,16 +619,22 @@ class ListItem_1011 extends UIListItemData {
 }
 
 /**
- * 1012- [BASE]
+ * 1012-队长技能 [BASE]
  */
 class GUI_1012 extends GUI_BASE {
-
+   bg:UIBitmap;
+   text:UIString;
+   image:UIBitmap;
+   intro:UIString;
    constructor(){
       super(1012);
    }
 }
 class ListItem_1012 extends UIListItemData {
-
+   bg:string;
+   text:string;
+   image:string;
+   intro:string;
 }
 
 /**

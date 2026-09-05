@@ -39,17 +39,41 @@ class PADBattle{
         }
     }
     /**
+     * 重置所有战斗期静态状态。
+     * 在每场战斗开始前（PADBattle.init）调用一次，兜底覆盖所有结束路径
+     * （结束指令 15003 / checkGameOver 胜负结算 / 异常中断），
+     * 防止上一场残留的静态数组与缓存污染下一场战斗。
+     */
+    static resetBattle(){
+        //PADBattle自身状态
+        PADBattle.triggerLine=null;
+        PADBattle.battleUI=null;
+        PADBattle.PADgame=null;
+        PADBattle.win=null;
+        PADBattle.battleStep=0;
+        PADBattle.battleRound=1;
+        //战斗者数组（PADBattle.init / Batter.init 会重新填充）
+        Batter.enemys=[];
+        Batter.players=[];
+        //玩家技能CD相关的数组（init() 是 push 方式，必须清空否则二次开战错位）
+        PADPlayerSkill.reset();
+        //动画缓存：停掉残留定时器、清队列/累计/飘字状态
+        PADanim.resetBattle();
+        //敌人技能条件上下文
+        PADCondition.reset();
+        //转珠静态结果缓存（新的棋盘 start() 后会重新赋值）
+        PADPuzzle.lastResult=null;
+        PADPuzzle.scoreText=null;
+    }
+    /**
      * 初始化
      * @param party 敌人队伍数据
      */ 
     static init(party:Module_Party){
-        PADBattle.battleUI=null;
-        Batter.enemys=[];
-        Batter.players=[];
+        //统一清理上一场残留的所有静态状态
+        PADBattle.resetBattle();
         PADBattle.battleUI=new GUI_4001();   
         PADBattle.battleUI.BG.image=party.background;
-        this.battleStep=0;
-        PADBattle.battleRound=1;
         
         //敌人初始化
         Batter.init(party);
@@ -94,7 +118,19 @@ class PADBattle{
                     enemy.enemyCanAction = true; 
                 } 
                 //推进玩家技能计数
-                PADPlayerSkill.cdGO();                
+                PADPlayerSkill.cdGO(); 
+                //推进状态计数
+                for(let enemy of Batter.enemys){
+                    if(enemy.hp<=0)continue;
+                    for(let state of enemy.status){
+                        if(state.always)continue;
+                        PADStatus.addEnemyStatus(enemy,state,-1);
+                    }
+                } 
+                for(let state of Batter.players[0].status){
+                    if(state.always)continue;
+                    PADStatus.addPlayerStatus(Batter.players[0],state,-1)
+                }              
                 //结算完毕返回玩家操作
                 PADBattle.battleStep=1;
                 // 结算完毕，进入下一回合

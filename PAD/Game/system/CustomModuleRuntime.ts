@@ -70,7 +70,7 @@ class Module_Actor {
     skills: DataStructure_enemySkills[]; // = [];
     isEnemy: boolean; // = false; 是否敌人
     skillsPlayer1: number; // = 0; 玩家的主动技能
-    skillsPlayer2: number; // = 0; 玩家的被动技能
+    skillsPlayer2: number; // = 0; 队长技能
     attackVoice: string; // = ""; 攻击语音
     hitVoice: string; // = ""; 受击语音
     dieVoice: string; // = ""; 阵亡语音

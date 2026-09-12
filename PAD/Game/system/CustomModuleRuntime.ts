@@ -57,9 +57,12 @@ class Module_Actor {
     face: string; // = ""; 卡片头像
     avatar: number; // = 0; 行走图
     bttlerAvatar: number; // = 0; 战斗图
+    intro: string; // = "";
+    se: string; // = "asset/audio/se/item/Find_1.ogg"; 选中音效
     ATK: number; // = 100; 攻击力
     HP: number; // = 100; 生命值
     Heal: number; // = 100; 回复力
+    BASE_EXP: number; // = 10; 基础经验
     MaxATK: number; // = 100; 最大攻击力
     MaxHP: number; // = 100; 最大生命值
     MaxHeal: number; // = 100; 最大回复力
@@ -76,7 +79,7 @@ class Module_Actor {
     dieVoice: string; // = ""; 阵亡语音
     dropGold: number; // = 0; 掉落金币
     dropExp: number; // = 0; 掉落经验值
-    dropItems: DataStructure_dropItem[]; // = [];
+    dropItems: DataStructure_reward[]; // = [];
     selfStatus1: number[]; // = [];
     currentEXP: number; // = 0; 当前经验值
     increaseMaxHP: number; // = 0; 增加的最大生命值
@@ -131,6 +134,7 @@ class Module_Status {
     isColBonus: boolean; // = false; 使用列系数
     isNumBonus: boolean; // = false; 使用消除元素数量系数
     intro: string; // = "";  
+    isAddCombo: boolean; // = false; 增加连锁数量
     battler: number; // = 0; 比较对象
     compareHP: number; // = 0; 比较逻辑
     valueHP: number; // = 0; 比较百分比
@@ -157,5 +161,6 @@ class Module_Status {
     typeForNum: number; // = 0; 属性
     NumHitBonus: number; // = 1; 伤害系数
     NumHitedBonus: number; // = 1; 受伤害系数
+    addCombo: number; // = 0; 每次消除增加的连锁数
     layer: number; // = 0; 状态层数
 }

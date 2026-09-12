@@ -39,7 +39,6 @@ class PADhelper {
             const baseATK = PADhelper.lvToValue(player.level,"ATK",player.actor);
             const bonusRate = 1 + (combo.indexes.length - 3) * elementBonus;
             const change = Math.floor(baseATK * bonusRate);
-            console.log(`[伤害计算] ${player.actor.name} 消除元素数加成：基础ATK=${baseATK}，消除元素数=${combo.indexes.length}，倍率=${bonusRate.toFixed(2)}，攻击准备值=${change}`);
             result.push({ player, change });
         }
         return result;
@@ -54,21 +53,17 @@ class PADhelper {
      * @returns 计算后的最终伤害（正数）
      */
     static damageToEnemy(player: Batter, enemy: Batter, damage: number,type:number): number {       
-        console.log(`[伤害计算] ${player.actor.name} → ${enemy.actor.name}，基础伤害=${damage}`);
         // 计算状态对伤害的影响
         let finalDamage = PADStatus.calcStatusDamage(Batter.players[0], enemy, damage, type);
         //属性克制计算
         let enemyType=enemy.actor.ElementType1;
         let atkTpye=GameData.getModuleData(2,type) as Module_Element;
         if(atkTpye.restrain==enemyType){
-            console.log(`[伤害计算] 属性克制：${atkTpye.name} 克制 ${(GameData.getModuleData(2,enemyType) as Module_Element).name}，伤害×2`);
             finalDamage*=2;
         }
         if(atkTpye.restrained==enemyType){
-            console.log(`[伤害计算] 属性被克制：${atkTpye.name} 被 ${(GameData.getModuleData(2,enemyType) as Module_Element).name} 克制，伤害×0.5`);
             finalDamage*=0.5;
         }
-        console.log(`[伤害计算] 最终伤害=${finalDamage}`);
         return finalDamage;
     }
     /**
@@ -82,7 +77,6 @@ class PADhelper {
     static damageToPlayer(player: Batter, enemy: Batter, damage: number,type:number): number {  
         //玩家受到的伤害扣除前的钩子     
         let finalDamage = PADStatus.calcStatusDamage(enemy,Batter.players[0],  damage, type);
-        console.log(`[伤害计算] ${enemy.actor.name} → ${player.actor.name}，基础伤害=${damage}，最终伤害=${damage}`);
         return finalDamage;
     }
     /**
@@ -94,7 +88,6 @@ class PADhelper {
      */
     static healToPlayer(player: Batter,enemy: Batter, heal: number): number {       
         // 暂时为空方法，后期拓展（如护甲减免、属性克制、减伤buff等）
-        console.log(`[治疗计算] 玩家治疗，基础治疗=${heal}，最终治疗=${heal}`);
         return heal;
     }
     /**
@@ -106,7 +99,6 @@ class PADhelper {
      */
     static healToEnemy(source: Batter, target: Batter, heal: number): number {       
         // 暂时为空方法，后期拓展（如治疗加成、减疗buff等）
-        console.log(`[治疗计算] ${source.actor.name} → ${target.actor.name}，基础治疗=${heal}，最终治疗=${heal}`);
         return heal;
     }
 
@@ -156,17 +148,28 @@ class PADhelper {
 //关闭战斗，后续补结算界面
             if(allEnemyDead && !allPlayerDead){
                 //战斗胜利
+                // end();
+                let ui=GameUI.load(1014)as GUI_1014;
+                ui.x=(Config.WINDOW_WIDTH-ui.win.width)/2;
+                ui.y=(Config.WINDOW_HEIGHT-ui.win.height)/2
+                GameUI.show(1014);
                 PADBattle.win=true;
+                PADBattle.PADgame.setBusy(true);
+                ui.sure.once(EventObject.CLICK,this,end)
             }  
             if(!allEnemyDead && allPlayerDead){
                 //战斗失败
+                end();
                 PADBattle.win=false;
-            }                                
-            Game.layer.uiLayer.removeChild(PADBattle.battleUI);
-            PADBattle.battleUI.dispose(); 
-            PADBattle.PADgame.dispose()       
-            //继续事件触发器
-            PADBattle.start()
+            } 
+            function end(){
+                Game.layer.uiLayer.removeChild(PADBattle.battleUI);
+                PADBattle.battleUI.dispose(); 
+                PADBattle.PADgame.dispose()       
+                //继续事件触发器
+                PADBattle.start()
+            }                               
+
             return true;
         }else{
             return false;

@@ -91,13 +91,39 @@ class GUI_4 extends GUI_BASE {
    itemIntroRoot:UIRoot;
    itemIntro:UIString;
    itemName:UIString;
-   玩家金币数:UIString;
    关闭背包界面按钮:UIButton;
    关闭标志:UIBitmap;
-   货币图片:UIBitmap;
-   我的金币文本:UIString;
-   界面标题背景:UIBitmap;
    界面标题:UIString;
+   player0:UIRoot;
+   项目背景:UIBitmap;
+   lv0:UIString;
+   name0:UIString;
+   道具背景:UIBitmap;
+   icon0:UIBitmap;
+   道具框:UIBitmap;
+   select0:UIBitmap;
+   player1:UIRoot;
+   lv1:UIString;
+   name1:UIString;
+   icon1:UIBitmap;
+   select1:UIBitmap;
+   player2:UIRoot;
+   lv2:UIString;
+   name2:UIString;
+   icon2:UIBitmap;
+   select2:UIBitmap;
+   player3:UIRoot;
+   lv3:UIString;
+   name3:UIString;
+   icon3:UIBitmap;
+   select3:UIBitmap;
+   player4:UIRoot;
+   lv4:UIString;
+   name4:UIString;
+   icon4:UIBitmap;
+   select4:UIBitmap;
+   teamBuild:UIButton;
+   levelUp:UIButton;
    constructor(){
       super(4);
    }
@@ -113,10 +139,31 @@ class ListItem_4 extends UIListItemData {
    itemIntro:string;
    itemName:string;
    关闭标志:string;
-   货币图片:string;
-   我的金币文本:string;
-   界面标题背景:string;
    界面标题:string;
+   项目背景:string;
+   lv0:string;
+   name0:string;
+   道具背景:string;
+   icon0:string;
+   道具框:string;
+   select0:string;
+   lv1:string;
+   name1:string;
+   icon1:string;
+   select1:string;
+   lv2:string;
+   name2:string;
+   icon2:string;
+   select2:string;
+   lv3:string;
+   name3:string;
+   icon3:string;
+   select3:string;
+   lv4:string;
+   name4:string;
+   icon4:string;
+   select4:string;
+
 }
 
 /**
@@ -638,29 +685,98 @@ class ListItem_1012 extends UIListItemData {
 }
 
 /**
- * 1013- [BASE]
+ * 1013-升级界面 [BASE]
  */
 class GUI_1013 extends GUI_BASE {
-
+   bg:UIBitmap;
+   item0:UIRoot;
+   项目背景:UIBitmap;
+   itemNum0:UIString;
+   itemName0:UIString;
+   道具背景:UIBitmap;
+   icon0:UIBitmap;
+   道具框:UIBitmap;
+   文本:UIString;
+   before:UISlider;
+   item1:UIRoot;
+   itemNum1:UIString;
+   itemName1:UIString;
+   icon1:UIBitmap;
+   item2:UIRoot;
+   itemNum2:UIString;
+   itemName2:UIString;
+   icon2:UIBitmap;
+   item3:UIRoot;
+   itemNum3:UIString;
+   itemName3:UIString;
+   icon3:UIBitmap;
+   item4:UIRoot;
+   itemNum4:UIString;
+   itemName4:UIString;
+   icon4:UIBitmap;
+   item5:UIRoot;
+   itemNum5:UIString;
+   itemName5:UIString;
+   icon5:UIBitmap;
+   item6:UIRoot;
+   itemNum6:UIString;
+   itemName6:UIString;
+   icon6:UIBitmap;
+   after:UISlider;
+   确认:UIButton;
+   返回:UIButton;
    constructor(){
       super(1013);
    }
 }
 class ListItem_1013 extends UIListItemData {
+   bg:string;
+   项目背景:string;
+   itemNum0:string;
+   itemName0:string;
+   道具背景:string;
+   icon0:string;
+   道具框:string;
+   文本:string;
+   before:number;
+   itemNum1:string;
+   itemName1:string;
+   icon1:string;
+   itemNum2:string;
+   itemName2:string;
+   icon2:string;
+   itemNum3:string;
+   itemName3:string;
+   icon3:string;
+   itemNum4:string;
+   itemName4:string;
+   icon4:string;
+   itemNum5:string;
+   itemName5:string;
+   icon5:string;
+   itemNum6:string;
+   itemName6:string;
+   icon6:string;
+   after:number;
 
 }
 
 /**
- * 1014- [BASE]
+ * 1014-结算界面 [BASE]
  */
 class GUI_1014 extends GUI_BASE {
-
+   图片:UIBitmap;
+   win:UIBitmap;
+   sure:UIButton;
+   list:UIList; // Item=1002
    constructor(){
       super(1014);
    }
 }
 class ListItem_1014 extends UIListItemData {
-
+   图片:string;
+   win:string;
+   list:UIListItemData[];
 }
 
 /**

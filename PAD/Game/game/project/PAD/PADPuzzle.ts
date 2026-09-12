@@ -495,6 +495,14 @@ class PADPuzzle {
                     self._lastByType[type] += combos[i].indexes.length;
                 }
                 self._updateScoreText();
+                // isAddCombo：整轮一次性并入连锁数（加成后影响界面显示与所有后续计算）
+                let addCombo = PADStatus.getTotalAddCombo();
+                if (addCombo > 0) {
+                    self._lastComboCount += addCombo;
+                    if (self._comboText) self._comboText.text = String(self._lastComboCount);
+                    if (self._lastComboCount > self._maxComboCount) self._maxComboCount = self._lastComboCount;
+                    self._updateScoreText();
+                }
                 // 每次连锁消除完成后立即更新 lastResult（可实时查询，每轮覆盖）
                 PADPuzzle.lastResult = {
                     maxComboCount: self._maxComboCount,
@@ -528,7 +536,7 @@ class PADPuzzle {
      * 单个 combo 消除完成的计分
      */
     private _onComboFired(combo: PADCombo): void {
-        GameAudio.playSE(PADElement.removeSE, 0.8);
+        GameAudio.playSE(PADElement.removeSE, 1);
         this._totalBallCount += combo.indexes.length;
         if (this._byType[combo.type] === undefined) {
             this._byType[combo.type] = 0;

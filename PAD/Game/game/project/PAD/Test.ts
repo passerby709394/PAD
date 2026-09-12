@@ -81,7 +81,7 @@ class Test {
      */
     static outputNOIfNotString(value: unknown): void {
         if (typeof value !== "string") {
-            console.log("NO");
+            trace("NO");
         }
     }
 }

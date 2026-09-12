@@ -15,6 +15,10 @@ class Batter {
      * 全部玩家控制的角色的数组
      */
     static players:Batter[]=[];
+    /**
+     * 仓库中选中的玩家位置
+     */
+    static playerPackageIndex:number=0;    
 //私有属性
 
 
@@ -225,6 +229,7 @@ class Batter {
                 let data:DataStructure_partyActor=new DataStructure_partyActor();
                 data.actor=2;
                 data.lv=1;
+                data.exp=0;
                 Game.player.data.party.push(data);
             }
         }
@@ -344,12 +349,10 @@ class Batter {
                     AssetManager.loadAudios(aniAudios, Callback.New(() => {
                         //初始化
                         PADBattle.PADgame.setBusy(false);
-                        console.log("初始化中:",PADBattle.PADgame.isBusy);
                     }, null));
                 } else {
                     //初始化完成允许拖动元素
                     PADBattle.PADgame.setBusy(false);
-                    console.log("初始化完成允许拖动元素:",PADBattle.PADgame.isBusy);
                 }
             }, null),
             null,

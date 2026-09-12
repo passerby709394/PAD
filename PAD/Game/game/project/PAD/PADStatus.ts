@@ -363,5 +363,24 @@ class PADStatus {
 
         return finalDamage;
     }
+
+    /**
+     * 获取所有战斗者（玩家 + 敌人）带 isAddCombo 状态的 addCombo 之和
+     * @returns 本轮应额外增加的连锁数
+     */
+    static getTotalAddCombo(): number {
+        let total = 0;
+        for (const b of Batter.players) {
+            for (const s of b.status) {
+                if (s.isAddCombo) total += s.addCombo;
+            }
+        }
+        for (const b of Batter.enemys) {
+            for (const s of b.status) {
+                if (s.isAddCombo) total += s.addCombo;
+            }
+        }
+        return total;
+    }
 }
 

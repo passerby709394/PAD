@@ -1,9 +1,0 @@
-{
-  "name": "dsh-write-touch",
-  "description": "Emit LAST_WRITE after DSH write/edit so GameCreator recompiles without a restart",
-  "version": "0.1.0",
-  "entry": {
-    "name": "write-touch",
-    "inject": []
-  }
-}

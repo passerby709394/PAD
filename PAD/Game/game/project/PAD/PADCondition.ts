@@ -63,7 +63,6 @@ class PADCondition {
         // 当前技能不满足（条件不满足或使用次数用尽）：尝试下一个，全部不满足则兜底选中起始技能
         const reject = (offset: number): void => {
             if (offset + 1 >= n) {
-                console.log(`[PADCondition] 敌人「${enemy.actor.name}」所有技能条件均不满足或使用次数用尽，兜底选择技能索引 ${startIndex}`);
                 apply(startIndex);
                 onDone?.();
             } else {

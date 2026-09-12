@@ -11,9 +11,6 @@ class PADAction {
     static playerAction(combos: PADCombo[], onComplete?: Function): void {
         // 排除放错位置的敌人数据（isEnemy=true），只保留真正的玩家
         const players = Batter.players.filter((p) => {
-            if (p.actor.isEnemy) {
-                console.log(`[PADAction] 跳过非玩家数据：${p.actor.name}（isEnemy=true）`);
-            }
             return true;
         });
 
@@ -93,9 +90,7 @@ class PADAction {
             let damage: number = Number(player.atkAniPRtext.text);
             const comboCount = PADPuzzle.lastResult.lastComboCount;
             const comboBonus = Game.player.data.comboBonus;
-            const beforeCombo = damage;
             damage = Math.floor(damage * (comboCount - 1) * comboBonus);
-            console.log(`[伤害计算] ${player.actor.name} combo连锁加成：攻击准备值=${beforeCombo}，combo数=${comboCount}，comboBonus=${comboBonus}，本次加成=${damage}，累加后=${beforeCombo + damage}`);
             // 如果需要逐个显示 combo 结算，true 改 false
             PADanim.playerAtkPR(player, damage, true, onDone);
         };
@@ -162,10 +157,7 @@ class PADAction {
     static enemyAction(combos: PADCombo[], onComplete?: Function): void {
         // 只处理生命不为零和可以行动的敌人
         const aliveEnemies = Batter.enemys.filter((e) => {
-            // 非敌人数据（放错位置）：在筛选阶段排除并提示，避免误触发行动
-            if (!e.actor.isEnemy) {
-                console.log(`[PADAction] 跳过非敌人数据：${e.actor.name}（isEnemy=false）`);
-            }
+            // 非敌人数据（放错位置）：在筛选阶段排除，避免误触发行动
             return e.uihpSlider && e.enemyCanAction && e.uihpSlider.value > 0;
         });
         const process = (index: number): void => {

@@ -43,6 +43,7 @@ class PADPlayerSkill {
             animation.x=card.width-50;
             animation.y=0;
             animation.loop=true;
+            animation.silentMode=true;
             animation.currentFrame=1;
             card.addChild(animation);
             animation.play();

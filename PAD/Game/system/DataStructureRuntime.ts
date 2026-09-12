@@ -15,8 +15,9 @@ class DataStructure_preloadAsset {
  * #2 packageItem
  */
 class DataStructure_packageItem {
-    item: Module_Item; // = 0; 道具
-    number: number; // = 1; 数目
+    character: number; // = 0; 角色
+    level: number; // = 1; 等级
+    exp: number; // = 0; 经验
 }
 /**
  * #3 keys
@@ -75,6 +76,7 @@ class DataStructure_collisionGroupSetting {
 class DataStructure_partyActor {
     actor: number; // = 0; 角色
     lv: number; // = 1; 等级
+    exp: number; // = 0; 经验
 }
 /**
  * #10 enemySkills
@@ -98,4 +100,12 @@ class DataStructure_dropItem {
     dropProbability: number; // = 100; 掉落几率
     item: number; // = 1; 掉落道具
     num: number; // = 1; 数量
+}
+/**
+ * #1003 reward
+ */
+class DataStructure_reward {
+    lv: number; // = 1; 等级
+    actor: number; // = 1;
+    p: number; // = 1; 掉落概率
 }

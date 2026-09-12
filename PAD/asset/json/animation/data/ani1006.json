@@ -1,0 +1,116 @@
+{
+    "totalFrame": 6,
+    "imageSources": [
+        null
+    ],
+    "layers": [
+        {
+            "type": 0,
+            "name": "[#GAME_THE_TARGET_LAYER]",
+            "children": [],
+            "frames": [
+                {
+                    "index": 0,
+                    "frameinterpolationEnabled": true,
+                    "x": 0,
+                    "y": 0,
+                    "rotation": 0,
+                    "alpha": 1,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "materialData": [
+                        {
+                            "materials": []
+                        }
+                    ]
+                },
+                {
+                    "index": 1,
+                    "frameinterpolationEnabled": true,
+                    "materialData": [
+                        {
+                            "materials": []
+                        }
+                    ],
+                    "x": -10,
+                    "y": -20,
+                    "rotation": 0,
+                    "alpha": 1,
+                    "scaleX": 1.2,
+                    "scaleY": 1.2,
+                    "signalId": 0
+                },
+                {
+                    "index": 2,
+                    "frameinterpolationEnabled": true,
+                    "materialData": [
+                        {
+                            "materials": []
+                        }
+                    ],
+                    "x": -20,
+                    "y": -40,
+                    "rotation": 0,
+                    "alpha": 1,
+                    "scaleX": 1.5,
+                    "scaleY": 1.5,
+                    "signalId": 0
+                },
+                {
+                    "index": 3,
+                    "frameinterpolationEnabled": true,
+                    "materialData": [
+                        {
+                            "materials": []
+                        }
+                    ],
+                    "x": 10,
+                    "y": -20,
+                    "rotation": 0,
+                    "alpha": 1,
+                    "scaleX": 1.2,
+                    "scaleY": 1.2,
+                    "signalId": 0
+                },
+                {
+                    "index": 4,
+                    "frameinterpolationEnabled": true,
+                    "materialData": [
+                        {
+                            "materials": []
+                        }
+                    ],
+                    "x": 20,
+                    "y": 0,
+                    "rotation": 0,
+                    "alpha": 1,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "signalId": 0
+                },
+                {
+                    "index": 5,
+                    "frameinterpolationEnabled": true,
+                    "x": 0,
+                    "y": 0,
+                    "rotation": 0,
+                    "alpha": 1,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "materialData": [
+                        {
+                            "materials": []
+                        }
+                    ],
+                    "signalId": 0
+                }
+            ],
+            "isHitEffect": false,
+            "ishide": false,
+            "islock": false
+        }
+    ],
+    "isParticle": false,
+    "id": 1006,
+    "particleData": null
+}

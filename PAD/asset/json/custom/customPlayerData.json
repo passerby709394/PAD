@@ -1,0 +1,139 @@
+{
+    "attrs": {
+        "package": {
+            "varType": 9,
+            "value": [
+                {
+                    "level": {
+                        "varType": 0,
+                        "value": 1,
+                        "copy": false
+                    },
+                    "character": {
+                        "varType": 0,
+                        "value": 1001,
+                        "copy": false
+                    }
+                },
+                {
+                    "level": {
+                        "varType": 0,
+                        "value": 20,
+                        "copy": false
+                    },
+                    "character": {
+                        "varType": 0,
+                        "value": 1002,
+                        "copy": false
+                    }
+                },
+                {
+                    "level": {
+                        "varType": 0,
+                        "value": 30,
+                        "copy": false
+                    },
+                    "character": {
+                        "varType": 0,
+                        "value": 1003,
+                        "copy": false
+                    }
+                },
+                {
+                    "level": {
+                        "varType": 0,
+                        "value": 400,
+                        "copy": false
+                    },
+                    "character": {
+                        "varType": 0,
+                        "value": 1004,
+                        "copy": false
+                    }
+                }
+            ],
+            "copy": false
+        },
+        "gold": {
+            "varType": 0,
+            "value": 0,
+            "copy": false
+        },
+        "未命名变量": {
+            "varType": 1,
+            "value": "",
+            "copy": false
+        },
+        "party": {
+            "varType": 9,
+            "value": [
+                {
+                    "actor": {
+                        "varType": 0,
+                        "value": 1001,
+                        "copy": false
+                    },
+                    "lv": {
+                        "varType": 0,
+                        "value": 10,
+                        "copy": false
+                    }
+                },
+                {
+                    "actor": {
+                        "varType": 0,
+                        "value": 1002,
+                        "copy": false
+                    },
+                    "lv": {
+                        "varType": 0,
+                        "value": 10,
+                        "copy": false
+                    }
+                },
+                {
+                    "actor": {
+                        "varType": 0,
+                        "value": 1002,
+                        "copy": false
+                    },
+                    "lv": {
+                        "varType": 0,
+                        "value": 10,
+                        "copy": false
+                    }
+                },
+                {
+                    "actor": {
+                        "varType": 0,
+                        "value": 1002,
+                        "copy": false
+                    },
+                    "lv": {
+                        "varType": 0,
+                        "value": 10,
+                        "copy": false
+                    }
+                },
+                {
+                    "actor": {
+                        "varType": 0,
+                        "value": 1002,
+                        "copy": false
+                    },
+                    "lv": {
+                        "varType": 0,
+                        "value": 10,
+                        "copy": false
+                    }
+                }
+            ],
+            "copy": false
+        },
+        "comboBonus": {
+            "varType": 0,
+            "value": 0.25,
+            "copy": false
+        }
+    }
+}

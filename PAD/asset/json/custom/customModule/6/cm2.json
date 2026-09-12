@@ -1,0 +1,210 @@
+{
+    "attrs": {
+        "image": {
+            "varType": 1,
+            "value": "asset/image/picture/state/Accuracy.png",
+            "copy": false
+        },
+        "always": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "bonus": {
+            "varType": 0,
+            "value": 1,
+            "copy": false
+        },
+        "isTypeBonus": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "isHitsBonus": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "isCrossBonus": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "isRowBonus": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "isColBonus": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "isNumBonus": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "battler": {
+            "varType": 0,
+            "value": 0,
+            "copy": false
+        },
+        "compareHP": {
+            "varType": 0,
+            "value": 0,
+            "copy": false
+        },
+        "valueHP": {
+            "varType": 0,
+            "value": 50,
+            "copy": false
+        },
+        "type": {
+            "varType": 0,
+            "value": 1,
+            "copy": false
+        },
+        "hitValue": {
+            "varType": 0,
+            "value": 1,
+            "copy": false
+        },
+        "hitBonus": {
+            "varType": 0,
+            "value": 1,
+            "copy": false
+        },
+        "compareHit": {
+            "varType": 0,
+            "value": 0,
+            "copy": false
+        },
+        "isMultipleCossBonus": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "isMultipleRowBonus": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "isMultipleColBonus": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "Nums": {
+            "varType": 0,
+            "value": 0,
+            "copy": false
+        },
+        "typeForNum": {
+            "varType": 0,
+            "value": 0,
+            "copy": false
+        },
+        "layer": {
+            "varType": 0,
+            "value": 0,
+            "copy": false
+        },
+        "intro": {
+            "varType": 1,
+            "value": "HP大于50%时，伤害增加200%",
+            "copy": false
+        },
+        "introL": {
+            "varType": 1,
+            "value": "",
+            "copy": false
+        },
+        "isHP": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "hpHitBonus": {
+            "varType": 0,
+            "value": 2,
+            "copy": false
+        },
+        "hpHitedBonus": {
+            "varType": 0,
+            "value": 1,
+            "copy": false
+        },
+        "typeHitBonus": {
+            "varType": 0,
+            "value": 2,
+            "copy": false
+        },
+        "typeHitedBonus": {
+            "varType": 0,
+            "value": 1,
+            "copy": false
+        },
+        "typeHits": {
+            "varType": 0,
+            "value": 2,
+            "copy": false
+        },
+        "hitedBonus": {
+            "varType": 0,
+            "value": 1,
+            "copy": false
+        },
+        "crossHitBonus": {
+            "varType": 0,
+            "value": 1,
+            "copy": false
+        },
+        "crossHitedBonus": {
+            "varType": 0,
+            "value": 1,
+            "copy": false
+        },
+        "rowHitBonus": {
+            "varType": 0,
+            "value": 1,
+            "copy": false
+        },
+        "rowHitedBonus": {
+            "varType": 0,
+            "value": 1,
+            "copy": false
+        },
+        "colHitBonus": {
+            "varType": 0,
+            "value": 1,
+            "copy": false
+        },
+        "colHitedBonus": {
+            "varType": 0,
+            "value": 1,
+            "copy": false
+        },
+        "NumHitBonus": {
+            "varType": 0,
+            "value": 1,
+            "copy": false
+        },
+        "NumHitedBonus": {
+            "varType": 0,
+            "value": 1,
+            "copy": false
+        },
+        "isAddCombo": {
+            "varType": 2,
+            "value": true,
+            "copy": false
+        },
+        "addCombo": {
+            "varType": 0,
+            "value": 1,
+            "copy": false
+        }
+    },
+    "id": 2
+}

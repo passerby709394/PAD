@@ -1,0 +1,68 @@
+{
+    "totalFrame": 6,
+    "imageSources": [
+        null
+    ],
+    "layers": [
+        {
+            "type": 0,
+            "name": "[#GAME_THE_TARGET_LAYER]",
+            "children": [],
+            "frames": [
+                {
+                    "index": 0,
+                    "frameinterpolationEnabled": true,
+                    "x": 0,
+                    "y": 0,
+                    "rotation": 0,
+                    "alpha": 1,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "materialData": [
+                        {
+                            "materials": []
+                        }
+                    ]
+                },
+                {
+                    "index": 2,
+                    "frameinterpolationEnabled": true,
+                    "x": -25,
+                    "y": -25,
+                    "rotation": 0,
+                    "alpha": 1,
+                    "scaleX": 1.2,
+                    "scaleY": 1.2,
+                    "materialData": [
+                        {
+                            "materials": []
+                        }
+                    ],
+                    "signalId": 0
+                },
+                {
+                    "index": 5,
+                    "frameinterpolationEnabled": true,
+                    "x": 0,
+                    "y": 0,
+                    "rotation": 0,
+                    "alpha": 1,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "materialData": [
+                        {
+                            "materials": []
+                        }
+                    ],
+                    "signalId": 0
+                }
+            ],
+            "isHitEffect": false,
+            "ishide": false,
+            "islock": false
+        }
+    ],
+    "isParticle": false,
+    "id": 1008,
+    "particleData": null
+}

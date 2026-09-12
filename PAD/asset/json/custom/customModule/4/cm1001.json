@@ -1,0 +1,179 @@
+{
+    "attrs": {
+        "face": {
+            "varType": 1,
+            "value": "asset/image/picture/icon/PADcard/Lsilaimu.png",
+            "copy": false
+        },
+        "avatar": {
+            "varType": 0,
+            "value": 0,
+            "copy": false
+        },
+        "bttlerAvatar": {
+            "varType": 0,
+            "value": 11001,
+            "copy": false
+        },
+        "ATK": {
+            "varType": 0,
+            "value": 100,
+            "copy": false
+        },
+        "MaxHP": {
+            "varType": 0,
+            "value": 500,
+            "copy": false
+        },
+        "Heal": {
+            "varType": 0,
+            "value": 100,
+            "copy": false
+        },
+        "ElementType1": {
+            "varType": 0,
+            "value": 1,
+            "copy": false
+        },
+        "ElementType2": {
+            "varType": 0,
+            "value": 6,
+            "copy": false
+        },
+        "skills": {
+            "varType": 9,
+            "value": [],
+            "copy": false
+        },
+        "attackVoice": {
+            "varType": 1,
+            "value": "",
+            "copy": false
+        },
+        "hitVoice": {
+            "varType": 1,
+            "value": "asset/audio/se/battle/Slime_attack.ogg,1,1",
+            "copy": false,
+            "volume": "1",
+            "pitch": "1"
+        },
+        "dieVoice": {
+            "varType": 1,
+            "value": "",
+            "copy": false
+        },
+        "dropGold": {
+            "varType": 0,
+            "value": 0,
+            "copy": false
+        },
+        "dropExp": {
+            "varType": 0,
+            "value": 0,
+            "copy": false
+        },
+        "dropItems": {
+            "varType": 9,
+            "value": [],
+            "copy": false
+        },
+        "selfStatus1": {
+            "varType": 6,
+            "value": [],
+            "copy": false
+        },
+        "currentEXP": {
+            "varType": 0,
+            "value": 0,
+            "copy": false
+        },
+        "increaseMaxHP": {
+            "varType": 0,
+            "value": 0,
+            "copy": false
+        },
+        "increaseATK": {
+            "varType": 0,
+            "value": 0,
+            "copy": false
+        },
+        "increaseHeal": {
+            "varType": 0,
+            "value": 0,
+            "copy": false
+        },
+        "selfStatus": {
+            "varType": 6,
+            "value": [],
+            "copy": false
+        },
+        "dead": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "HP": {
+            "varType": 0,
+            "value": 100,
+            "copy": false
+        },
+        "MaxATK": {
+            "varType": 0,
+            "value": 200,
+            "copy": false
+        },
+        "MaxHeal": {
+            "varType": 0,
+            "value": 200,
+            "copy": false
+        },
+        "MaxLevel": {
+            "varType": 0,
+            "value": 30,
+            "copy": false
+        },
+        "useElementType2": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "isEnemy": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "skillsPlayer1": {
+            "varType": 0,
+            "value": 1001,
+            "copy": false
+        },
+        "skillsPlayer2": {
+            "varType": 0,
+            "value": 2,
+            "copy": false
+        },
+        "intro": {
+            "varType": 1,
+            "value": "一种常见的，黏糊糊的怪物。",
+            "copy": false
+        },
+        "描述": {
+            "varType": 1,
+            "value": "",
+            "copy": false
+        },
+        "se": {
+            "varType": 1,
+            "value": "asset/audio/se/item/Find_1.ogg,1,1",
+            "copy": false,
+            "volume": "1",
+            "pitch": "1"
+        },
+        "BASE_EXP": {
+            "varType": 0,
+            "value": 10,
+            "copy": false
+        }
+    },
+    "id": 1001
+}

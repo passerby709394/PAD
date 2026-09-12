@@ -1,0 +1,160 @@
+{
+    "attrs": {
+        "image": {
+            "varType": 1,
+            "value": "asset/image/picture/state/Enchanting.png",
+            "copy": false
+        },
+        "always": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "bonus": {
+            "varType": 0,
+            "value": 1,
+            "copy": false
+        },
+        "conditionHP": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "isTypeBonus": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "isHitsBonus": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "isCrossBonus": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "isRowBonus": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "isColBonus": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "isNumBonus": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "battler": {
+            "varType": 0,
+            "value": 0,
+            "copy": false
+        },
+        "compareHP": {
+            "varType": 0,
+            "value": 0,
+            "copy": false
+        },
+        "valueHP": {
+            "varType": 0,
+            "value": 0,
+            "copy": false
+        },
+        "hpBonus": {
+            "varType": 0,
+            "value": 1,
+            "copy": false
+        },
+        "type": {
+            "varType": 0,
+            "value": 0,
+            "copy": false
+        },
+        "typeBonus": {
+            "varType": 0,
+            "value": 1,
+            "copy": false
+        },
+        "hitValue": {
+            "varType": 0,
+            "value": 1,
+            "copy": false
+        },
+        "hitBonus": {
+            "varType": 0,
+            "value": 1,
+            "copy": false
+        },
+        "compareHit": {
+            "varType": 0,
+            "value": 0,
+            "copy": false
+        },
+        "crossBonus": {
+            "varType": 0,
+            "value": 0,
+            "copy": false
+        },
+        "isMultipleCossBonus": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "rowBonus": {
+            "varType": 0,
+            "value": 0,
+            "copy": false
+        },
+        "isMultipleRowBonus": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "colBonus": {
+            "varType": 0,
+            "value": 0,
+            "copy": false
+        },
+        "isMultipleColBonus": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "Nums": {
+            "varType": 0,
+            "value": 0,
+            "copy": false
+        },
+        "typeForNum": {
+            "varType": 0,
+            "value": 0,
+            "copy": false
+        },
+        "NumBonus": {
+            "varType": 0,
+            "value": 1,
+            "copy": false
+        },
+        "layer": {
+            "varType": 0,
+            "value": 0,
+            "copy": false
+        },
+        "intro": {
+            "varType": 1,
+            "value": "测试",
+            "copy": false
+        },
+        "introL": {
+            "varType": 1,
+            "value": "",
+            "copy": false
+        }
+    },
+    "id": 9
+}

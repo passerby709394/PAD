@@ -1,0 +1,171 @@
+{
+    "root": {
+        "children": [
+            {
+                "id": "231635192631_0.18123409738579177",
+                "condition": [],
+                "type": "UIBitmap",
+                "name": "图片",
+                "x": -699,
+                "y": -786,
+                "width": 3768,
+                "height": 2744,
+                "opacity": 1,
+                "blend": 0,
+                "rotation": 0,
+                "show": true,
+                "mouseEventEnabledData": true,
+                "materialData": [
+                    {
+                        "materials": []
+                    }
+                ],
+                "mouseEventEnabledInEditor": true,
+                "lock": false,
+                "showOnEditor": true,
+                "hasCommand": [],
+                "isOpen": true,
+                "image": "",
+                "grid9": "0,0,0,0,0",
+                "flip": false,
+                "isTile": false,
+                "pivotType": 0,
+                "isAdaptiveSize": false
+            },
+            {
+                "id": "231633254014_0.18794198679448293",
+                "condition": [],
+                "type": "UIBitmap",
+                "name": "win",
+                "x": 0,
+                "y": 0,
+                "width": 1092,
+                "height": 809,
+                "opacity": 1,
+                "blend": 0,
+                "rotation": 0,
+                "show": true,
+                "mouseEventEnabledData": true,
+                "materialData": [
+                    {
+                        "materials": []
+                    }
+                ],
+                "mouseEventEnabledInEditor": true,
+                "lock": false,
+                "showOnEditor": true,
+                "hasCommand": [],
+                "isOpen": true,
+                "image": "asset/image/picture/icon/PADitem/win.png",
+                "grid9": "0,0,0,0,0",
+                "flip": false,
+                "isTile": false,
+                "pivotType": 0,
+                "isAdaptiveSize": false
+            },
+            {
+                "id": "231633289607_0.1940414023714303",
+                "condition": [],
+                "type": "UIButton",
+                "name": "sure",
+                "x": 400,
+                "y": 644,
+                "width": 284,
+                "height": 65,
+                "opacity": 1,
+                "blend": 0,
+                "rotation": 0,
+                "show": true,
+                "mouseEventEnabledData": true,
+                "materialData": [
+                    {
+                        "materials": []
+                    }
+                ],
+                "mouseEventEnabledInEditor": true,
+                "lock": true,
+                "showOnEditor": true,
+                "hasCommand": [
+                    true
+                ],
+                "isOpen": true,
+                "label": "",
+                "image1": "asset/image/picture/icon/PADitem/sure1.png",
+                "grid9img1": "0,0,0,0,0",
+                "image2": "asset/image/picture/icon/PADitem/sure2.png",
+                "grid9img2": "0,0,0,0,0",
+                "image3": "asset/image/picture/icon/PADitem/sure1.png",
+                "grid9img3": "0,0,0,0,0",
+                "fontSize": 24,
+                "color": "#ffffff",
+                "overColor": "#ffffff",
+                "clickColor": "#ffffff",
+                "bold": false,
+                "italic": false,
+                "smooth": false,
+                "align": 1,
+                "valign": 1,
+                "letterSpacing": 0,
+                "font": "Source_Han_Sans",
+                "textDx": 0,
+                "textDy": 0,
+                "textStroke": 0,
+                "textStrokeColor": "#000000"
+            },
+            {
+                "id": "231638850196_0.5564930096590359",
+                "condition": [],
+                "type": "UIList",
+                "name": "list",
+                "x": 138,
+                "y": 296,
+                "width": 809,
+                "height": 239,
+                "opacity": 1,
+                "blend": 0,
+                "rotation": 0,
+                "show": true,
+                "mouseEventEnabledData": true,
+                "materialData": [
+                    {
+                        "materials": []
+                    }
+                ],
+                "mouseEventEnabledInEditor": true,
+                "lock": false,
+                "showOnEditor": true,
+                "hasCommand": [],
+                "isOpen": true,
+                "itemModelGUI": 1002,
+                "previewSize": 12,
+                "selectEnable": false,
+                "repeatX": 4,
+                "itemWidth": 200,
+                "itemHeight": 50,
+                "spaceX": 2,
+                "spaceY": 20,
+                "scrollShowType": 2,
+                "hScrollBar": "asset/image/picture/control/hscroll_bar.png",
+                "hScrollBg": "asset/image/picture/control/hscroll_bg.png",
+                "vScrollBar": "asset/image/picture/control/vscroll_bar.png",
+                "vScrollBg": "asset/image/picture/control/vscroll_bg.png",
+                "scrollWidth": 16,
+                "selectImageURL": "",
+                "selectImageGrid9": "10,10,10,10,0",
+                "selectedImageAlpha": 0.5,
+                "selectedImageOnTop": true,
+                "overImageURL": "",
+                "overImageGrid9": "10,25,10,10,0",
+                "overImageAlpha": 0.5,
+                "overImageOnTop": true,
+                "overSelectMode": true,
+                "slowmotionType": 0,
+                "onChangeFragEvent1": null,
+                "onChangeFragEvent2": null
+            }
+        ]
+    },
+    "id": 1014,
+    "instanceClassName": "GUI_Reward",
+    "hasRootCommand": []
+}

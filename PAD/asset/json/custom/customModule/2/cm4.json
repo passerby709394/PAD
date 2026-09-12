@@ -1,0 +1,40 @@
+{
+    "attrs": {
+        "image": {
+            "varType": 1,
+            "value": "asset/image/picture/icon/PADitem/fire.png",
+            "copy": false
+        },
+        "ani": {
+            "varType": 0,
+            "value": 4003,
+            "copy": false
+        },
+        "textColor": {
+            "varType": 1,
+            "value": "#ff2200",
+            "copy": false
+        },
+        "elementBonus": {
+            "varType": 0,
+            "value": 0.25,
+            "copy": false
+        },
+        "isHeal": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "restrain": {
+            "varType": 0,
+            "value": 6,
+            "copy": false
+        },
+        "restrained": {
+            "varType": 0,
+            "value": 5,
+            "copy": false
+        }
+    },
+    "id": 4
+}

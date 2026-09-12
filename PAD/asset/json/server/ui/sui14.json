@@ -1,0 +1,458 @@
+{
+    "root": {
+        "commands": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            []
+        ]
+    },
+    "227327755626_0.286456121659741": {
+        "condition": [],
+        "commands": [
+            [
+                [
+                    160002,
+                    {
+                        "227675353336_0.3053227998626409": 1,
+                        "228806719124_0.9948072929052538": 10000,
+                        "228806792902_0.2978957648375553": 5,
+                        "228806842512_0.3512277505415393": 6,
+                        "228806894236_0.3694656245600929": 100,
+                        "228806926928_0.27619531834349975": 100,
+                        "228900095340_0.9306193472013546": "1-2-4-5-6"
+                    },
+                    "227327918976_0.6788428853544521"
+                ],
+                [
+                    11,
+                    1,
+                    null,
+                    "",
+                    3,
+                    -3,
+                    "<span style='color:#FfFffF'>测试完成</span>",
+                    null,
+                    1,
+                    0,
+                    "",
+                    {
+                        "id": 1,
+                        "atts": [],
+                        "time": 60,
+                        "transitionMode": null,
+                        "nonTweenType": 0,
+                        "mode": 0
+                    },
+                    {
+                        "___cmdID": "227328015367_0.18185192709949538"
+                    }
+                ],
+                [
+                    -1,
+                    {
+                        "___cmdID": "227327884708_0.2839936110125909"
+                    }
+                ]
+            ],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            []
+        ]
+    },
+    "227675208918_0.9241783274043238": {
+        "condition": [],
+        "commands": [
+            [
+                [
+                    160002,
+                    {
+                        "227675353336_0.3053227998626409": 2,
+                        "228806719124_0.9948072929052538": 10000,
+                        "228806792902_0.2978957648375553": 5,
+                        "228806842512_0.3512277505415393": 6,
+                        "228806894236_0.3694656245600929": 100,
+                        "228806926928_0.27619531834349975": 100,
+                        "228900095340_0.9306193472013546": "1-2-3-4-5-6"
+                    },
+                    "227327918976_0.6788428853544521"
+                ],
+                [
+                    11,
+                    1,
+                    null,
+                    "",
+                    3,
+                    -3,
+                    "<span style='color:#FfFffF'>测试完成</span>",
+                    null,
+                    1,
+                    0,
+                    "",
+                    {
+                        "id": 1,
+                        "atts": [],
+                        "time": 60,
+                        "transitionMode": null,
+                        "nonTweenType": 0,
+                        "mode": 0
+                    },
+                    {
+                        "___cmdID": "227328015367_0.18185192709949538"
+                    }
+                ],
+                [
+                    -1,
+                    {
+                        "___cmdID": "227327884708_0.2839936110125909"
+                    }
+                ]
+            ],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            []
+        ]
+    },
+    "227675209551_0.5671522126729793": {
+        "condition": [],
+        "commands": [
+            [
+                [
+                    160002,
+                    {
+                        "227675353336_0.3053227998626409": 3,
+                        "228806719124_0.9948072929052538": 100000,
+                        "228806792902_0.2978957648375553": 5,
+                        "228806842512_0.3512277505415393": 6,
+                        "228806894236_0.3694656245600929": 100,
+                        "228806926928_0.27619531834349975": 100
+                    },
+                    "227327918976_0.6788428853544521"
+                ],
+                [
+                    11,
+                    1,
+                    null,
+                    "",
+                    3,
+                    -3,
+                    "<span style='color:#FfFffF'>测试完成</span>",
+                    null,
+                    1,
+                    0,
+                    "",
+                    {
+                        "id": 1,
+                        "atts": [],
+                        "time": 60,
+                        "transitionMode": null,
+                        "nonTweenType": 0,
+                        "mode": 0
+                    },
+                    {
+                        "___cmdID": "227328015367_0.18185192709949538"
+                    }
+                ],
+                [
+                    -1,
+                    {
+                        "___cmdID": "227327884708_0.2839936110125909"
+                    }
+                ]
+            ],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            []
+        ]
+    },
+    "227675210149_0.9451521509376675": {
+        "condition": [],
+        "commands": [
+            [
+                [
+                    160002,
+                    {
+                        "227675353336_0.3053227998626409": 4,
+                        "228806719124_0.9948072929052538": 100000,
+                        "228806792902_0.2978957648375553": 5,
+                        "228806842512_0.3512277505415393": 6,
+                        "228806894236_0.3694656245600929": 100,
+                        "228806926928_0.27619531834349975": 100
+                    },
+                    "227327918976_0.6788428853544521"
+                ],
+                [
+                    11,
+                    1,
+                    null,
+                    "",
+                    3,
+                    -3,
+                    "<span style='color:#FfFffF'>测试完成</span>",
+                    null,
+                    1,
+                    0,
+                    "",
+                    {
+                        "id": 1,
+                        "atts": [],
+                        "time": 60,
+                        "transitionMode": null,
+                        "nonTweenType": 0,
+                        "mode": 0
+                    },
+                    {
+                        "___cmdID": "227328015367_0.18185192709949538"
+                    }
+                ],
+                [
+                    -1,
+                    {
+                        "___cmdID": "227327884708_0.2839936110125909"
+                    }
+                ]
+            ],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            []
+        ]
+    },
+    "228224979810_0.013304556016724423": {
+        "condition": [],
+        "commands": [
+            [
+                [
+                    20,
+                    "",
+                    "// 玩法集成测试：显示棋盘 → 拖拽消除 → 倒计时结束 → 输出结算结果\r\n// PADPuzzle.bgImage = \"asset/image/picture/QY/俄罗斯方块/背景图.png\"; // 可选背景\r\nlet puzzle = new PADPuzzle({\r\n    cols: 6,\r\n    rows: 6,\r\n    elementWidth: 100,\r\n    elementHeight: 100,\r\n    gap: 8,\r\n    roundTime: 10000 // 10 秒限时回合\r\n});\r\npuzzle.start(\r\n    function (result: PADPuzzleResult) {\r\n        console.log(\"=== 结算结果 ===\");\r\n        console.log(\"最大连锁:\", result.maxComboCount);\r\n        console.log(\"消除珠子:\", result.totalBallCount);\r\n        console.log(\"各属性:\", JSON.stringify(result.byType));\r\n        // 同时可从 PADPuzzle.lastResult 读取（供后续指令）\r\n    },\r\n    function () {\r\n        console.log(\"=== 时间到 ===\");\r\n    }\r\n);\r\nPADBattle.PADgame=puzzle;\r\n// 主动结束（如战斗中需要提前关闭）：\r\n// puzzle.dispose();",
+                    "var puzzle = new PADPuzzle({\n    cols: 6,\n    rows: 6,\n    elementWidth: 100,\n    elementHeight: 100,\n    gap: 8,\n    roundTime: 10000\n});\npuzzle.start(function (result) {\n    console.log(\"=== 结算结果 ===\");\n    console.log(\"最大连锁:\", result.maxComboCount);\n    console.log(\"消除珠子:\", result.totalBallCount);\n    console.log(\"各属性:\", JSON.stringify(result.byType));\n}, function () {\n    console.log(\"=== 时间到 ===\");\n});\nPADBattle.PADgame = puzzle;\n",
+                    {
+                        "___cmdID": "228224986054_0.13053230981167618"
+                    }
+                ],
+                [
+                    -1,
+                    {
+                        "___cmdID": "228224979813_0.9768180119955527"
+                    }
+                ]
+            ],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            []
+        ]
+    },
+    "228225320866_0.6654310151712715": {
+        "condition": [],
+        "commands": [
+            [
+                [
+                    20,
+                    "",
+                    "PADElement.dataIDs=[1,2,4,5,6]\r\n// 玩法集成测试：显示棋盘 → 拖拽消除 → 倒计时结束 → 输出结算结果\r\nPADPuzzle.bgImage = \"asset/image/picture/QY/俄罗斯方块/背景图.png\"; // 可选背景\r\nlet puzzle = new PADPuzzle({\r\n    cols: 5,\r\n    rows: 5,\r\n    elementWidth: 100,\r\n    elementHeight: 100,\r\n    gap: 8,\r\n    roundTime: 10000 // 30 秒限时回合\r\n});\r\npuzzle.start(\r\n    function (result: PADPuzzleResult) {\r\n        console.log(\"=== 结算结果 ===\");\r\n        console.log(\"最大连锁:\", result.maxComboCount);\r\n        console.log(\"总 Combo:\", result.totalComboCount);\r\n        console.log(\"消除珠子:\", result.totalBallCount);\r\n        console.log(\"各属性:\", JSON.stringify(result.byType));\r\n        // 同时可从 PADPuzzle.lastResult 读取（供后续指令）\r\n    },\r\n    function () {\r\n        console.log(\"=== 时间到 ===\");\r\n    }\r\n);\r\nPADBattle.PADgame=puzzle;\r\n// 主动结束（如战斗中需要提前关闭）：\r\n// puzzle.dispose();",
+                    "PADElement.dataIDs = [1, 2, 4, 5, 6];\nPADPuzzle.bgImage = \"asset/image/picture/QY/俄罗斯方块/背景图.png\";\nvar puzzle = new PADPuzzle({\n    cols: 5,\n    rows: 5,\n    elementWidth: 100,\n    elementHeight: 100,\n    gap: 8,\n    roundTime: 10000\n});\npuzzle.start(function (result) {\n    console.log(\"=== 结算结果 ===\");\n    console.log(\"最大连锁:\", result.maxComboCount);\n    console.log(\"总 Combo:\", result.totalComboCount);\n    console.log(\"消除珠子:\", result.totalBallCount);\n    console.log(\"各属性:\", JSON.stringify(result.byType));\n}, function () {\n    console.log(\"=== 时间到 ===\");\n});\nPADBattle.PADgame = puzzle;\n",
+                    {
+                        "___cmdID": "228563277487_0.015781867144757822"
+                    }
+                ],
+                [
+                    -1,
+                    {
+                        "___cmdID": "228225320867_0.03240200499026469"
+                    }
+                ]
+            ],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            []
+        ]
+    },
+    "228572483299_0.2387010390762736": {
+        "condition": [],
+        "commands": [
+            [
+                [
+                    20,
+                    "",
+                    "PADBattle.PADgame.dispose()\n",
+                    "PADBattle.PADgame.dispose();\n",
+                    {
+                        "___cmdID": "228572675078_0.43704511590747197"
+                    }
+                ],
+                [
+                    -1,
+                    {
+                        "___cmdID": "228572672079_0.14332477167040447"
+                    }
+                ]
+            ],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            []
+        ]
+    },
+    "228624734796_0.9859874240325577": {
+        "condition": [],
+        "commands": [
+            [
+                [
+                    20,
+                    "",
+                    "PADPuzzle.scoreText.visible=true;\n",
+                    "PADPuzzle.scoreText.visible = true;\n",
+                    {
+                        "___cmdID": "228572675078_0.43704511590747197"
+                    }
+                ],
+                [
+                    -1,
+                    {
+                        "___cmdID": "228572672079_0.14332477167040447"
+                    }
+                ]
+            ],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            []
+        ]
+    },
+    "228663590763_0.44383498160889867": {
+        "condition": [],
+        "commands": [
+            [
+                [
+                    20,
+                    "",
+                    " let audios=[\"asset/audio/se/PAD/xiaochu.ogg\"]       \nAssetManager.batchPreLoadAsset(\n    Callback.New(() => {console.log(\"触发资源加载回调\")}, null),Callback.New(() => {}, null),[], [], [], [], [], [], [], audios);\n\n\n\n",
+                    "var audios = [\"asset/audio/se/PAD/xiaochu.ogg\"];\nAssetManager.batchPreLoadAsset(Callback.New(function () { console.log(\"触发资源加载回调\"); }, null), Callback.New(function () { }, null), [], [], [], [], [], [], [], audios);\n",
+                    {
+                        "___cmdID": "228663596633_0.45615878853849745"
+                    }
+                ],
+                [
+                    -1,
+                    {
+                        "___cmdID": "228663590765_0.693192461802733"
+                    }
+                ]
+            ],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            []
+        ]
+    },
+    "228905976978_0.9195532922573666": {
+        "condition": [],
+        "commands": [
+            [
+                [
+                    20,
+                    "",
+                    "GameAudio.playSE(\"asset/audio/se/PAD/xiaochu.ogg\")\n\n\n\n",
+                    "GameAudio.playSE(\"asset/audio/se/PAD/xiaochu.ogg\");\n",
+                    {
+                        "___cmdID": "228663596633_0.45615878853849745"
+                    }
+                ],
+                [
+                    -1,
+                    {
+                        "___cmdID": "228663590765_0.693192461802733"
+                    }
+                ]
+            ],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            []
+        ]
+    }
+}

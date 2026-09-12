@@ -1,0 +1,163 @@
+{
+    "root": {
+        "children": [
+            {
+                "id": "230984886678_0.023042433230331616",
+                "condition": [],
+                "type": "UIBitmap",
+                "name": "bg",
+                "x": 0,
+                "y": 0,
+                "width": 250,
+                "height": 145,
+                "opacity": 1,
+                "blend": 0,
+                "rotation": 0,
+                "show": true,
+                "mouseEventEnabledData": true,
+                "materialData": [
+                    {
+                        "materials": []
+                    }
+                ],
+                "mouseEventEnabledInEditor": true,
+                "lock": false,
+                "showOnEditor": true,
+                "hasCommand": [],
+                "isOpen": true,
+                "image": "asset/image/picture/control/check_unselected.png",
+                "grid9": "10,10,11,10,0",
+                "flip": false,
+                "isTile": false,
+                "pivotType": 0,
+                "isAdaptiveSize": false,
+                "children": [
+                    {
+                        "id": "230985048605_0.4146148389442579",
+                        "condition": [],
+                        "type": "UIString",
+                        "name": "text",
+                        "x": 29,
+                        "y": 10,
+                        "width": 200,
+                        "height": 24,
+                        "opacity": 1,
+                        "blend": 0,
+                        "rotation": 0,
+                        "show": true,
+                        "mouseEventEnabledData": false,
+                        "materialData": [
+                            {
+                                "materials": []
+                            }
+                        ],
+                        "mouseEventEnabledInEditor": true,
+                        "lock": false,
+                        "showOnEditor": true,
+                        "hasCommand": [],
+                        "isOpen": true,
+                        "text": "字符串",
+                        "fontSize": 20,
+                        "color": "#ffffff",
+                        "bold": false,
+                        "italic": false,
+                        "smooth": false,
+                        "align": 0,
+                        "valign": 0,
+                        "leading": 0,
+                        "letterSpacing": 0,
+                        "font": "Source_Han_Sans",
+                        "wordWrap": true,
+                        "overflow": 0,
+                        "shadowEnabled": false,
+                        "shadowColor": "#000000",
+                        "shadowDx": 1,
+                        "shadowDy": 1,
+                        "stroke": 0,
+                        "strokeColor": "#000000",
+                        "onChangeFragEvent": null
+                    },
+                    {
+                        "id": "230985119854_0.9919070416746056",
+                        "condition": [],
+                        "type": "UIBitmap",
+                        "name": "image",
+                        "x": 5,
+                        "y": 10,
+                        "width": 24,
+                        "height": 24,
+                        "opacity": 1,
+                        "blend": 0,
+                        "rotation": 0,
+                        "show": true,
+                        "mouseEventEnabledData": true,
+                        "materialData": [
+                            {
+                                "materials": []
+                            }
+                        ],
+                        "mouseEventEnabledInEditor": true,
+                        "lock": false,
+                        "showOnEditor": true,
+                        "hasCommand": [],
+                        "isOpen": true,
+                        "image": "asset/image/picture/state/Rage.png",
+                        "grid9": "0,0,0,0,0",
+                        "flip": false,
+                        "isTile": false,
+                        "pivotType": 0,
+                        "isAdaptiveSize": false
+                    },
+                    {
+                        "id": "230990660973_0.7409549091493572",
+                        "condition": [],
+                        "type": "UIString",
+                        "name": "intro",
+                        "x": 5,
+                        "y": 40,
+                        "width": 240,
+                        "height": 101,
+                        "opacity": 1,
+                        "blend": 0,
+                        "rotation": 0,
+                        "show": true,
+                        "mouseEventEnabledData": false,
+                        "materialData": [
+                            {
+                                "materials": []
+                            }
+                        ],
+                        "mouseEventEnabledInEditor": true,
+                        "lock": false,
+                        "showOnEditor": true,
+                        "hasCommand": [],
+                        "isOpen": true,
+                        "text": "字符串",
+                        "fontSize": 18,
+                        "color": "#ffffff",
+                        "bold": false,
+                        "italic": false,
+                        "smooth": false,
+                        "align": 1,
+                        "valign": 0,
+                        "leading": 0,
+                        "letterSpacing": 0,
+                        "font": "Source_Han_Sans",
+                        "wordWrap": true,
+                        "overflow": 0,
+                        "shadowEnabled": false,
+                        "shadowColor": "#000000",
+                        "shadowDx": 1,
+                        "shadowDy": 1,
+                        "stroke": 0,
+                        "strokeColor": "#000000",
+                        "onChangeFragEvent": null
+                    }
+                ]
+            }
+        ]
+    },
+    "id": 1012,
+    "instanceClassName": "",
+    "hasRootCommand": []
+}

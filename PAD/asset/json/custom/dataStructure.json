@@ -1,0 +1,35 @@
+{
+    "list": {
+        "1": [
+            null,
+            "preloadAsset",
+            "packageItem",
+            "keys",
+            "point",
+            "shopItem",
+            "gameKeyboard",
+            "inputMessage",
+            "collisionGroupSetting",
+            "partyActor",
+            "enemySkills"
+        ],
+        "2": [
+            null,
+            "enemyActor",
+            "dropItem",
+            "reward"
+        ],
+        "3": [
+            null
+        ],
+        "16": [
+            null
+        ]
+    },
+    "type": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "16": "插件"
+    }
+}

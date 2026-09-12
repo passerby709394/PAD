@@ -1,0 +1,40 @@
+{
+    "attrs": {
+        "image": {
+            "varType": 1,
+            "value": "",
+            "copy": false
+        },
+        "ani": {
+            "varType": 0,
+            "value": 0,
+            "copy": false
+        },
+        "textColor": {
+            "varType": 1,
+            "value": "",
+            "copy": false
+        },
+        "elementBonus": {
+            "varType": 0,
+            "value": 0.25,
+            "copy": false
+        },
+        "isHeal": {
+            "varType": 2,
+            "value": false,
+            "copy": false
+        },
+        "restrain": {
+            "varType": 0,
+            "value": 0,
+            "copy": false
+        },
+        "restrained": {
+            "varType": 0,
+            "value": 0,
+            "copy": false
+        }
+    },
+    "id": 15001
+}

@@ -1,0 +1,53 @@
+[
+    {
+        "allPlugUseData": [
+            null,
+            null,
+            null,
+            [
+                15001
+            ],
+            null,
+            null,
+            null,
+            [
+                "asset/image/picture/QY/俄罗斯方块/背景图.png",
+                "asset/image/picture/QY/俄罗斯方块/游戏结束.png",
+                "asset/image/picture/QY/俄罗斯方块/暂停.png",
+                "asset/image/picture/QY/俄罗斯方块/方块.png"
+            ],
+            [],
+            [],
+            [],
+            [],
+            [
+                15001
+            ],
+            [],
+            null,
+            null,
+            [],
+            [
+                {
+                    "filePath": "Game/GCplug/117/QYtetris.ts",
+                    "isServer": false
+                }
+            ],
+            null,
+            null,
+            [],
+            [],
+            []
+        ],
+        "id": 117,
+        "name": "俄罗斯方块小游戏",
+        "lastUpdateTime": 1657162779,
+        "author": "千叶不冷",
+        "gcver": 0,
+        "isSystem": false,
+        "updateMode": 0,
+        "version": 0,
+        "latestVersion": 0,
+        "isLocal": false
+    }
+]

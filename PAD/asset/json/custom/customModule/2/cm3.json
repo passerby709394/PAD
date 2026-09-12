@@ -1,0 +1,30 @@
+{
+    "attrs": {
+        "image": {
+            "varType": 1,
+            "value": "asset/image/picture/icon/PADitem/heal.png",
+            "copy": false
+        },
+        "ani": {
+            "varType": 0,
+            "value": 4006,
+            "copy": false
+        },
+        "textColor": {
+            "varType": 1,
+            "value": "#22ff00",
+            "copy": false
+        },
+        "elementBonus": {
+            "varType": 0,
+            "value": 0.25,
+            "copy": false
+        },
+        "isHeal": {
+            "varType": 2,
+            "value": true,
+            "copy": false
+        }
+    },
+    "id": 3
+}

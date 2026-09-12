@@ -1,0 +1,97 @@
+{
+    "totalFrame": 12,
+    "imageSources": [
+        null
+    ],
+    "layers": [
+        {
+            "type": 0,
+            "name": "[#GAME_THE_TARGET_LAYER]",
+            "children": [],
+            "frames": [
+                {
+                    "index": 0,
+                    "frameinterpolationEnabled": true,
+                    "x": 0,
+                    "y": 0,
+                    "rotation": 0,
+                    "alpha": 1,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "materialData": [
+                        {
+                            "materials": [
+                                {
+                                    "id": 4,
+                                    "color": "#ffdd00",
+                                    "blur": 6,
+                                    "offsetX": 0,
+                                    "offsetY": 0,
+                                    "enable": true,
+                                    "____timeInfo": {}
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "index": 6,
+                    "frameinterpolationEnabled": true,
+                    "materialData": [
+                        {
+                            "materials": [
+                                {
+                                    "id": 4,
+                                    "color": "#ffbb00",
+                                    "blur": 6,
+                                    "offsetX": 0,
+                                    "offsetY": 0,
+                                    "enable": true,
+                                    "____timeInfo": {}
+                                }
+                            ]
+                        }
+                    ],
+                    "x": 0,
+                    "y": 0,
+                    "rotation": 0,
+                    "alpha": 1,
+                    "scaleX": 1,
+                    "scaleY": 1
+                },
+                {
+                    "index": 11,
+                    "frameinterpolationEnabled": true,
+                    "x": 0,
+                    "y": 0,
+                    "rotation": 0,
+                    "alpha": 1,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "materialData": [
+                        {
+                            "materials": [
+                                {
+                                    "id": 4,
+                                    "color": "#ffbb00",
+                                    "blur": 6,
+                                    "offsetX": 0,
+                                    "offsetY": 0,
+                                    "enable": true,
+                                    "____timeInfo": {}
+                                }
+                            ]
+                        }
+                    ],
+                    "signalId": 0
+                }
+            ],
+            "isHitEffect": false,
+            "ishide": false,
+            "islock": false
+        }
+    ],
+    "isParticle": false,
+    "id": 4008,
+    "particleData": null
+}
